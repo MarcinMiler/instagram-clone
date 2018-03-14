@@ -3,13 +3,16 @@ import {
     PrimaryGeneratedColumn,
     Column,
     OneToMany,
-    BaseEntity
+    BaseEntity,
+    CreateDateColumn
 } from 'typeorm'
 import { Photo } from './Photo'
 
 @Entity()
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn() id: number
+
+    @CreateDateColumn() date: Date
 
     @Column({ unique: true })
     email: string
