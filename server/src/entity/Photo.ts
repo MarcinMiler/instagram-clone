@@ -5,7 +5,8 @@ import {
     ManyToOne,
     BaseEntity,
     OneToMany,
-    CreateDateColumn
+    CreateDateColumn,
+    RelationCount
 } from 'typeorm'
 import { User } from './User'
 import { Like } from './Like'
@@ -28,6 +29,12 @@ export class Photo extends BaseEntity {
     @OneToMany(() => Like, like => like.photo)
     likes: Like[]
 
+    @RelationCount((photo: Photo) => photo.likes)
+    likesCount: number
+
     @OneToMany(() => Comment, comment => comment.photo)
     comments: Comment[]
+
+    @RelationCount((photo: Photo) => photo.comments)
+    commentsCount: number
 }

@@ -14,7 +14,9 @@ const UserResolver: ResolverMap = {
                     'photos.likes',
                     'photos.comments',
                     'photos.likes.user',
-                    'photos.comments.user'
+                    'photos.comments.user',
+                    'followers',
+                    'following'
                 ]
             }),
         photos: async () =>
@@ -22,37 +24,62 @@ const UserResolver: ResolverMap = {
     },
     Mutation: {
         createUser: async (_, args) => {
-            const date = new Date()
-            const photo = Photo.create({ ...args.photo, date })
+            const photo = Photo.create({ ...args.photo })
             await photo.save()
+
             const user = User.create({
                 email: args.email,
                 firstname: args.firstname
             })
+
             user.photos = [photo]
             await user.save()
+
             return user
         },
-        likePhoto: async (_, args) => {
+        likePhoto: async (_, { photoId, userId }) => {
             try {
                 const like = Like.create({
-                    photoId: args.photoId,
-                    userId: args.userId
+                    photoId,
+                    userId
                 })
                 await like.save()
+
                 return true
             } catch (err) {
                 return false
             }
         },
-        createComment: async (_, args) => {
+        createComment: async (_, { photoId, userId, text }) => {
             try {
                 const comment = Comment.create({
-                    photoId: args.photoId,
-                    userId: args.userId,
-                    text: args.text
+                    photoId,
+                    userId,
+                    text
                 })
                 await comment.save()
+
+                return true
+            } catch (err) {
+                return false
+            }
+        },
+        follow: async (_, { userId, followerId }) => {
+            try {
+                const user = await User.findOneById(userId, {
+                    relations: ['followers', 'following']
+                })
+
+                const user2 = await User.findOneById(followerId, {
+                    relations: ['followers', 'following']
+                })
+
+                if (user && user2) {
+                    user.following.push(user2)
+                    user2.followers.push(user)
+                    await user.save()
+                    await user2.save()
+                }
                 return true
             } catch (err) {
                 return false
