@@ -32,6 +32,17 @@ export const typeDefs = `
         user: User
     }
 
+    type LoginResponse {
+        ok: Boolean!
+        token: String
+        error: String
+    }
+
+    type Response {
+        ok: Boolean!
+        error: String
+    }
+
     input PhotoInput {
         url: String!
     }
@@ -47,5 +58,7 @@ export const typeDefs = `
         likePhoto(photoId: ID! userId: ID!): Boolean!
         createComment(photoId: ID! userId: ID! text: String!): Boolean!
         follow(userId: ID! followerId: ID!): Boolean!
+        login(email: String! password: String!): LoginResponse!
+        register(email: String! password: String! firstname: String!): Response!
     }
 `

@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^1.0.0",
+    "@types/jsonwebtoken": "^7.2.5",
     "@types/ws": "^4.0.1",
     "nodemon": "^1.17.1",
     "ts-node": "^5.0.1",
@@ -18,7 +20,9 @@
     "typescript": "^2.7.2"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "graphql-yoga": "^1.4.3",
+    "jsonwebtoken": "^8.2.0",
     "pg": "^7.4.1",
     "reflect-metadata": "^0.1.12",
     "typeorm": "^0.1.16"

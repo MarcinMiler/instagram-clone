@@ -3,10 +3,11 @@ import { User } from '../entity/User'
 import { Photo } from '../entity/Photo'
 import { Like } from '../entity/Like'
 import { Comment } from '../entity/Comment'
+import { register, login } from '../auth'
 
 const UserResolver: ResolverMap = {
     Query: {
-        hello: (_, { name }) => `Hello Marci ${name || 'World'}`,
+        hello: (_, { name }) => `Hello Marcin ${name || 'World'}`,
         users: async () =>
             User.find({
                 relations: [
@@ -28,7 +29,6 @@ const UserResolver: ResolverMap = {
             await photo.save()
 
             const user = User.create({
-                email: args.email,
                 firstname: args.firstname
             })
 

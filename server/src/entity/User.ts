@@ -1,6 +1,6 @@
 import {
     Entity,
-    PrimaryGeneratedColumn,
+    PrimaryColumn,
     Column,
     OneToMany,
     BaseEntity,
@@ -13,12 +13,9 @@ import { Photo } from './Photo'
 
 @Entity()
 export class User extends BaseEntity {
-    @PrimaryGeneratedColumn() id: number
+    @PrimaryColumn() id: number
 
     @CreateDateColumn() date: Date
-
-    @Column({ unique: true })
-    email: string
 
     @Column() firstname: string
 
