@@ -1,12 +1,14 @@
 export const typeDefs = `
     type User {
         id: ID!
-        email: String!
         firstname: String!
+        lastname: String!
+        username: String!
         date: String!
         photos: [Photo]
         following: [User]
         followers: [User]
+        photosCount: Int!
         followingCount: Int!
         followersCount: Int!
     }
@@ -43,10 +45,6 @@ export const typeDefs = `
         error: String
     }
 
-    input PhotoInput {
-        url: String!
-    }
-
     type Query {
         hello(name: String): String!
         users: [User]
@@ -54,11 +52,11 @@ export const typeDefs = `
     }
 
     type Mutation {
-        createUser(email: String! firstname: String! photo: PhotoInput): User!
-        likePhoto(photoId: ID! userId: ID!): Boolean!
-        createComment(photoId: ID! userId: ID! text: String!): Boolean!
-        follow(userId: ID! followerId: ID!): Boolean!
-        login(email: String! password: String!): LoginResponse!
-        register(email: String! password: String! firstname: String!): Response!
+        createPhoto(userId: ID!, url: String!): Boolean
+        likePhoto(photoId: ID!, userId: ID!): Boolean!
+        createComment(photoId: ID!, userId: ID!, text: String!): Boolean!
+        follow(userId: ID!, followerId: ID!): Boolean!
+        login(email: String!, password: String!): LoginResponse!
+        register(email: String!, password: String!, firstname: String!, lastname: String! username: String!): Response!
     }
 `

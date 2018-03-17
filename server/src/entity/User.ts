@@ -19,6 +19,10 @@ export class User extends BaseEntity {
 
     @Column() firstname: string
 
+    @Column() lastname: string
+
+    @Column() username: string
+
     @OneToMany(() => Photo, photo => photo.user)
     photos: Photo[]
 
@@ -28,6 +32,9 @@ export class User extends BaseEntity {
 
     @ManyToMany(() => User, user => user.followers)
     following: User[]
+
+    @RelationCount((user: User) => user.photos)
+    photosCount: number
 
     @RelationCount((user: User) => user.followers)
     followersCount: number

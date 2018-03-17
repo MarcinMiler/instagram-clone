@@ -6,8 +6,7 @@ import { typeDefs } from './schema'
 
 const server = new GraphQLServer({
     typeDefs,
-    resolvers,
-    context: (req: any) => console.log(req.headers)
+    resolvers
 })
 
 createConnection().then(() => {

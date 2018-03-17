@@ -3,11 +3,10 @@ import { User } from '../entity/User'
 import { Photo } from '../entity/Photo'
 import { Like } from '../entity/Like'
 import { Comment } from '../entity/Comment'
-import { register, login } from '../auth'
 
 const UserResolver: ResolverMap = {
     Query: {
-        hello: (_, { name }) => `Hello Marcin ${name || 'World'}`,
+        hello: (_, { name }) => `Helloo Marcin ${name || 'World'}`,
         users: async () =>
             User.find({
                 relations: [
@@ -24,18 +23,15 @@ const UserResolver: ResolverMap = {
             Photo.find({ relations: ['likes', 'likes.user', 'comments'] })
     },
     Mutation: {
-        createUser: async (_, args) => {
-            const photo = Photo.create({ ...args.photo })
-            await photo.save()
+        createPhoto: async (_, { userId, url }) => {
+            try {
+                const photo = Photo.create({ userId, url })
+                await photo.save()
 
-            const user = User.create({
-                firstname: args.firstname
-            })
-
-            user.photos = [photo]
-            await user.save()
-
-            return user
+                return true
+            } catch (err) {
+                return false
+            }
         },
         likePhoto: async (_, { photoId, userId }) => {
             try {
