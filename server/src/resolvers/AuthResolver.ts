@@ -32,7 +32,6 @@ const AuthResolver: ResolverMap = {
                     ok: true
                 }
             } catch (err) {
-                console.log(err)
                 return {
                     ok: false,
                     error: 'errorr'
