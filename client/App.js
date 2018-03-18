@@ -1,14 +1,28 @@
 import React, { Component } from 'react'
 import { ApolloProvider } from 'react-apollo'
 import { client } from './apollo'
+import { Font } from 'expo'
 
-import Home from './Components/Home'
+import Navigation from './Components/Navigation'
 
 class App extends Component {
+    state = {
+        fontLoaded: false
+    }
+
+    async componentDidMount() {
+        await Font.loadAsync({
+            montserratMedium: require('./resources/fonts/montserratMedium.ttf'),
+            montserratRegular: require('./resources/fonts/montserratRegular.ttf')
+        })
+        this.setState({ fontLoaded: true })
+    }
+
     render() {
+        if (!this.state.fontLoaded) return null
         return (
             <ApolloProvider client={client}>
-                <Home />
+                <Navigation />
             </ApolloProvider>
         )
     }
