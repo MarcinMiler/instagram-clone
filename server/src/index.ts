@@ -9,6 +9,21 @@ const server = new GraphQLServer({
     resolvers
 })
 
+const options = {
+    endpoint: '/graphql',
+    cors: {
+        origin: '*'
+    }
+}
+
+const addUser = (req: any, res: any, next: any) => {
+    console.log(req.headers, 'token')
+    next()
+}
+
 createConnection().then(() => {
-    server.start(() => console.log('Server is running on localhost:4000'))
+    server.use(addUser)
+    server.start(options, () =>
+        console.log('Server is running on localhost:4000')
+    )
 })

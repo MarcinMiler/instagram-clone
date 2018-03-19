@@ -26,6 +26,7 @@
     "apollo-link-http": "^1.5.3",
     "expo": "^25.0.0",
     "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
     "react": "16.2.0",
     "react-apollo": "^2.0.4",
     "react-native": "0.52.0",
