@@ -1,109 +1,122 @@
 import React, { Component } from 'react'
+import { ScrollView, Image, Dimensions } from 'react-native'
 import styled from 'styled-components'
 import { Container, P, Flex } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const Profile = () => (
-    <Container>
-        <Header>
-            <Photo />
+const Profile = () => {
+    const { width, height } = Dimensions.get('window')
 
-            <Stats>
-                <Flex row>
-                    <Wrap>
-                        <P medium>0</P>
-                        <P color="#9A9A9A">posts</P>
-                    </Wrap>
-                    <Wrap>
-                        <P medium>0</P>
-                        <P color="#9A9A9A">followers</P>
-                    </Wrap>
-                    <Wrap>
-                        <P medium>0</P>
-                        <P color="#9A9A9A">following</P>
-                    </Wrap>
-                </Flex>
+    const images = [1, 2, 3, 4, 5, 6, 7].map(i => (
+        <Post key={i}>
+            <Image
+                style={{
+                    width: width / 3 - 2,
+                    height: width / 3
+                }}
+                source={require('../resources/andzia.jpg')}
+            />
+        </Post>
+    ))
+    return (
+        <Container>
+            <ScrollView>
+                <Header>
+                    <Photo source={require('../resources/andzia.jpg')} />
 
-                <Flex>
-                    <Button>
-                        <P color="#fff" size={16}>
-                            Follow
-                        </P>
-                    </Button>
-                </Flex>
-            </Stats>
-        </Header>
+                    <Stats>
+                        <Flex row>
+                            <Wrap>
+                                <P medium>0</P>
+                                <P color="#9A9A9A">posts</P>
+                            </Wrap>
+                            <Wrap>
+                                <P medium>0</P>
+                                <P color="#9A9A9A">followers</P>
+                            </Wrap>
+                            <Wrap>
+                                <P medium>0</P>
+                                <P color="#9A9A9A">following</P>
+                            </Wrap>
+                        </Flex>
 
-        <Description>
-            <P left>Marcin Miler</P>
-        </Description>
+                        <Flex>
+                            <Button>
+                                <P color="#000" size={14}>
+                                    Edit profile
+                                </P>
+                            </Button>
+                        </Flex>
+                    </Stats>
+                </Header>
 
-        <Icons row>
-            <Icon name="ios-list-outline" size={34} color="gray" />
-            <Icon name="ios-star-outline" size={24} color="gray" />
-            <Icon name="ios-contacts-outline" size={24} color="gray" />
-        </Icons>
+                <Description>
+                    <P left size={15} medium>
+                        Angelika Miler
+                    </P>
+                </Description>
 
-        <Posts row>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-        </Posts>
-    </Container>
-)
+                <Icons row>
+                    <Icon name="ios-list-outline" size={34} color="gray" />
+                    <Icon name="ios-star-outline" size={24} color="gray" />
+                    <Icon name="ios-contacts-outline" size={24} color="gray" />
+                </Icons>
+
+                <Posts row>{images}</Posts>
+            </ScrollView>
+        </Container>
+    )
+}
 
 const Header = styled.View`
     flex-direction: row;
     height: 120;
-    padding: 20px;
+    padding: 10px;
     justify-content: space-between;
     align-items: center;
 `
-const Photo = styled.View`
-    width: 80;
-    height: 80;
-    border-width: 1;
-    border-color: black;
+const Photo = styled.Image`
+    width: 90;
+    height: 90;
     border-radius: 50;
 `
 const Stats = styled.View`
-    height: 120;
-    margin-top: 20px;
+    height: 90;
     flex-direction: column;
+    justify-content: space-around;
     align-items: flex-start;
 `
 const Wrap = styled.View`
     flex-direction: column;
-    padding: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
 `
 const Button = styled.View`
     width: 100%;
-    align-items: center;
+    justify-content: center;
     height: 25;
-    background-color: #1795eb;
     border-radius: 5px;
+    border-width: 1;
+    border-color: #c6c6c6;
 `
 const Description = styled.View`
-    padding-left: 20px;
-    padding-bottom: 10px;
+    padding: 10px;
 `
 const Icons = styled(Flex)`
-    height: 40;
+    height: 50;
     justify-content: space-around;
     align-items: center;
     border-width: 1;
     border-color: lightgray;
+    border-bottom-width: 0;
 `
 const Posts = styled(Flex)`
     flex-wrap: wrap;
 `
 const Post = styled.View`
-    width: 32.7%;
-    padding-bottom: 33%;
-    background-color: red;
     margin: 1px;
+    margin-top: 0px;
 `
 
 export default Profile
