@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { ScrollView, Image, Dimensions } from 'react-native'
+import { ScrollView, Image, Dimensions, View } from 'react-native'
 import styled from 'styled-components'
 import { Container, P, Flex } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const Profile = () => {
-    const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
+const MyPhotos = () => {
     const images = [1, 2, 3, 4, 5, 6, 7].map(i => (
         <Post key={i}>
             <Image
@@ -19,6 +19,10 @@ const Profile = () => {
             />
         </Post>
     ))
+    return <Posts row>{images}</Posts>
+}
+
+const Profile = () => {
     return (
         <Container>
             <ScrollView>
@@ -28,15 +32,21 @@ const Profile = () => {
                     <Stats>
                         <Flex row>
                             <Wrap>
-                                <P medium>0</P>
-                                <P color="#9A9A9A">posts</P>
+                                <P medium size={20}>
+                                    20
+                                </P>
+                                <P color="#9A9A9A">postss</P>
                             </Wrap>
                             <Wrap>
-                                <P medium>0</P>
+                                <P medium size={20}>
+                                    50
+                                </P>
                                 <P color="#9A9A9A">followers</P>
                             </Wrap>
                             <Wrap>
-                                <P medium>0</P>
+                                <P medium size={20}>
+                                    1000
+                                </P>
                                 <P color="#9A9A9A">following</P>
                             </Wrap>
                         </Flex>
@@ -63,7 +73,7 @@ const Profile = () => {
                     <Icon name="ios-contacts-outline" size={24} color="gray" />
                 </Icons>
 
-                <Posts row>{images}</Posts>
+                <MyPhotos />
             </ScrollView>
         </Container>
     )

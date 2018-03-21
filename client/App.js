@@ -12,8 +12,8 @@ class App extends Component {
 
     async componentDidMount() {
         await Font.loadAsync({
-            montserratMedium: require('./resources/fonts/montserratMedium.ttf'),
-            montserratRegular: require('./resources/fonts/montserratRegular.ttf')
+            montserratRegular: require('./resources/fonts/montserratRegular.ttf'),
+            montserratMedium: require('./resources/fonts/montserratMedium.ttf')
         })
         this.setState({ fontLoaded: true })
     }

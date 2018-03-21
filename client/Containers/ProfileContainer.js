@@ -5,9 +5,17 @@ import gql from 'graphql-tag'
 import Profile from '../Components/Profile'
 
 class ProfileContainer extends Component {
+    state = {
+        switch: 'MyPhotos'
+    }
+
+    handleChangeState = (key, value) => this.setState({ [key]: value })
+
     render() {
-        console.log(this.props)
-        return <Profile />
+        console.log(this.state.switch)
+        return (
+            <Profile changeState={this.handleChangeState} state={this.state} />
+        )
     }
 }
 

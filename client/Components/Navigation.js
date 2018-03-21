@@ -24,10 +24,23 @@ const ProfileNavigation = StackNavigator(
     }
 )
 
+const FeedNavigation = StackNavigator(
+    {
+        Main: {
+            screen: FeedContainer
+        }
+    },
+    {
+        navigationOptions: {
+            title: 'Instagram'
+        }
+    }
+)
+
 const AppNavigation = TabNavigator(
     {
         Feed: {
-            screen: FeedContainer,
+            screen: FeedNavigation,
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
@@ -84,7 +97,7 @@ const AppNavigation = TabNavigator(
     },
     {
         tabBarPosition: 'bottom',
-        initialRouteName: 'Profile',
+        initialRouteName: 'Feed',
         lazy: false,
         tabBarOptions: {
             showIcon: true,
