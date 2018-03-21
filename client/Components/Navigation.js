@@ -7,6 +7,7 @@ import CameraContainer from '../Containers/CameraContainer'
 import ProfileContainer from '../Containers/ProfileContainer'
 import ExploreContainer from '../Containers/ExploreContainer'
 import NotificationsContainer from '../Containers/NotificationsContainer'
+import Comments from './Comments'
 
 import FM from 'react-native-vector-icons/FontAwesome'
 import MD from 'react-native-vector-icons/MaterialIcons'
@@ -28,6 +29,13 @@ const FeedNavigation = StackNavigator(
     {
         Main: {
             screen: FeedContainer
+        },
+        Comments: {
+            screen: Comments,
+            navigationOptions: {
+                tabBarVisible: false,
+                swipeEnabled: false
+            }
         }
     },
     {
@@ -98,7 +106,7 @@ const AppNavigation = TabNavigator(
     {
         tabBarPosition: 'bottom',
         initialRouteName: 'Feed',
-        lazy: false,
+        lazy: true,
         tabBarOptions: {
             showIcon: true,
             showLabel: false,

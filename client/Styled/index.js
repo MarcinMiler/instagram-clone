@@ -7,9 +7,10 @@ export const Container = styled.View`
 `
 export const Flex = styled.View.attrs({
     padd: props => props.padd || '0px',
-    marginTop: props => props.marginTop || 0
+    marginTop: props => props.marginTop || 0,
+    width: props => props.width || '100%'
 })`
-    width: 100%;
+    width: ${props => props.width};
     align-items: center;
     margin-top: ${props => props.marginTop};
     padding: ${props => props.padd};

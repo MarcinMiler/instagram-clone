@@ -8,7 +8,7 @@ import FA from 'react-native-vector-icons/FontAwesome'
 
 const { width, height } = Dimensions.get('window')
 
-const Posts = () => {
+const Posts = ({ navigation }) => {
     return [1, 2, 3, 4, 5, 6].map(img => {
         return (
             <React.Fragment key={img}>
@@ -18,6 +18,7 @@ const Posts = () => {
                         Angelaaa
                     </P>
                 </Flex>
+
                 <Image
                     style={{
                         width,
@@ -46,8 +47,13 @@ const Posts = () => {
                             Selfie
                         </P>
                     </Flex>
+
                     <Flex row marginTop={7}>
-                        <P size={12} color="gray">
+                        <P
+                            size={12}
+                            color="gray"
+                            onPress={() => navigation.navigate('Comments')}
+                        >
                             View all the comments 5
                         </P>
                     </Flex>
@@ -57,10 +63,10 @@ const Posts = () => {
     })
 }
 
-const Feed = () => (
+const Feed = ({ navigation }) => (
     <Container>
         <ScrollView>
-            <Posts />
+            <Posts navigation={navigation} />
         </ScrollView>
     </Container>
 )
@@ -71,7 +77,4 @@ const UserPhoto = styled.Image`
     width: 35;
     height: 35;
     border-radius: 30;
-`
-const Flex2 = styled.View`
-    flex
 `

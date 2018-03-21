@@ -4,7 +4,7 @@ import Feed from '../Components/Feed'
 
 class FeedContainer extends Component {
     render() {
-        return <Feed />
+        return <Feed navigation={this.props.navigation} />
     }
 }
 
