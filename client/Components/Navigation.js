@@ -1,16 +1,49 @@
 import React, { Component } from 'react'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import { View, Text } from 'react-native'
+import { View, Text, TextInput } from 'react-native'
 
 import FeedContainer from '../Containers/FeedContainer'
 import CameraContainer from '../Containers/CameraContainer'
 import ProfileContainer from '../Containers/ProfileContainer'
 import ExploreContainer from '../Containers/ExploreContainer'
 import NotificationsContainer from '../Containers/NotificationsContainer'
-import Comments from './Comments'
 
 import FM from 'react-native-vector-icons/FontAwesome'
 import MD from 'react-native-vector-icons/MaterialIcons'
+import CommentsContainer from '../Containers/CommentsContainer'
+
+const FeedNavigation = StackNavigator(
+    {
+        Main: {
+            screen: FeedContainer
+        },
+        Comments: {
+            screen: CommentsContainer,
+            navigationOptions: {
+                tabBarVisible: false,
+                swipeEnabled: false
+            }
+        }
+    },
+    {
+        navigationOptions: {
+            title: 'Instagram'
+        }
+    }
+)
+
+const ExploreNavigation = StackNavigator(
+    {
+        Main: {
+            screen: ExploreContainer
+        }
+    },
+    {
+        navigationOptions: {
+            title: 'Search'
+        }
+    }
+)
 
 const ProfileNavigation = StackNavigator(
     {
@@ -21,26 +54,6 @@ const ProfileNavigation = StackNavigator(
     {
         navigationOptions: {
             title: 'Profile'
-        }
-    }
-)
-
-const FeedNavigation = StackNavigator(
-    {
-        Main: {
-            screen: FeedContainer
-        },
-        Comments: {
-            screen: Comments,
-            navigationOptions: {
-                tabBarVisible: false,
-                swipeEnabled: false
-            }
-        }
-    },
-    {
-        navigationOptions: {
-            title: 'Instagram'
         }
     }
 )
@@ -59,7 +72,7 @@ const AppNavigation = TabNavigator(
             }
         },
         Explore: {
-            screen: ExploreContainer,
+            screen: ExploreNavigation,
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
@@ -105,7 +118,7 @@ const AppNavigation = TabNavigator(
     },
     {
         tabBarPosition: 'bottom',
-        initialRouteName: 'Feed',
+        initialRouteName: 'Explore',
         lazy: true,
         tabBarOptions: {
             showIcon: true,

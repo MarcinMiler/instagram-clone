@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { Container, P } from '../Styled'
 
+import Photos from './Photos'
+import { ScrollView } from 'react-native-gesture-handler'
+
 const Explore = () => (
     <Container>
-        <P>Explore</P>
+        <ScrollView>
+            <Photos />
+        </ScrollView>
     </Container>
 )
 

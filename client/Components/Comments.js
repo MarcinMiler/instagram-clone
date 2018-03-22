@@ -1,5 +1,10 @@
 import React from 'react'
-import { Dimensions, View } from 'react-native'
+import {
+    Dimensions,
+    View,
+    KeyboardAvoidingView,
+    ScrollView
+} from 'react-native'
 import { P, Container } from '../Styled'
 import styled from 'styled-components'
 
@@ -7,10 +12,10 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 const { width, height } = Dimensions.get('window')
 
-const Comments = () => {
-    const list = [1, 2, 3, 4, 5, 6].map(i => {
+const Comments = ({ changeState }) => {
+    const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => {
         return (
-            <Flex row key={i} style={{ padding: 15 }}>
+            <Flex row key={i} style={{ padding: 10 }}>
                 <Flex row style={{ flexGrow: 1 }}>
                     <Photo
                         width={40}
@@ -59,9 +64,19 @@ const Comments = () => {
     })
     return (
         <Container>
-            {list}
+            <ScrollView style={{ height: height - 175 }}>{list}</ScrollView>
             <Input>
                 <Photo width={40} source={require('../resources/andzia.jpg')} />
+
+                <TextInput
+                    onChangeText={text => changeState('text', text)}
+                    placeholder="Add comment..."
+                    placeholderTextColor="lightgray"
+                    underlineColorAndroid="transparent"
+                    multiline
+                />
+
+                <P size={14}>Send</P>
             </Input>
         </Container>
     )
@@ -82,12 +97,20 @@ const Flex = styled.View`
 const Input = styled.View`
     flex: 1;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 60;
-    background-color: blue;
-    position: absolute;
+    padding: 10px;
+    height: 80;
+    position: relative;
     bottom: 0;
     left: 0;
+    border-top-width: 1;
+    border-color: lightgray;
+`
+const TextInput = styled.TextInput`
+    flex-grow: 1;
+    max-width: 80%;
+    height: 60;
+    padding: 10px;
 `

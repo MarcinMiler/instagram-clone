@@ -1,26 +1,10 @@
 import React, { Component } from 'react'
-import { ScrollView, Image, Dimensions, View } from 'react-native'
+import { ScrollView, Image, View } from 'react-native'
 import styled from 'styled-components'
 import { Container, P, Flex } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Ionicons'
-
-const { width, height } = Dimensions.get('window')
-
-const MyPhotos = () => {
-    const images = [1, 2, 3, 4, 5, 6, 7].map(i => (
-        <Post key={i}>
-            <Image
-                style={{
-                    width: width / 3 - 2,
-                    height: width / 3
-                }}
-                source={require('../resources/andzia.jpg')}
-            />
-        </Post>
-    ))
-    return <Posts row>{images}</Posts>
-}
+import Photos from './Photos'
 
 const Profile = () => {
     return (
@@ -73,7 +57,7 @@ const Profile = () => {
                     <Icon name="ios-contacts-outline" size={24} color="gray" />
                 </Icons>
 
-                <MyPhotos />
+                <Photos />
             </ScrollView>
         </Container>
     )
@@ -120,13 +104,6 @@ const Icons = styled(Flex)`
     border-width: 1;
     border-color: lightgray;
     border-bottom-width: 0;
-`
-const Posts = styled(Flex)`
-    flex-wrap: wrap;
-`
-const Post = styled.View`
-    margin: 1px;
-    margin-top: 0px;
 `
 
 export default Profile
