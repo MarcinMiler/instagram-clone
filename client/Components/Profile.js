@@ -3,7 +3,7 @@ import { ScrollView, Image, View } from 'react-native'
 import styled from 'styled-components'
 import { Container, P, Flex } from '../Styled'
 
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Feather'
 import Photos from './Photos'
 
 const Profile = () => {
@@ -52,9 +52,9 @@ const Profile = () => {
                 </Description>
 
                 <Icons row>
-                    <Icon name="ios-list-outline" size={34} color="gray" />
-                    <Icon name="ios-star-outline" size={24} color="gray" />
-                    <Icon name="ios-contacts-outline" size={24} color="gray" />
+                    <Icon name="list" size={20} color="gray" />
+                    <Icon name="star" size={20} color="gray" />
+                    <Icon name="users" size={20} color="gray" />
                 </Icons>
 
                 <Photos />

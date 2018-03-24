@@ -8,8 +8,7 @@ import ProfileContainer from '../Containers/ProfileContainer'
 import ExploreContainer from '../Containers/ExploreContainer'
 import NotificationsContainer from '../Containers/NotificationsContainer'
 
-import FM from 'react-native-vector-icons/FontAwesome'
-import MD from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/Feather'
 import CommentsContainer from '../Containers/CommentsContainer'
 
 const FeedNavigation = StackNavigator(
@@ -65,9 +64,9 @@ const AppNavigation = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
-                        <FM name="home" size={20} color="black" />
+                        <Icon name="home" size={20} color="black" />
                     ) : (
-                        <FM name="home" size={20} color="#C6C6C6" />
+                        <Icon name="home" size={20} color="#C6C6C6" />
                     )
             }
         },
@@ -76,9 +75,9 @@ const AppNavigation = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
-                        <FM name="search" size={20} color="black" />
+                        <Icon name="search" size={20} color="black" />
                     ) : (
-                        <FM name="search" size={20} color="#C6C6C6" />
+                        <Icon name="search" size={20} color="#C6C6C6" />
                     )
             }
         },
@@ -87,9 +86,9 @@ const AppNavigation = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
-                        <MD name="add-circle" size={20} color="black" />
+                        <Icon name="plus-circle" size={20} color="black" />
                     ) : (
-                        <MD name="add-circle" size={20} color="#C6C6C6" />
+                        <Icon name="plus-circle" size={20} color="#C6C6C6" />
                     )
             }
         },
@@ -98,9 +97,9 @@ const AppNavigation = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
-                        <FM name="heart" size={20} color="black" />
+                        <Icon name="heart" size={20} color="black" />
                     ) : (
-                        <FM name="heart" size={20} color="#C6C6C6" />
+                        <Icon name="heart" size={20} color="#C6C6C6" />
                     )
             }
         },
@@ -109,9 +108,9 @@ const AppNavigation = TabNavigator(
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
-                        <FM name="user" size={20} color="black" />
+                        <Icon name="user" size={20} color="black" />
                     ) : (
-                        <FM name="user" size={20} color="#C6C6C6" />
+                        <Icon name="user" size={20} color="#C6C6C6" />
                     )
             }
         }

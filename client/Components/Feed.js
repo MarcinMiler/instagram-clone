@@ -3,8 +3,7 @@ import { Dimensions, Image, ScrollView } from 'react-native'
 import { Container, P, Flex } from '../Styled'
 import styled from 'styled-components'
 
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
-import FA from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
@@ -28,12 +27,12 @@ const Posts = ({ navigation }) => {
                 />
                 <Flex padd="10px">
                     <Flex row>
-                        <EvilIcons name="heart" size={36} color="black" />
-                        <EvilIcons name="comment" size={36} color="black" />
+                        <Icon name="heart" size={30} color="black" />
+                        <Icon name="message-circle" size={30} color="black" />
                     </Flex>
 
                     <Flex row marginTop={5}>
-                        <FA name="heart" size={14} color="black" />
+                        <Icon name="heart" size={14} color="black" />
                         <P medium size={16} marginLeft={7}>
                             500 likes
                         </P>
