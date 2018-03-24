@@ -57,6 +57,19 @@ const ProfileNavigation = StackNavigator(
     }
 )
 
+const NotificationsNavigation = StackNavigator(
+    {
+        Main: {
+            screen: NotificationsContainer
+        }
+    },
+    {
+        navigationOptions: {
+            header: null
+        }
+    }
+)
+
 const AppNavigation = TabNavigator(
     {
         Feed: {
@@ -92,8 +105,8 @@ const AppNavigation = TabNavigator(
                     )
             }
         },
-        Nottifications: {
-            screen: NotificationsContainer,
+        Notifications: {
+            screen: NotificationsNavigation,
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
@@ -117,7 +130,7 @@ const AppNavigation = TabNavigator(
     },
     {
         tabBarPosition: 'bottom',
-        initialRouteName: 'Explore',
+        initialRouteName: 'Notifications',
         lazy: true,
         tabBarOptions: {
             showIcon: true,
