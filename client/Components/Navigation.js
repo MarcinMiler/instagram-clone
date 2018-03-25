@@ -130,7 +130,7 @@ const AppNavigation = TabNavigator(
     },
     {
         tabBarPosition: 'bottom',
-        initialRouteName: 'Notifications',
+        initialRouteName: 'Profile',
         lazy: true,
         tabBarOptions: {
             showIcon: true,

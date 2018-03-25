@@ -1,72 +1,51 @@
 import React from 'react'
-import {
-    Dimensions,
-    View,
-    KeyboardAvoidingView,
-    ScrollView
-} from 'react-native'
-import { P, Container } from '../Styled'
+import { Dimensions, View, ScrollView } from 'react-native'
+import { Container } from '../Styled'
 import styled from 'styled-components'
 
-import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
 const Comments = ({ changeState }) => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => {
         return (
-            <Flex row key={i} style={{ padding: 10 }}>
-                <Flex row style={{ flexGrow: 1 }}>
-                    <Photo
+            <Comment key={i}>
+                <User>
+                    <UserPhoto
                         width={40}
                         source={require('../resources/andzia.jpg')}
                     />
-                    <Flex
-                        style={{
-                            paddingLeft: 10,
-                            justifyContent: 'space-around',
-                            width: '80%'
-                        }}
-                    >
-                        <Flex row>
-                            <P size={14} left>
-                                <P medium size={14}>
-                                    Angelaaa
-                                </P>{' '}
-                                You are beautiful ❤
-                            </P>
-                        </Flex>
-                        <Flex row>
-                            <P size={12} color="gray">
-                                5 minutes
-                            </P>
+                    <Content>
+                        <Wrap>
+                            <CommentText>
+                                <Username>Angelaaa</Username> You are beautiful
+                                ❤
+                            </CommentText>
+                        </Wrap>
+                        <CommentData>
+                            <Text>5 minutes</Text>
 
-                            <P size={12} color="gray" marginLeft={35}>
-                                1 like
-                            </P>
+                            <Text>1 like</Text>
 
-                            <P size={12} color="gray" marginLeft={35}>
-                                Replay
-                            </P>
-                        </Flex>
-                    </Flex>
-                </Flex>
-                <View
-                    style={{
-                        justifyContent: 'center',
-                        width: 24
-                    }}
-                >
-                    <EvilIcons name="heart" size={24} color="gray" />
-                </View>
-            </Flex>
+                            <Text>Replay</Text>
+                        </CommentData>
+                    </Content>
+                </User>
+                <Like>
+                    <Icon name="heart" size={18} color="lightgray" />
+                </Like>
+            </Comment>
         )
     })
     return (
         <Container>
             <ScrollView style={{ height: height - 175 }}>{list}</ScrollView>
             <Input>
-                <Photo width={40} source={require('../resources/andzia.jpg')} />
+                <UserPhoto
+                    width={40}
+                    source={require('../resources/andzia.jpg')}
+                />
 
                 <TextInput
                     onChangeText={text => changeState('text', text)}
@@ -76,7 +55,7 @@ const Comments = ({ changeState }) => {
                     multiline
                 />
 
-                <P size={14}>Send</P>
+                <Send>Send</Send>
             </Input>
         </Container>
     )
@@ -84,15 +63,51 @@ const Comments = ({ changeState }) => {
 
 export default Comments
 
-const Photo = styled.Image.attrs({
+const Comment = styled.View`
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+`
+const User = styled.View`
+    flex-direction: row;
+    flex-grow: 1;
+`
+const UserPhoto = styled.Image.attrs({
     width: props => props.width || 0
 })`
     width: ${props => props.width}
     height: ${props => props.width}
     border-radius: ${props => props.width}
 `
-const Flex = styled.View`
-    flex-direction: ${props => (props.row ? 'row' : 'column')};
+const Content = styled.View`
+    width: 80%;
+    justify-content: space-around;
+    padding-left: 15px;
+`
+const Wrap = styled.View`
+    flex-direction: row;
+`
+const CommentText = styled.Text`
+    font-family: montserratRegular;
+    font-size: 14;
+`
+const Username = styled.Text`
+    font-family: montserratMedium;
+    font-size: 14;
+`
+const CommentData = styled.View`
+    flex-direction: row;
+    width: 150;
+    justify-content: space-between;
+`
+const Text = styled.Text`
+    font-family: montserratRegular;
+    font-size: 12;
+    color: gray;
+`
+const Like = styled.View`
+    width: 24;
+    justify-content: center;
 `
 const Input = styled.View`
     flex: 1;
@@ -113,4 +128,8 @@ const TextInput = styled.TextInput`
     max-width: 80%;
     height: 60;
     padding: 10px;
+`
+const Send = styled.Text`
+    font-family: montserratRegular;
+    font-size: 14;
 `

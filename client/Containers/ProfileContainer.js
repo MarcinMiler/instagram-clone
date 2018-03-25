@@ -12,7 +12,6 @@ class ProfileContainer extends Component {
     handleChangeState = (key, value) => this.setState({ [key]: value })
 
     render() {
-        console.log(this.state.switch)
         return (
             <Profile changeState={this.handleChangeState} state={this.state} />
         )

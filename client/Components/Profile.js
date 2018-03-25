@@ -16,39 +16,29 @@ const Profile = () => {
                     <Stats>
                         <Flex row>
                             <Wrap>
-                                <P medium size={20}>
-                                    20
-                                </P>
-                                <P color="#9A9A9A">postss</P>
+                                <Count>20</Count>
+                                <Text>posts</Text>
                             </Wrap>
                             <Wrap>
-                                <P medium size={20}>
-                                    50
-                                </P>
-                                <P color="#9A9A9A">followers</P>
+                                <Count>50</Count>
+                                <Text>followers</Text>
                             </Wrap>
                             <Wrap>
-                                <P medium size={20}>
-                                    1000
-                                </P>
-                                <P color="#9A9A9A">following</P>
+                                <Count>1000</Count>
+                                <Text>following</Text>
                             </Wrap>
                         </Flex>
 
                         <Flex>
                             <Button>
-                                <P color="#000" size={14}>
-                                    Edit profile
-                                </P>
+                                <ButtonText>Edit profile</ButtonText>
                             </Button>
                         </Flex>
                     </Stats>
                 </Header>
 
                 <Description>
-                    <P left size={15} medium>
-                        Angelika Miler
-                    </P>
+                    <Text>Angelika Miler</Text>
                 </Description>
 
                 <Icons row>
@@ -86,6 +76,16 @@ const Wrap = styled.View`
     padding-left: 8px;
     padding-right: 8px;
 `
+const Count = styled.Text`
+    font-family: montserratMedium;
+    font-size: 20;
+    text-align: center;
+`
+const Text = styled.Text`
+    font-family: montserratMedium;
+    font-size: 16;
+    color: #9a9a9a;
+`
 const Button = styled.View`
     width: 100%;
     justify-content: center;
@@ -93,6 +93,11 @@ const Button = styled.View`
     border-radius: 5px;
     border-width: 1;
     border-color: #c6c6c6;
+`
+const ButtonText = styled.Text`
+    font-family: montserratRegular;
+    font-size: 14;
+    text-align: center;
 `
 const Description = styled.View`
     padding: 10px;

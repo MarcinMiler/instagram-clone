@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native'
 import { Container, P } from '../Styled'
 import styled from 'styled-components'
 
-const Notofications = () => {
+const Notifications = () => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(i => (
         <Item key={i}>
             <UserPhoto source={require('../resources/andzia.jpg')} />
@@ -31,7 +31,7 @@ const Notofications = () => {
     )
 }
 
-export default Notofications
+export default Notifications
 
 const Nav = styled.View`
     flex-direction: row;
