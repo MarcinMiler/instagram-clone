@@ -22,9 +22,8 @@ class Cameraa extends Component {
 
     takePicture = async () => {
         if (this.camera) {
-            Vibration.vibrate()
             const photo = await this.camera.takePictureAsync()
-            CameraRoll.saveToCameraRoll(photo.uri)
+            this.props.navigation.navigate('AddPhoto', { url: photo.uri })
         }
     }
 
@@ -46,7 +45,6 @@ class Cameraa extends Component {
 
     render() {
         const { cameraPermissions } = this.state
-
         if (!cameraPermissions) return <Container />
         if (cameraPermissions === false) {
             return (

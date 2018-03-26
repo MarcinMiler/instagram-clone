@@ -3,13 +3,14 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import { View, Text, TextInput } from 'react-native'
 
 import FeedContainer from '../Containers/FeedContainer'
-import CameraContainer from '../Containers/CameraContainer'
+import Camera from '../Components/Camera'
 import ProfileContainer from '../Containers/ProfileContainer'
 import ExploreContainer from '../Containers/ExploreContainer'
 import NotificationsContainer from '../Containers/NotificationsContainer'
+import CommentsContainer from '../Containers/CommentsContainer'
+import AddPhoto from '../Components/AddPhoto'
 
 import Icon from 'react-native-vector-icons/Feather'
-import CommentsContainer from '../Containers/CommentsContainer'
 
 const FeedNavigation = StackNavigator(
     {
@@ -43,6 +44,21 @@ const ExploreNavigation = StackNavigator(
         }
     }
 )
+
+const CameraNavigation = StackNavigator({
+    Main: {
+        screen: Camera,
+        navigationOptions: {
+            header: null
+        }
+    },
+    AddPhoto: {
+        screen: AddPhoto,
+        navigationOptions: {
+            title: 'Add photo'
+        }
+    }
+})
 
 const ProfileNavigation = StackNavigator(
     {
@@ -95,7 +111,7 @@ const AppNavigation = TabNavigator(
             }
         },
         Camera: {
-            screen: CameraContainer,
+            screen: CameraNavigation,
             navigationOptions: {
                 tabBarIcon: ({ focused }) =>
                     focused ? (
