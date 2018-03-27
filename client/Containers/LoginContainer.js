@@ -4,7 +4,7 @@ import Login from '../Components/Login'
 
 class LoginContainer extends Component {
     render() {
-        return <Login />
+        return <Login navigation={this.props.navigation} />
     }
 }
 
