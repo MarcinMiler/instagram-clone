@@ -86,7 +86,7 @@ const NotificationsNavigation = StackNavigator(
     }
 )
 
-const AppNavigation = TabNavigator(
+export default TabNavigator(
     {
         Feed: {
             screen: FeedNavigation,
@@ -161,5 +161,3 @@ const AppNavigation = TabNavigator(
         }
     }
 )
-
-export default AppNavigation

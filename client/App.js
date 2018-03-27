@@ -3,7 +3,7 @@ import { ApolloProvider } from 'react-apollo'
 import { client } from './apollo'
 import { Font } from 'expo'
 
-import Navigation from './Components/Navigation'
+import Navigation from './Navigation/SwitchNavigator'
 
 class App extends Component {
     state = {
