@@ -3,7 +3,7 @@ import { TouchableNativeFeedback } from 'react-native'
 import styled from 'styled-components'
 import { LinearGradient } from 'expo'
 
-const Register = ({ navigation }) => (
+const Register = ({ navigation, register, changeState }) => (
     <Container colors={['#AA00FF', '#CE31C4']}>
         <Wrap>
             <Title>Instagram</Title>
@@ -12,21 +12,24 @@ const Register = ({ navigation }) => (
         <Wrap style={{ height: 280 }}>
             <SubTitle>Register</SubTitle>
             <Input
+                onChangeText={text => changeState('email', text)}
                 placeholder="Email"
                 placeholderTextColor="lightgray"
                 underlineColorAndroid="transparent"
             />
             <Input
+                onChangeText={text => changeState('password', text)}
                 placeholder="Password"
                 placeholderTextColor="lightgray"
                 underlineColorAndroid="transparent"
             />
             <Input
+                onChangeText={text => changeState('password2', text)}
                 placeholder="Confirm password"
                 placeholderTextColor="lightgray"
                 underlineColorAndroid="transparent"
             />
-            <TouchableNativeFeedback onPress={() => console.log('lol')}>
+            <TouchableNativeFeedback onPress={() => register()}>
                 <Button>
                     <Text>Register</Text>
                 </Button>
