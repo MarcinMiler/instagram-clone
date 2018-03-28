@@ -6,8 +6,8 @@ import { Comment } from '../entity/Comment'
 
 const UserResolver: ResolverMap = {
     Query: {
-        hello: (_, { name }) => `Helloo Marcin ${name || 'World'}`,
-        users: async () =>
+        me: (_, args, { user }) => User.findOneById(user),
+        users: () =>
             User.find({
                 relations: [
                     'photos',
@@ -19,7 +19,7 @@ const UserResolver: ResolverMap = {
                     'following'
                 ]
             }),
-        photos: async () =>
+        photos: () =>
             Photo.find({ relations: ['likes', 'likes.user', 'comments'] })
     },
     Mutation: {

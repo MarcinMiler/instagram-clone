@@ -27,6 +27,7 @@ class LoginContainer extends Component {
             })
 
             if (loginResponse.data.login.ok) {
+                this.props.navigation.navigate('App')
                 const { token } = loginResponse.data.login
                 await SecureStore.setItemAsync('token', token)
             } else {

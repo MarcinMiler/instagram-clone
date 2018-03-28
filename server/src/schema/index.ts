@@ -46,7 +46,7 @@ export const typeDefs = `
     }
 
     type Query {
-        hello(name: String): String!
+        me: User!
         users: [User]
         photos: [Photo]
     }

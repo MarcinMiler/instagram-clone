@@ -3,11 +3,8 @@ import { GraphQLServer } from 'graphql-yoga'
 import { createConnection } from 'typeorm'
 import { resolvers } from './resolvers'
 import { typeDefs } from './schema'
-
-const server = new GraphQLServer({
-    typeDefs,
-    resolvers
-})
+import * as jwt from 'jsonwebtoken'
+import { SECRET } from './secret'
 
 const options = {
     endpoint: '/graphql',
@@ -17,9 +14,21 @@ const options = {
 }
 
 const addUser = (req: any, res: any, next: any) => {
-    console.log(req.headers, 'token')
+    const { token } = req.headers
+    if (token) {
+        const user = jwt.verify(token, SECRET)
+        req.user = user
+    }
     next()
 }
+
+const server = new GraphQLServer({
+    typeDefs,
+    resolvers,
+    context: (req: any) => ({
+        user: req.request.user.id
+    })
+})
 
 createConnection().then(() => {
     server.use(addUser)
