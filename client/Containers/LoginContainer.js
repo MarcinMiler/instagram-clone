@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import { SecureStore } from 'expo'
 import { Alert } from 'react-native'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+
 import Login from '../Components/Login'
 
 class LoginContainer extends Component {
@@ -14,26 +18,25 @@ class LoginContainer extends Component {
         const { email, password } = this.state
         const valid = this.validateLogin(email, password)
 
-        // if (valid.ok) {
-        //     const loginResponse = await this.props.login({
-        //         variables: {
-        //             email,
-        //             password
-        //         }
-        //     })
+        if (valid.ok) {
+            const loginResponse = await this.props.login({
+                variables: {
+                    email,
+                    password
+                }
+            })
 
-        //     if (loginResponse.data.login.ok) {
-        //         const { token } = loginResponse.data.login
-        //         this.props.setToken(token)
-        //         await AsyncStorage.setItem('token', token)
-        //     } else {
-        //         let messages = ''
-        //         loginResponse.data.login.error.message.forEach(
-        //             msg => (messages += msg + '. ')
-        //         )
-        //         Alert.alert('Register failed', messages, [{ text: 'OK' }])
-        //     }
-        // }
+            if (loginResponse.data.login.ok) {
+                const { token } = loginResponse.data.login
+                await SecureStore.setItemAsync('token', token)
+            } else {
+                Alert.alert(
+                    'Register failed',
+                    loginResponse.data.login.error.message,
+                    [{ text: 'OK' }]
+                )
+            }
+        }
     }
 
     validateLogin = (email, password) => {
@@ -66,4 +69,13 @@ class LoginContainer extends Component {
     }
 }
 
-export default LoginContainer
+const loginMutation = gql`
+    mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password) {
+            ok
+            token
+        }
+    }
+`
+
+export default graphql(loginMutation, { name: 'login' })(LoginContainer)

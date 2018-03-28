@@ -4,12 +4,12 @@ import styled from 'styled-components'
 import { LinearGradient } from 'expo'
 
 const Login = ({ navigation, login, changeState }) => (
-    <Container colors={['#AA00FF', '#CE31C4']}>
+    <Container colors={['#ff9068', '#fd746c']}>
         <Wrap>
             <Title>Instagram</Title>
         </Wrap>
 
-        <Wrap style={{ height: 230 }}>
+        <Wrap style={{ height: 200 }}>
             <SubTitle>Login</SubTitle>
             <Input
                 onChangeText={text => changeState('email', text)}
@@ -69,7 +69,10 @@ const SubTitle = styled(Text)`
 `
 const Input = styled.TextInput`
     padding: 4px;
-    background-color: 'rgba(255,255,255,0.3)';
+    padding-left: 10px;
+    background-color: 'rgba(255,255,255,0.05)';
+    border-width: 1;
+    border-color: rgba(255, 255, 255, 0.35);
     font-family: 'montserratRegular';
     color: white;
     border-radius: 3;

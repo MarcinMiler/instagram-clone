@@ -2,8 +2,8 @@ export const typeDefs = `
     type User {
         id: ID!
         firstname: String!
-        lastname: String!
-        username: String!
+        lastname: String
+        username: String
         date: String!
         photos: [Photo]
         following: [User]
@@ -57,6 +57,6 @@ export const typeDefs = `
         createComment(photoId: ID!, userId: ID!, text: String!): Boolean!
         follow(userId: ID!, followerId: ID!): Boolean!
         login(email: String!, password: String!): LoginResponse!
-        register(email: String!, password: String!, firstname: String!, lastname: String! username: String!): Response!
+        register(email: String!, password: String!, username: String!): Response!
     }
 `

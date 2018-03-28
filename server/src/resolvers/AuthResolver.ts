@@ -11,7 +11,7 @@ const createToken = async (id: number): Promise<string> =>
 const AuthResolver: ResolverMap = {
     Mutation: {
         register: async (_, args) => {
-            const { email, password, firstname, lastname, username } = args
+            const { email, password, username } = args
 
             try {
                 const hash = await bcrypt.hash(password, 12)
@@ -23,8 +23,6 @@ const AuthResolver: ResolverMap = {
 
                 await User.create({
                     id: account.id,
-                    firstname,
-                    lastname,
                     username
                 }).save()
 
@@ -34,7 +32,7 @@ const AuthResolver: ResolverMap = {
             } catch (err) {
                 return {
                     ok: false,
-                    error: 'errorr'
+                    error: 'Error'
                 }
             }
         },

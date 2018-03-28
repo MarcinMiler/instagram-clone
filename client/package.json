@@ -20,15 +20,12 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
-    "apollo-cache-inmemory": "^1.1.11",
-    "apollo-client": "^2.2.7",
-    "apollo-link-context": "^1.0.7",
-    "apollo-link-http": "^1.5.3",
+    "apollo-boost": "^0.1.4",
     "expo": "^25.0.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
     "react": "16.2.0",
-    "react-apollo": "^2.0.4",
+    "react-apollo": "^2.1.1",
     "react-native": "0.52.0",
     "react-navigation": "^1.5.7",
     "styled-components": "^3.2.3"

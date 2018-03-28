@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { LinearGradient } from 'expo'
 
 const Register = ({ navigation, register, changeState }) => (
-    <Container colors={['#AA00FF', '#CE31C4']}>
+    <Container colors={['#ff9068', '#fd746c']}>
         <Wrap>
             <Title>Instagram</Title>
         </Wrap>
@@ -14,6 +14,12 @@ const Register = ({ navigation, register, changeState }) => (
             <Input
                 onChangeText={text => changeState('email', text)}
                 placeholder="Email"
+                placeholderTextColor="lightgray"
+                underlineColorAndroid="transparent"
+            />
+            <Input
+                onChangeText={text => changeState('username', text)}
+                placeholder="Username"
                 placeholderTextColor="lightgray"
                 underlineColorAndroid="transparent"
             />
@@ -29,7 +35,12 @@ const Register = ({ navigation, register, changeState }) => (
                 placeholderTextColor="lightgray"
                 underlineColorAndroid="transparent"
             />
-            <TouchableNativeFeedback onPress={() => register()}>
+            <TouchableNativeFeedback
+                onPress={() => {
+                    const res = register()
+                    if (res) navigation.navigate('Login')
+                }}
+            >
                 <Button>
                     <Text>Register</Text>
                 </Button>
@@ -41,7 +52,7 @@ const Register = ({ navigation, register, changeState }) => (
                 onPress={() => navigation.navigate('Login')}
             >
                 <Button>
-                    <Text>Register</Text>
+                    <Text>Login</Text>
                 </Button>
             </TouchableNativeFeedback>
         </Wrap>
@@ -74,7 +85,10 @@ const SubTitle = styled(Text)`
 `
 const Input = styled.TextInput`
     padding: 4px;
-    background-color: 'rgba(255,255,255,0.3)';
+    padding-left: 10px;
+    background-color: 'rgba(255,255,255,0.05)';
+    border-width: 1;
+    border-color: rgba(255, 255, 255, 0.35);
     font-family: 'montserratRegular';
     color: white;
     border-radius: 3;

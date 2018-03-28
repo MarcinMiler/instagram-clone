@@ -17,9 +17,11 @@ export class User extends BaseEntity {
 
     @CreateDateColumn() date: Date
 
-    @Column() firstname: string
+    @Column({ nullable: true })
+    firstname: string
 
-    @Column() lastname: string
+    @Column({ nullable: true })
+    lastname: string
 
     @Column() username: string
 
