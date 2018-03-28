@@ -14,7 +14,7 @@ const options = {
 }
 
 const addUser = (req: any, res: any, next: any) => {
-    const { token } = req.headers
+    const token = req.headers.token
     if (token) {
         const user = jwt.verify(token, SECRET)
         req.user = user
@@ -25,9 +25,12 @@ const addUser = (req: any, res: any, next: any) => {
 const server = new GraphQLServer({
     typeDefs,
     resolvers,
-    context: (req: any) => ({
-        user: req.request.user.id
-    })
+    context: (req: any) => {
+        if (req.request.user) {
+            return { user: req.request.user.id }
+        }
+        return
+    }
 })
 
 createConnection().then(() => {

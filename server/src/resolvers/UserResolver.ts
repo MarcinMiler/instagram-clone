@@ -6,7 +6,18 @@ import { Comment } from '../entity/Comment'
 
 const UserResolver: ResolverMap = {
     Query: {
-        me: (_, args, { user }) => User.findOneById(user),
+        me: (_, args, { user }) =>
+            User.findOneById(user, {
+                relations: [
+                    'photos',
+                    'photos.likes',
+                    'photos.comments',
+                    'photos.likes.user',
+                    'photos.comments.user',
+                    'followers',
+                    'following'
+                ]
+            }),
         users: () =>
             User.find({
                 relations: [

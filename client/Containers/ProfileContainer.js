@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { ActivityIndicator } from 'react-native'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import Spinner from '../Components/Spinner'
 import Profile from '../Components/Profile'
 
 class ProfileContainer extends Component {
@@ -12,18 +14,33 @@ class ProfileContainer extends Component {
     handleChangeState = (key, value) => this.setState({ [key]: value })
 
     render() {
+        if (this.props.me.loading) return <Spinner />
         return (
-            <Profile changeState={this.handleChangeState} state={this.state} />
+            <Profile
+                me={this.props.me.me}
+                changeState={this.handleChangeState}
+                state={this.state}
+            />
         )
     }
 }
 
-const usersQuery = gql`
-    query users {
-        users {
+const meQuery = gql`
+    query me {
+        me {
             id
+            firstname
+            lastname
+            username
+            date
+            photos {
+                url
+            }
+            photosCount
+            followingCount
+            followersCount
         }
     }
 `
 
-export default graphql(usersQuery)(ProfileContainer)
+export default graphql(meQuery, { name: 'me' })(ProfileContainer)

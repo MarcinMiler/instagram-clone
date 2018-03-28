@@ -1,9 +1,9 @@
 export const typeDefs = `
     type User {
         id: ID!
-        firstname: String!
+        firstname: String
         lastname: String
-        username: String
+        username: String!
         date: String!
         photos: [Photo]
         following: [User]
@@ -46,7 +46,7 @@ export const typeDefs = `
     }
 
     type Query {
-        me: User!
+        me: User
         users: [User]
         photos: [Photo]
     }

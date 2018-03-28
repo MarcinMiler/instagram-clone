@@ -8,6 +8,7 @@ export const client = new ApolloClient({
     },
     request: async operation => {
         const token = await SecureStore.getItemAsync('token')
+
         operation.setContext({
             headers: {
                 token

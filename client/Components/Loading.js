@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { ActivityIndicator } from 'react-native'
 import { SecureStore } from 'expo'
-import styled from 'styled-components'
+
+import Spinner from './Spinner'
 
 class Loading extends Component {
     constructor(props) {
@@ -15,17 +15,8 @@ class Loading extends Component {
     }
 
     render() {
-        return (
-            <Container>
-                <ActivityIndicator size="large" color="#ff9068" />
-            </Container>
-        )
+        return <Spinner />
     }
 }
 
 export default Loading
-
-const Container = styled.View`
-    flex: 1;
-    justify-content: center;
-`
