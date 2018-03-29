@@ -5,9 +5,11 @@ import { Container, P, Flex } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Feather'
 import Photos from './Photos'
+import Navbar from './Navbar'
 
 const Profile = ({ me }) => (
     <Container>
+        <Navbar title="Instagram" />
         <ScrollView>
             <Header>
                 <Photo source={require('../resources/andzia.jpg')} />

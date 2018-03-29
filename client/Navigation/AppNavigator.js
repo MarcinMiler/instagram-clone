@@ -8,6 +8,8 @@ import ProfileContainer from '../Containers/ProfileContainer'
 import ExploreContainer from '../Containers/ExploreContainer'
 import NotificationsContainer from '../Containers/NotificationsContainer'
 import CommentsContainer from '../Containers/CommentsContainer'
+import ProfileOptionsContainer from '../Containers/ProfileOptionsContainer'
+import EditProfileContainer from '../Containers/EditProfileContainer'
 import AddPhoto from '../Components/AddPhoto'
 
 import Icon from 'react-native-vector-icons/Feather'
@@ -63,7 +65,16 @@ const CameraNavigation = StackNavigator({
 const ProfileNavigation = StackNavigator(
     {
         Main: {
-            screen: ProfileContainer
+            screen: ProfileContainer,
+            navigationOptions: {
+                header: null
+            }
+        },
+        ProfileOptions: {
+            screen: ProfileOptionsContainer
+        },
+        EditProfile: {
+            screen: EditProfileContainer
         }
     },
     {
