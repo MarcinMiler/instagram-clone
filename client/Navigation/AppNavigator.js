@@ -65,10 +65,7 @@ const CameraNavigation = StackNavigator({
 const ProfileNavigation = StackNavigator(
     {
         Main: {
-            screen: ProfileContainer,
-            navigationOptions: {
-                header: null
-            }
+            screen: ProfileContainer
         },
         ProfileOptions: {
             screen: ProfileOptionsContainer
@@ -79,7 +76,7 @@ const ProfileNavigation = StackNavigator(
     },
     {
         navigationOptions: {
-            title: 'Profile'
+            header: null
         }
     }
 )

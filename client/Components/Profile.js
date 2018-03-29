@@ -7,51 +7,58 @@ import Icon from 'react-native-vector-icons/Feather'
 import Photos from './Photos'
 import Navbar from './Navbar'
 
-const Profile = ({ me }) => (
-    <Container>
-        <Navbar title="Instagram" />
-        <ScrollView>
-            <Header>
-                <Photo source={require('../resources/andzia.jpg')} />
+const Profile = ({ me, navigation }) => {
+    const rightAction = () => navigation.navigate('ProfileOptions')
+    return (
+        <Container>
+            <Navbar
+                title="Instagram"
+                rightIcon="more-vertical"
+                rightAction={rightAction}
+            />
+            <ScrollView>
+                <Header>
+                    <Photo source={require('../resources/andzia.jpg')} />
 
-                <Stats>
-                    <Flex row>
-                        <Wrap>
-                            <Count>{me.photosCount}</Count>
-                            <Text>posts</Text>
-                        </Wrap>
-                        <Wrap>
-                            <Count>{me.followingCount}</Count>
-                            <Text>followers</Text>
-                        </Wrap>
-                        <Wrap>
-                            <Count>{me.followersCount}</Count>
-                            <Text>following</Text>
-                        </Wrap>
-                    </Flex>
+                    <Stats>
+                        <Flex row>
+                            <Wrap>
+                                <Count>{me.photosCount}</Count>
+                                <Text>posts</Text>
+                            </Wrap>
+                            <Wrap>
+                                <Count>{me.followingCount}</Count>
+                                <Text>followers</Text>
+                            </Wrap>
+                            <Wrap>
+                                <Count>{me.followersCount}</Count>
+                                <Text>following</Text>
+                            </Wrap>
+                        </Flex>
 
-                    <Flex>
-                        <Button>
-                            <ButtonText>Edit profile</ButtonText>
-                        </Button>
-                    </Flex>
-                </Stats>
-            </Header>
+                        <Flex>
+                            <Button>
+                                <ButtonText>Edit profile</ButtonText>
+                            </Button>
+                        </Flex>
+                    </Stats>
+                </Header>
 
-            <Description>
-                <Text>{me.username}</Text>
-            </Description>
+                <Description>
+                    <Text>{me.username}</Text>
+                </Description>
 
-            <Icons row>
-                <Icon name="list" size={20} color="gray" />
-                <Icon name="star" size={20} color="gray" />
-                <Icon name="users" size={20} color="gray" />
-            </Icons>
+                <Icons row>
+                    <Icon name="list" size={20} color="gray" />
+                    <Icon name="star" size={20} color="gray" />
+                    <Icon name="users" size={20} color="gray" />
+                </Icons>
 
-            <Photos photos={me.photos} />
-        </ScrollView>
-    </Container>
-)
+                <Photos photos={me.photos} />
+            </ScrollView>
+        </Container>
+    )
+}
 
 const Header = styled.View`
     flex-direction: row;

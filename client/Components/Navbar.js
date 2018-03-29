@@ -4,36 +4,46 @@ import styled from 'styled-components'
 import { P } from '../Styled'
 import Icon from 'react-native-vector-icons/Feather'
 
-const backAction = NavigationActions.back()
-
-const Navbar = ({ leftIcon, leftAction, rightIcon, rightAction, title }) => (
+const Navbar = ({
+    leftIcon,
+    leftAction,
+    rightIcon,
+    rightAction,
+    title,
+    back,
+    navigation
+}) => (
     <Container>
-        {leftIcon &&
-            leftAction && (
-                <Wrap>
-                    <Icon
-                        onPress={() => leftAction()}
-                        name={leftIcon}
-                        size={24}
-                        color="#000"
-                    />
-                </Wrap>
-            )}
+        {leftIcon && (
+            <Left>
+                <Icon
+                    onPress={() =>
+                        back
+                            ? navigation.dispatch(NavigationActions.back())
+                            : leftAction()
+                    }
+                    name={leftIcon}
+                    size={24}
+                    color="#000"
+                />
+            </Left>
+        )}
         <Middle>
-            <P>{title}</P>
+            <P left medium>
+                {title}
+            </P>
         </Middle>
 
-        {rightIcon &&
-            rightAction && (
-                <Wrap>
-                    <Icon
-                        onPress={() => rightAction()}
-                        name={rightIcon}
-                        size={24}
-                        color="#000"
-                    />
-                </Wrap>
-            )}
+        {rightIcon && (
+            <Right>
+                <Icon
+                    onPress={() => rightAction()}
+                    name={rightIcon}
+                    size={18}
+                    color="#000"
+                />
+            </Right>
+        )}
     </Container>
 )
 
@@ -51,8 +61,12 @@ const Container = styled.View`
     border-bottom-width: 1;
     border-color: lightgray;
 `
-const Wrap = styled.View`
+const Left = styled.View`
     width: 40;
+    align-items: flex-start;
+`
+const Right = styled(Left)`
+    align-items: flex-end;
 `
 const Middle = styled.View`
     flex-grow: 1;

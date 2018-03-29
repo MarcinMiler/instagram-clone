@@ -20,6 +20,7 @@ class ProfileContainer extends Component {
                 me={this.props.me.me}
                 changeState={this.handleChangeState}
                 state={this.state}
+                navigation={this.props.navigation}
             />
         )
     }
