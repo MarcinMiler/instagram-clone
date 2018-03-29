@@ -9,6 +9,7 @@ class RegisterContainer extends Component {
     state = {
         email: '',
         username: '',
+        fullname: '',
         password: '',
         password2: ''
     }
@@ -16,10 +17,11 @@ class RegisterContainer extends Component {
     handleChangeState = (key, value) => this.setState({ [key]: value })
 
     register = async () => {
-        const { email, username, password, password2 } = this.state
+        const { email, username, fullname, password, password2 } = this.state
         const valid = this.validateRegister(
             email,
             username,
+            fullname,
             password,
             password2
         )
@@ -29,7 +31,8 @@ class RegisterContainer extends Component {
                 variables: {
                     email,
                     password,
-                    username
+                    username,
+                    fullname
                 }
             })
             if (!registerResponse.data.register.ok) {
@@ -44,22 +47,21 @@ class RegisterContainer extends Component {
         return false
     }
 
-    validateRegister = (email, username, password, password2) => {
+    validateRegister = (email, username, fullname, password, password2) => {
         let messages = ''
 
-        if (!email) messages += 'Email is empty, '
-        if (!username) messages += 'Username is empty, '
-        else {
+        if (!email || !username || !fullname || !password || !password2)
+            messages += 'All fields must be filled, '
+
+        if (email) {
             let re = /\S+@\S+\.\S+/
             let emailTest = re.test(email)
             if (!emailTest) messages += 'Email is incorrect, '
         }
 
-        if (!password) messages += 'Password is empty, '
-        if (!password2) messages += 'Second Password is empty, '
         if (password !== password2) messages += 'Passwords are not the same'
 
-        if (messages.length > 0) {
+        if (messages) {
             Alert.alert('Login failed', messages, [{ text: 'OK' }])
             return { ok: false }
         } else return { ok: true }
@@ -77,8 +79,18 @@ class RegisterContainer extends Component {
 }
 
 const registerMutation = gql`
-    mutation register($email: String!, $password: String!, $username: String!) {
-        register(email: $email, password: $password, username: $username) {
+    mutation register(
+        $email: String!
+        $password: String!
+        $username: String!
+        $fullname: String!
+    ) {
+        register(
+            email: $email
+            password: $password
+            username: $username
+            fullname: $fullname
+        ) {
             ok
             error
         }

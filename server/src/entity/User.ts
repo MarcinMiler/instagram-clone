@@ -17,13 +17,14 @@ export class User extends BaseEntity {
 
     @CreateDateColumn() date: Date
 
-    @Column({ nullable: true })
-    firstname: string
+    @Column() email: string
 
-    @Column({ nullable: true })
-    lastname: string
+    @Column() fullname: string
 
     @Column() username: string
+
+    @Column({ nullable: true })
+    bio: string
 
     @OneToMany(() => Photo, photo => photo.user)
     photos: Photo[]

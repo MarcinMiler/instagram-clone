@@ -30,9 +30,10 @@ const meQuery = gql`
     query me {
         me {
             id
-            firstname
-            lastname
+            email
+            fullname
             username
+            bio
             date
             photos {
                 url

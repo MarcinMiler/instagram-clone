@@ -12,7 +12,7 @@ const Profile = ({ me, navigation }) => {
     return (
         <Container>
             <Navbar
-                title="Instagram"
+                title={me.username}
                 rightIcon="more-vertical"
                 rightAction={rightAction}
             />
@@ -45,7 +45,7 @@ const Profile = ({ me, navigation }) => {
                 </Header>
 
                 <Description>
-                    <Text>{me.username}</Text>
+                    <Text>{me.fullname}</Text>
                 </Description>
 
                 <Icons row>

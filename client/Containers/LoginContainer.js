@@ -53,7 +53,7 @@ class LoginContainer extends Component {
 
         if (!password) messages += 'Password is empty'
 
-        if (messages.length > 0) {
+        if (messages) {
             Alert.alert('Login failed', messages, [{ text: 'OK' }])
             return { ok: false }
         } else return { ok: true }

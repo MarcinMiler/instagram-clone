@@ -21,7 +21,6 @@ const ProfileOptions = ({ navigation, logout }) => (
                     Edit profile
                 </Text>
                 <Text>Change password</Text>
-                <Text>Change profile photo</Text>
             </Group>
 
             <Group>

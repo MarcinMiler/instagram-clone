@@ -9,35 +9,41 @@ const Register = ({ navigation, register, changeState }) => (
             <Title>Instagram</Title>
         </Wrap>
 
-        <Wrap style={{ height: 280 }}>
+        <Wrap style={{ height: 320 }}>
             <SubTitle>Register</SubTitle>
             <Input
                 onChangeText={text => changeState('email', text)}
                 placeholder="Email"
-                placeholderTextColor="lightgray"
+                placeholderTextColor="white"
                 underlineColorAndroid="transparent"
             />
             <Input
                 onChangeText={text => changeState('username', text)}
                 placeholder="Username"
-                placeholderTextColor="lightgray"
+                placeholderTextColor="white"
+                underlineColorAndroid="transparent"
+            />
+            <Input
+                onChangeText={text => changeState('fullname', text)}
+                placeholder="Fullname"
+                placeholderTextColor="white"
                 underlineColorAndroid="transparent"
             />
             <Input
                 onChangeText={text => changeState('password', text)}
                 placeholder="Password"
-                placeholderTextColor="lightgray"
+                placeholderTextColor="white"
                 underlineColorAndroid="transparent"
             />
             <Input
                 onChangeText={text => changeState('password2', text)}
                 placeholder="Confirm password"
-                placeholderTextColor="lightgray"
+                placeholderTextColor="white"
                 underlineColorAndroid="transparent"
             />
             <TouchableNativeFeedback
-                onPress={() => {
-                    const res = register()
+                onPress={async () => {
+                    const res = await register()
                     if (res) navigation.navigate('Login')
                 }}
             >
