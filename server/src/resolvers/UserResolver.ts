@@ -91,6 +91,50 @@ const UserResolver: ResolverMap = {
             } catch (err) {
                 return false
             }
+        },
+        changeFullname: async (_, { fullname }, { user }) => {
+            try {
+                await User.updateById(user, { fullname })
+                return true
+            } catch (err) {
+                return false
+            }
+        },
+        changeUsername: async (_, { username }, { user }) => {
+            const usernameExists = await User.findOne({ username })
+
+            if (usernameExists) {
+                return false
+            }
+
+            try {
+                await User.updateById(user, { username })
+                return true
+            } catch (err) {
+                return false
+            }
+        },
+        changeBio: async (_, { bio }, { user }) => {
+            try {
+                await User.updateById(user, { bio })
+                return true
+            } catch (err) {
+                return false
+            }
+        },
+        changeEmail: async (_, { email }, { user }) => {
+            const emailExists = await User.findOne({ email })
+
+            if (emailExists) {
+                return false
+            }
+
+            try {
+                await User.updateById(user, { email })
+                return true
+            } catch (err) {
+                return false
+            }
         }
     }
 }

@@ -38,7 +38,13 @@ const Profile = ({ me, navigation }) => {
 
                         <Flex>
                             <Button>
-                                <ButtonText>Edit profile</ButtonText>
+                                <ButtonText
+                                    onPress={() =>
+                                        navigation.navigate('EditProfile')
+                                    }
+                                >
+                                    Edit profile
+                                </ButtonText>
                             </Button>
                         </Flex>
                     </Stats>
