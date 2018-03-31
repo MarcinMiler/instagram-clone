@@ -4,7 +4,13 @@ import styled from 'styled-components'
 import { Container, P } from '../Styled'
 import Navbar from './Navbar'
 
-const EditProfile = ({ navigation, changeState, state, me }) => (
+const EditProfile = ({
+    changeProfileDetails,
+    navigation,
+    changeState,
+    state,
+    me
+}) => (
     <Container>
         <Navbar
             back
@@ -12,6 +18,7 @@ const EditProfile = ({ navigation, changeState, state, me }) => (
             title="Edit profile"
             navigation={navigation}
             rightIcon="check"
+            rightAction={changeProfileDetails}
             rightIconColor="lightgreen"
         />
         <WrapPhoto>
@@ -21,24 +28,21 @@ const EditProfile = ({ navigation, changeState, state, me }) => (
 
         <Wrap>
             <Input
-                value={me.fullname}
                 onChangeText={text => changeState('fullname', text)}
-                placeholder="Full name"
+                placeholder={me.fullname}
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
             />
 
             <Input
-                value={me.username}
                 onChangeText={text => changeState('username', text)}
-                placeholder="User name"
+                placeholder={me.username}
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
             />
             <Input
-                value={me.bio}
                 onChangeText={text => changeState('bio', text)}
-                placeholder="Bio"
+                placeholder={me.bio}
                 multiline
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
@@ -47,10 +51,8 @@ const EditProfile = ({ navigation, changeState, state, me }) => (
             <Title>Private informations</Title>
 
             <Input
-                value={me.email}
                 onChangeText={text => changeState('email', text)}
-                placeholder="Email"
-                multiline
+                placeholder={me.email}
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"
             />

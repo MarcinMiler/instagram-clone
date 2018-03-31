@@ -59,9 +59,6 @@ export const typeDefs = `
         follow(userId: ID!, followerId: ID!): Boolean!
         login(email: String!, password: String!): LoginResponse!
         register(email: String!, password: String!, username: String!, fullname: String!): Response!
-        changeFullname(fullname: String!): Boolean!
-        changeUsername(username: String!): Boolean!
-        changeBio(bio: String!): Boolean!
-        changeEmail(email: String!): Boolean!
+        changeProfileDetails(fullname: String, username: String, bio: String, email: String): Response!
     }
 `

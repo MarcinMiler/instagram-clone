@@ -3,6 +3,7 @@ import { User } from '../entity/User'
 import { Photo } from '../entity/Photo'
 import { Like } from '../entity/Like'
 import { Comment } from '../entity/Comment'
+import { Account } from '../entity/Account'
 
 const UserResolver: ResolverMap = {
     Query: {
@@ -92,48 +93,54 @@ const UserResolver: ResolverMap = {
                 return false
             }
         },
-        changeFullname: async (_, { fullname }, { user }) => {
-            try {
-                await User.updateById(user, { fullname })
-                return true
-            } catch (err) {
-                return false
-            }
-        },
-        changeUsername: async (_, { username }, { user }) => {
-            const usernameExists = await User.findOne({ username })
-
-            if (usernameExists) {
-                return false
-            }
+        changeProfileDetails: async (
+            _,
+            { fullname, username, bio, email },
+            { user }
+        ) => {
+            let error = ''
 
             try {
-                await User.updateById(user, { username })
-                return true
-            } catch (err) {
-                return false
-            }
-        },
-        changeBio: async (_, { bio }, { user }) => {
-            try {
-                await User.updateById(user, { bio })
-                return true
-            } catch (err) {
-                return false
-            }
-        },
-        changeEmail: async (_, { email }, { user }) => {
-            const emailExists = await User.findOne({ email })
+                if (fullname) {
+                    await User.updateById(user, { fullname })
+                }
 
-            if (emailExists) {
-                return false
-            }
+                if (username) {
+                    const usernameExist = await User.findOne({
+                        where: { username }
+                    })
+                    if (!usernameExist) {
+                        await User.updateById(user, { username })
+                    } else {
+                        error += 'Username is taken '
+                    }
+                }
 
-            try {
-                await User.updateById(user, { email })
-                return true
+                if (bio) {
+                    await User.updateById(user, { bio })
+                }
+
+                if (email) {
+                    const usernameExist = await User.findOne({
+                        where: { email }
+                    })
+                    if (!usernameExist) {
+                        await User.updateById(user, { email })
+                        await Account.updateById(user, { email })
+                    } else {
+                        error += 'Email is taken '
+                    }
+                }
+
+                return {
+                    ok: true,
+                    error
+                }
             } catch (err) {
-                return false
+                return {
+                    ok: false,
+                    error: 'Something goes wrong'
+                }
             }
         }
     }
