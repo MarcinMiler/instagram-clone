@@ -4,10 +4,10 @@ import { Container, P } from '../Styled'
 import Photos from './Photos'
 import { ScrollView } from 'react-native-gesture-handler'
 
-const Explore = () => (
+const Explore = ({ photos }) => (
     <Container>
         <ScrollView>
-            <Photos />
+            <Photos photos={photos} />
         </ScrollView>
     </Container>
 )
