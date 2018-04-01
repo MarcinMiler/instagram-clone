@@ -5,19 +5,17 @@ import styled from 'styled-components'
 
 const { width, height } = Dimensions.get('window')
 
-class AddPhoto extends Component {
-    render() {
-        return (
-            <Container>
-                <Image
-                    source={{ uri: this.props.navigation.state.params.url }}
-                    style={{ width: width, height: width }}
-                />
+const AddPhoto = ({ addPhoto, url }) => {
+    return (
+        <Container>
+            <Image
+                source={{ uri: url }}
+                style={{ width: width, height: width }}
+            />
 
-                <Button title="Add photo" onPress={() => console.log('lol')} />
-            </Container>
-        )
-    }
+            <Button title="Add photo" onPress={() => addPhoto()} />
+        </Container>
+    )
 }
 
 export default AddPhoto

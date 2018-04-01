@@ -10,7 +10,7 @@ import NotificationsContainer from '../Containers/NotificationsContainer'
 import CommentsContainer from '../Containers/CommentsContainer'
 import ProfileOptionsContainer from '../Containers/ProfileOptionsContainer'
 import EditProfileContainer from '../Containers/EditProfileContainer'
-import AddPhoto from '../Components/AddPhoto'
+import AddPhotoContainer from '../Containers/AddPhotoContainer'
 
 import Icon from 'react-native-vector-icons/Feather'
 
@@ -55,7 +55,7 @@ const CameraNavigation = StackNavigator({
         }
     },
     AddPhoto: {
-        screen: AddPhoto,
+        screen: AddPhotoContainer,
         navigationOptions: {
             title: 'Add photo'
         }

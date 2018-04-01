@@ -17,7 +17,7 @@ const Photos = ({ photos }) => {
             />
         </Post>
     ))
-    return <Posts row />
+    return <Posts row>{images}</Posts>
 }
 
 export default Photos
