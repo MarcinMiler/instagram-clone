@@ -5,19 +5,25 @@ import { Container, P } from '../Styled'
 
 import Navbar from '../Components/Navbar'
 
-const UsersList = () => {
-    const listOfUsers = [1, 2, 3, 4, 5, 6, 7].map(i => (
-        <User key={i}>
+const UsersList = ({ users, navigation }) => {
+    console.log(users)
+    const listOfUsers = users.map(user => (
+        <User key={user.id}>
             <UserPhoto width={45} source={require('../resources/andzia.jpg')} />
             <TextWrap>
-                <Username>Username</Username>
-                <Firstname>Firstname</Firstname>
+                <Username>{user.username}</Username>
+                <Firstname>{user.fullname}</Firstname>
             </TextWrap>
         </User>
     ))
     return (
         <Container>
-            <Navbar back leftIcon="arrow-left" title="List of users" />
+            <Navbar
+                back
+                leftIcon="arrow-left"
+                title="List of users"
+                navigation={navigation}
+            />
             <ScrollView>{listOfUsers}</ScrollView>
         </Container>
     )

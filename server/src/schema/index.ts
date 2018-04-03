@@ -49,6 +49,7 @@ export const typeDefs = `
     type Query {
         me: User
         users: [User]
+        searchUser(pattern: String): [User]
         photos: [Photo]
     }
 

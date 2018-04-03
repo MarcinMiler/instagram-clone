@@ -4,6 +4,7 @@ import { Photo } from '../entity/Photo'
 import { Like } from '../entity/Like'
 import { Comment } from '../entity/Comment'
 import { Account } from '../entity/Account'
+import { getRepository } from 'typeorm'
 
 const UserResolver: ResolverMap = {
     Query: {
@@ -31,6 +32,16 @@ const UserResolver: ResolverMap = {
                     'following'
                 ]
             }),
+        searchUser: async (_, { pattern }) => {
+            const data = await getRepository(User)
+                .createQueryBuilder('user')
+                .select()
+                .where('user.username like :name', {
+                    name: '%' + pattern + '%'
+                })
+                .getMany()
+            return data
+        },
         photos: () =>
             Photo.find({ relations: ['likes', 'likes.user', 'comments'] })
     },
