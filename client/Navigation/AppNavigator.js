@@ -11,6 +11,7 @@ import CommentsContainer from '../Containers/CommentsContainer'
 import ProfileOptionsContainer from '../Containers/ProfileOptionsContainer'
 import EditProfileContainer from '../Containers/EditProfileContainer'
 import AddPhotoContainer from '../Containers/AddPhotoContainer'
+import UsersListContainer from '../Containers/UsersListContainer'
 
 import Icon from 'react-native-vector-icons/Feather'
 
@@ -38,11 +39,15 @@ const ExploreNavigation = StackNavigator(
     {
         Main: {
             screen: ExploreContainer
+        },
+        UsersList: {
+            screen: UsersListContainer
         }
     },
     {
         navigationOptions: {
-            title: 'Search'
+            title: 'Search',
+            header: null
         }
     }
 )
@@ -154,7 +159,7 @@ export default TabNavigator(
     },
     {
         tabBarPosition: 'bottom',
-        initialRouteName: 'Profile',
+        initialRouteName: 'Explore',
         lazy: true,
         tabBarOptions: {
             showIcon: true,

@@ -6,10 +6,27 @@ import Spinner from '../Components/Spinner'
 import Explore from '../Components/Explore'
 
 class ExploreContainer extends Component {
+    state = {
+        search: ''
+    }
+
+    handleChangeState = (key, value) => this.setState({ [key]: value })
+
+    searchUser = () =>
+        this.props.navigation.navigate('UsersList', {
+            search: this.state.search
+        })
+
     render() {
         if (this.props.photos.loading) return <Spinner />
 
-        return <Explore photos={this.props.photos.photos} />
+        return (
+            <Explore
+                photos={this.props.photos.photos}
+                changeState={this.handleChangeState}
+                searchUser={this.searchUser}
+            />
+        )
     }
 }
 

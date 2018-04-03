@@ -1,13 +1,12 @@
 import React from 'react'
 import { Dimensions, Image } from 'react-native'
 import styled from 'styled-components'
-import { Flex } from '../Styled'
 
 const { width } = Dimensions.get('window')
 
 const Photos = ({ photos }) => {
-    const images = photos.map(i => (
-        <Post key={i}>
+    const images = photos.map(photo => (
+        <Post key={photo.id}>
             <Image
                 style={{
                     width: width / 3 - 2,
@@ -17,12 +16,13 @@ const Photos = ({ photos }) => {
             />
         </Post>
     ))
-    return <Posts row>{images}</Posts>
+    return <Posts>{images}</Posts>
 }
 
 export default Photos
 
-const Posts = styled(Flex)`
+const Posts = styled.View`
+    flex-direction: row;
     flex-wrap: wrap;
 `
 const Post = styled.View`
