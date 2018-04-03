@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { ScrollView, Image, View } from 'react-native'
+import { ScrollView } from 'react-native'
 import styled from 'styled-components'
-import { Container, P, Flex } from '../Styled'
+import { Container, Flex } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Feather'
 import Photos from './Photos'

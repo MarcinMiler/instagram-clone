@@ -12,6 +12,7 @@ import ProfileOptionsContainer from '../Containers/ProfileOptionsContainer'
 import EditProfileContainer from '../Containers/EditProfileContainer'
 import AddPhotoContainer from '../Containers/AddPhotoContainer'
 import UsersListContainer from '../Containers/UsersListContainer'
+import UserProfileContainer from '../Containers/UserProfileContainer'
 
 import Icon from 'react-native-vector-icons/Feather'
 
@@ -42,6 +43,9 @@ const ExploreNavigation = StackNavigator(
         },
         UsersList: {
             screen: UsersListContainer
+        },
+        UserProfile: {
+            screen: UserProfileContainer
         }
     },
     {

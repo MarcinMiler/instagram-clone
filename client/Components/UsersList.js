@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, TouchableWithoutFeedback } from 'react-native'
 import styled from 'styled-components'
 import { Container, P } from '../Styled'
 
@@ -8,13 +8,21 @@ import Navbar from '../Components/Navbar'
 const UsersList = ({ users, navigation }) => {
     console.log(users)
     const listOfUsers = users.map(user => (
-        <User key={user.id}>
-            <UserPhoto width={45} source={require('../resources/andzia.jpg')} />
-            <TextWrap>
-                <Username>{user.username}</Username>
-                <Firstname>{user.fullname}</Firstname>
-            </TextWrap>
-        </User>
+        <TouchableWithoutFeedback
+            key={user.id}
+            onPress={() => navigation.navigate('UserProfile')}
+        >
+            <User>
+                <UserPhoto
+                    width={45}
+                    source={require('../resources/andzia.jpg')}
+                />
+                <TextWrap>
+                    <Username>{user.username}</Username>
+                    <Firstname>{user.fullname}</Firstname>
+                </TextWrap>
+            </User>
+        </TouchableWithoutFeedback>
     ))
     return (
         <Container>
