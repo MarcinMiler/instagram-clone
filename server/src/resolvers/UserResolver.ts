@@ -32,6 +32,7 @@ const UserResolver: ResolverMap = {
                     'following'
                 ]
             }),
+        user: (_, { id }) => User.findOneById(id, { relations: ['photos'] }),
         searchUser: async (_, { pattern }) => {
             const data = await getRepository(User)
                 .createQueryBuilder('user')

@@ -9,7 +9,12 @@ import Photos from './Photos'
 
 const UserProfile = ({ user, navigation }) => (
     <Container>
-        <Navbar back leftIcon="arrow-left" title="User" />
+        <Navbar
+            back
+            leftIcon="arrow-left"
+            title={user.username}
+            navigation={navigation}
+        />
         <ScrollView>
             <Header>
                 <UserPhoto
@@ -20,26 +25,22 @@ const UserProfile = ({ user, navigation }) => (
                 <Stats>
                     <Flex row>
                         <Wrap>
-                            <Count>0</Count>
+                            <Count>{user.photosCount}</Count>
                             <Text>posts</Text>
                         </Wrap>
                         <Wrap>
-                            <Count>0</Count>
+                            <Count>{user.followersCount}</Count>
                             <Text>followers</Text>
                         </Wrap>
                         <Wrap>
-                            <Count>0</Count>
+                            <Count>{user.followingCount}</Count>
                             <Text>following</Text>
                         </Wrap>
                     </Flex>
 
                     <Flex>
                         <Button>
-                            <ButtonText
-                                onPress={() =>
-                                    navigation.navigate('EditProfile')
-                                }
-                            >
+                            <ButtonText onPress={() => console.log('Follow')}>
                                 Follow
                             </ButtonText>
                         </Button>
@@ -48,7 +49,7 @@ const UserProfile = ({ user, navigation }) => (
             </Header>
 
             <Description>
-                <Text>fullname</Text>
+                <Text>{user.fullname}</Text>
             </Description>
 
             <Icons row>
@@ -56,6 +57,8 @@ const UserProfile = ({ user, navigation }) => (
                 <Icon name="star" size={20} color="gray" />
                 <Icon name="users" size={20} color="gray" />
             </Icons>
+
+            <Photos photos={user.photos} />
         </ScrollView>
     </Container>
 )

@@ -10,7 +10,7 @@ const UsersList = ({ users, navigation }) => {
     const listOfUsers = users.map(user => (
         <TouchableWithoutFeedback
             key={user.id}
-            onPress={() => navigation.navigate('UserProfile')}
+            onPress={() => navigation.navigate('UserProfile', { id: user.id })}
         >
             <User>
                 <UserPhoto
