@@ -43,6 +43,18 @@ const UserResolver: ResolverMap = {
                 .getMany()
             return data
         },
+        isFollowing: async (_, { userId }, { user }) => {
+            const u = await User.findOneById(user, { relations: ['following'] })
+            if (u) {
+                const find = u.following.find(
+                    f => f.id === parseInt(userId, 10)
+                )
+                if (find) {
+                    return true
+                }
+            }
+            return false
+        },
         photos: () =>
             Photo.find({ relations: ['likes', 'likes.user', 'comments'] })
     },
@@ -84,9 +96,9 @@ const UserResolver: ResolverMap = {
                 return false
             }
         },
-        follow: async (_, { userId, followerId }) => {
+        follow: async (_, { followerId }, { user }) => {
             try {
-                const user = await User.findOneById(userId, {
+                const user1 = await User.findOneById(user, {
                     relations: ['followers', 'following']
                 })
 
@@ -94,11 +106,40 @@ const UserResolver: ResolverMap = {
                     relations: ['followers', 'following']
                 })
 
-                if (user && user2) {
-                    user.following.push(user2)
-                    user2.followers.push(user)
-                    await user.save()
+                if (user1 && user2) {
+                    user1.following.push(user2)
+                    user2.followers.push(user1)
+                    await user1.save()
                     await user2.save()
+                }
+                return true
+            } catch (err) {
+                return false
+            }
+        },
+        unfollow: async (_, { followerId }, { user }) => {
+            try {
+                const user1 = await User.findOneById(user, {
+                    relations: ['followers', 'following']
+                })
+
+                const user2 = await User.findOneById(followerId, {
+                    relations: ['followers', 'following']
+                })
+
+                if (user1 && user2) {
+                    const lol = user1.following.filter(
+                        u => u.id !== parseInt(followerId, 10)
+                    )
+                    const lol2 = user2.followers.filter(
+                        u => u.id !== parseInt(user, 10)
+                    )
+
+                    user1.following = lol
+                    user2.followers = lol2
+
+                    user1.save()
+                    user2.save()
                 }
                 return true
             } catch (err) {

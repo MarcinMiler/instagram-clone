@@ -50,6 +50,7 @@ export const typeDefs = `
         me: User
         users: [User]
         user(id: ID!): User
+        isFollowing(userId: ID!): Boolean!
         searchUser(pattern: String): [User]
         photos: [Photo]
     }
@@ -58,7 +59,8 @@ export const typeDefs = `
         addPhoto(url: String!): Boolean
         likePhoto(photoId: ID!, userId: ID!): Boolean!
         createComment(photoId: ID!, userId: ID!, text: String!): Boolean!
-        follow(userId: ID!, followerId: ID!): Boolean!
+        follow(followerId: ID!): Boolean!
+        unfollow(followerId: ID!): Boolean!
         login(email: String!, password: String!): LoginResponse!
         register(email: String!, password: String!, username: String!, fullname: String!): Response!
         changeProfileDetails(fullname: String, username: String, bio: String, email: String): Response!
