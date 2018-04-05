@@ -4,19 +4,12 @@ import styled from 'styled-components'
 import { Container, P } from '../Styled'
 import Navbar from './Navbar'
 
-const EditProfile = ({
-    changeProfileDetails,
-    navigation,
-    changeState,
-    state,
-    me
-}) => (
+const EditProfile = ({ changeProfileDetails, changeState, state, me }) => (
     <Container>
         <Navbar
             back
             leftIcon="arrow-left"
             title="Edit profile"
-            navigation={navigation}
             rightIcon="check"
             rightAction={changeProfileDetails}
             rightIconColor="lightgreen"

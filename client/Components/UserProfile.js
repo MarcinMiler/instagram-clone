@@ -7,14 +7,9 @@ import Icon from 'react-native-vector-icons/Feather'
 import Navbar from '../Components/Navbar'
 import Photos from './Photos'
 
-const UserProfile = ({ user, isFollowing, follow, unfollow, navigation }) => (
+const UserProfile = ({ user, isFollowing, follow, unfollow }) => (
     <Container>
-        <Navbar
-            back
-            leftIcon="arrow-left"
-            title={user.username}
-            navigation={navigation}
-        />
+        <Navbar back leftIcon="arrow-left" title={user.username} />
         <ScrollView>
             <Header>
                 <UserPhoto

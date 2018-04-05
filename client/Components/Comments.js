@@ -3,6 +3,7 @@ import { Dimensions, View, ScrollView } from 'react-native'
 import { Container } from '../Styled'
 import styled from 'styled-components'
 
+import Navbar from '../Components/Navbar'
 import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
@@ -40,6 +41,7 @@ const Comments = ({ changeState }) => {
     })
     return (
         <Container>
+            <Navbar back leftIcon="arrow-left" title="Comments" />
             <ScrollView style={{ height: height - 175 }}>{list}</ScrollView>
             <Input>
                 <UserPhoto

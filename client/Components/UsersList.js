@@ -26,12 +26,7 @@ const UsersList = ({ users, navigation }) => {
     ))
     return (
         <Container>
-            <Navbar
-                back
-                leftIcon="arrow-left"
-                title="List of users"
-                navigation={navigation}
-            />
+            <Navbar back leftIcon="arrow-left" title="List of users" />
             <ScrollView>{listOfUsers}</ScrollView>
         </Container>
     )

@@ -50,7 +50,6 @@ class EditProfileContainer extends Component {
                 changeState={this.handleChangeState}
                 state={this.state}
                 me={this.props.me.me}
-                navigation={this.props.navigation}
             />
         )
     }

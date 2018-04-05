@@ -30,7 +30,6 @@ class UserProfileContainer extends Component {
                 isFollowing={isFollowing.isFollowing}
                 follow={this.follow}
                 unfollow={this.unfollow}
-                navigation={navigation}
             />
         )
     }

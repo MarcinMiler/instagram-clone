@@ -13,6 +13,7 @@ import EditProfileContainer from '../Containers/EditProfileContainer'
 import AddPhotoContainer from '../Containers/AddPhotoContainer'
 import UsersListContainer from '../Containers/UsersListContainer'
 import UserProfileContainer from '../Containers/UserProfileContainer'
+import PhotoContainer from '../Containers/PhotoContainer'
 
 import Icon from 'react-native-vector-icons/Feather'
 
@@ -81,6 +82,16 @@ const ProfileNavigation = StackNavigator(
         },
         EditProfile: {
             screen: EditProfileContainer
+        },
+        Photo: {
+            screen: PhotoContainer
+        },
+        Comments: {
+            screen: CommentsContainer,
+            navigationOptions: {
+                tabBarVisible: false,
+                swipeEnabled: false
+            }
         }
     },
     {

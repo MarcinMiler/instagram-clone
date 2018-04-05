@@ -1,25 +1,30 @@
 import React from 'react'
-import { Dimensions, Image } from 'react-native'
+import { Dimensions, Image, TouchableWithoutFeedback } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import styled from 'styled-components'
 
 const { width } = Dimensions.get('window')
 
-const Photos = ({ photos }) => {
+const Photos = ({ photos, navigation }) => {
     const images = photos.map(photo => (
         <Post key={photo.id}>
-            <Image
-                style={{
-                    width: width / 3 - 2,
-                    height: width / 3
-                }}
-                source={require('../resources/andzia.jpg')}
-            />
+            <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('Photo', { id: photo.id })}
+            >
+                <Image
+                    style={{
+                        width: width / 3 - 2,
+                        height: width / 3
+                    }}
+                    source={require('../resources/andzia.jpg')}
+                />
+            </TouchableWithoutFeedback>
         </Post>
     ))
     return <Posts>{images}</Posts>
 }
 
-export default Photos
+export default withNavigation(Photos)
 
 const Posts = styled.View`
     flex-direction: row;

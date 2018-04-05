@@ -50,6 +50,6 @@ const meQuery = gql`
 export default graphql(meQuery, {
     name: 'me',
     options: {
-        pollInterval: 10000
+        pollInterval: 60000
     }
 })(ProfileContainer)

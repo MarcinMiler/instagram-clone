@@ -1,7 +1,8 @@
 import React from 'react'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, withNavigation } from 'react-navigation'
 import styled from 'styled-components'
 import { P } from '../Styled'
+
 import Icon from 'react-native-vector-icons/Feather'
 
 const Navbar = ({
@@ -48,7 +49,7 @@ const Navbar = ({
     </Container>
 )
 
-export default Navbar
+export default withNavigation(Navbar)
 
 const Container = styled.View`
     width: 100%;
