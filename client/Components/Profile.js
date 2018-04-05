@@ -27,11 +27,11 @@ const Profile = ({ me, navigation }) => {
                                 <Text>posts</Text>
                             </Wrap>
                             <Wrap>
-                                <Count>{me.followingCount}</Count>
+                                <Count>{me.followersCount}</Count>
                                 <Text>followers</Text>
                             </Wrap>
                             <Wrap>
-                                <Count>{me.followersCount}</Count>
+                                <Count>{me.followingCount}</Count>
                                 <Text>following</Text>
                             </Wrap>
                         </Flex>

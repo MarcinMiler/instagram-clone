@@ -29,6 +29,7 @@ const addPhotoMutation = gql`
     }
 `
 
-export default graphql(addPhotoMutation, { name: 'addPhoto' })(
-    AddPhotoContainer
-)
+export default graphql(addPhotoMutation, {
+    name: 'addPhoto',
+    options: { refetchQueries: ['me'] }
+})(AddPhotoContainer)

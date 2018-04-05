@@ -14,6 +14,7 @@ class ProfileContainer extends Component {
     handleChangeState = (key, value) => this.setState({ [key]: value })
 
     render() {
+        console.log('rerender')
         if (this.props.me.loading) return <Spinner />
         return (
             <Profile
@@ -37,6 +38,7 @@ const meQuery = gql`
             date
             photos {
                 url
+                id
             }
             photosCount
             followingCount
@@ -45,4 +47,9 @@ const meQuery = gql`
     }
 `
 
-export default graphql(meQuery, { name: 'me' })(ProfileContainer)
+export default graphql(meQuery, {
+    name: 'me',
+    options: {
+        pollInterval: 10000
+    }
+})(ProfileContainer)

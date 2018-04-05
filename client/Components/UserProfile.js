@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather'
 import Navbar from '../Components/Navbar'
 import Photos from './Photos'
 
-const UserProfile = ({ user, navigation }) => (
+const UserProfile = ({ user, isFollowing, follow, unfollow, navigation }) => (
     <Container>
         <Navbar
             back
@@ -40,9 +40,15 @@ const UserProfile = ({ user, navigation }) => (
 
                     <Flex>
                         <Button>
-                            <ButtonText onPress={() => console.log('Follow')}>
-                                Follow
-                            </ButtonText>
+                            {isFollowing ? (
+                                <ButtonText onPress={() => unfollow(user.id)}>
+                                    Unfollow
+                                </ButtonText>
+                            ) : (
+                                <ButtonText onPress={() => follow(user.id)}>
+                                    Follow
+                                </ButtonText>
+                            )}
                         </Button>
                     </Flex>
                 </Stats>
