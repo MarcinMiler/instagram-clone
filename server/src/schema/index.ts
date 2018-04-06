@@ -17,6 +17,7 @@ export const typeDefs = `
     type Photo {
         id: ID!
         userId: ID!
+        user: User!
         url: String!
         date: String!
         likes: [Like]
@@ -53,6 +54,7 @@ export const typeDefs = `
         isFollowing(userId: ID!): Boolean!
         searchUser(pattern: String): [User]
         photos: [Photo]
+        photo(photoId: ID!): Photo
     }
 
     type Mutation {

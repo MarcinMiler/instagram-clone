@@ -5,11 +5,11 @@ import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
-const Post = ({ navigation }) => (
+const Post = ({ photo, navigation }) => (
     <React.Fragment>
         <Header>
             <UserPhoto source={require('../resources/andzia.jpg')} />
-            <Username>Angelaaa</Username>
+            <Username>{photo.user.username}</Username>
         </Header>
 
         <Image
@@ -27,7 +27,7 @@ const Post = ({ navigation }) => (
 
             <LikeCount>
                 <Icon name="heart" size={14} color="black" />
-                <LikeCountText>500 likes</LikeCountText>
+                <LikeCountText>{photo.likesCount} likes</LikeCountText>
             </LikeCount>
 
             <Comment>
@@ -37,7 +37,7 @@ const Post = ({ navigation }) => (
 
             <Comment>
                 <ViewComments onPress={() => navigation.navigate('Comments')}>
-                    View all the comments 5
+                    View all the comments {photo.commentsCount}
                 </ViewComments>
             </Comment>
         </Footer>
