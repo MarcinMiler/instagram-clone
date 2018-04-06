@@ -19,7 +19,7 @@ export class Comment extends BaseEntity {
 
     @Column() text: string
 
-    @Column({ nullable: true, unique: true })
+    @Column({ nullable: true })
     userId: number
 
     @Column({ nullable: true })

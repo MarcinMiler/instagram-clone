@@ -56,17 +56,26 @@ const UserResolver: ResolverMap = {
             return false
         },
         photos: () =>
-            Photo.find({ relations: ['likes', 'likes.user', 'comments'] }),
+            Photo.find({
+                relations: ['likes', 'likes.user', 'comments', 'user']
+            }),
         photo: (_, { photoId }) =>
             Photo.findOneById(photoId, {
                 relations: ['likes', 'likes.user', 'comments', 'user']
             })
     },
     Mutation: {
-        addPhoto: async (_, { url }, { user }) => {
+        addPhoto: async (_, { url, text }, { user }) => {
             try {
                 const photo = Photo.create({ userId: user, url })
                 await photo.save()
+
+                const comment = Comment.create({
+                    photoId: photo.id,
+                    userId: user,
+                    text
+                })
+                await comment.save()
 
                 return true
             } catch (err) {

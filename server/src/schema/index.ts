@@ -58,7 +58,7 @@ export const typeDefs = `
     }
 
     type Mutation {
-        addPhoto(url: String!): Boolean
+        addPhoto(url: String!, text: String!): Boolean!
         likePhoto(photoId: ID!, userId: ID!): Boolean!
         createComment(photoId: ID!, userId: ID!, text: String!): Boolean!
         follow(followerId: ID!): Boolean!

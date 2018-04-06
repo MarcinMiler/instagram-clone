@@ -5,10 +5,17 @@ import gql from 'graphql-tag'
 import AddPhoto from '../Components/AddPhoto'
 
 class AddPhotoContainer extends Component {
+    state = {
+        text: ''
+    }
+
+    handleChangeState = (key, value) => this.setState({ [key]: value })
+
     addPhoto = () => {
         this.props.addPhoto({
             variables: {
-                url: this.props.navigation.state.params.url
+                url: this.props.navigation.state.params.url,
+                text: this.state.text
             }
         })
     }
@@ -18,14 +25,15 @@ class AddPhotoContainer extends Component {
             <AddPhoto
                 addPhoto={this.addPhoto}
                 url={this.props.navigation.state.params.url}
+                changeState={this.handleChangeState}
             />
         )
     }
 }
 
 const addPhotoMutation = gql`
-    mutation addPhoto($url: String!) {
-        addPhoto(url: $url)
+    mutation addPhoto($url: String!, $text: String!) {
+        addPhoto(url: $url, text: $text)
     }
 `
 
