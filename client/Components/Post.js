@@ -40,7 +40,7 @@ const Post = ({ photo, likePhoto, navigation }) => (
                 <ViewComments
                     onPress={() =>
                         navigation.navigate('Comments', {
-                            comments: photo.comments
+                            id: photo.id
                         })
                     }
                 >

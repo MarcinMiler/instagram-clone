@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
-const Comments = ({ comments, changeState }) => {
+const Comments = ({ comments, addComment, changeState, state }) => {
     const list = comments.map(comment => {
         return (
             <Comment key={comment.id}>
@@ -50,6 +50,7 @@ const Comments = ({ comments, changeState }) => {
                 />
 
                 <TextInput
+                    value={state.text}
                     onChangeText={text => changeState('text', text)}
                     placeholder="Add comment..."
                     placeholderTextColor="lightgray"
@@ -57,7 +58,7 @@ const Comments = ({ comments, changeState }) => {
                     multiline
                 />
 
-                <Send>Send</Send>
+                <Send onPress={() => addComment()}>Send</Send>
             </Input>
         </Container>
     )

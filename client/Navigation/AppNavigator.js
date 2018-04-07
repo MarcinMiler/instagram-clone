@@ -174,7 +174,7 @@ export default TabNavigator(
     },
     {
         tabBarPosition: 'bottom',
-        initialRouteName: 'Explore',
+        initialRouteName: 'Profile',
         lazy: true,
         tabBarOptions: {
             showIcon: true,

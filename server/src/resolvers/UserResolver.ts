@@ -125,11 +125,11 @@ const UserResolver: ResolverMap = {
                 return false
             }
         },
-        createComment: async (_, { photoId, userId, text }) => {
+        addComment: async (_, { photoId, text }, { user }) => {
             try {
                 const comment = Comment.create({
                     photoId,
-                    userId,
+                    userId: user,
                     text
                 })
                 await comment.save()

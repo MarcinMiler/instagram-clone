@@ -62,7 +62,7 @@ export const typeDefs = `
     type Mutation {
         addPhoto(url: String!, text: String!): Boolean!
         likePhoto(photoId: ID!): Boolean!
-        createComment(photoId: ID!, userId: ID!, text: String!): Boolean!
+        addComment(photoId: ID!, text: String!): Boolean!
         follow(followerId: ID!): Boolean!
         unfollow(followerId: ID!): Boolean!
         login(email: String!, password: String!): LoginResponse!
