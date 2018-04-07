@@ -1,24 +1,25 @@
 import React from 'react'
-import { Dimensions, Image } from 'react-native'
+import { Dimensions, Image, TouchableNativeFeedback } from 'react-native'
 import styled from 'styled-components'
 import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
-const Post = ({ photo, navigation }) => (
+const Post = ({ photo, likePhoto, navigation }) => (
     <React.Fragment>
         <Header>
             <UserPhoto source={require('../resources/andzia.jpg')} />
             <Username>{photo.user.username}</Username>
         </Header>
-
-        <Image
-            style={{
-                width,
-                height: width
-            }}
-            source={require('../resources/andzia.jpg')}
-        />
+        <TouchableNativeFeedback onPress={() => likePhoto(photo.id)}>
+            <Image
+                style={{
+                    width,
+                    height: width
+                }}
+                source={{ uri: photo.url }}
+            />
+        </TouchableNativeFeedback>
         <Footer>
             <Icons>
                 <Icon name="heart" size={30} color="black" />
@@ -31,12 +32,18 @@ const Post = ({ photo, navigation }) => (
             </LikeCount>
 
             <Comment>
-                <Username>Angelaaa</Username>
-                <CommentText>Selfie</CommentText>
+                <Username>{photo.comments[0].user.username}</Username>
+                <CommentText>{photo.comments[0].text}</CommentText>
             </Comment>
 
             <Comment>
-                <ViewComments onPress={() => navigation.navigate('Comments')}>
+                <ViewComments
+                    onPress={() =>
+                        navigation.navigate('Comments', {
+                            comments: photo.comments
+                        })
+                    }
+                >
                     View all the comments {photo.commentsCount}
                 </ViewComments>
             </Comment>

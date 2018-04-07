@@ -7,10 +7,10 @@ import Post from '../Components/Post'
 
 const { width, height } = Dimensions.get('window')
 
-const Photo = ({ photo, navigation }) => (
+const Photo = ({ photo, likePhoto, navigation }) => (
     <Container>
         <Navbar back leftIcon="arrow-left" title="Photo" />
-        <Post photo={photo} navigation={navigation} />
+        <Post photo={photo} likePhoto={likePhoto} navigation={navigation} />
     </Container>
 )
 

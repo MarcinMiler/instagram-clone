@@ -61,8 +61,26 @@ const UserResolver: ResolverMap = {
             }),
         photo: (_, { photoId }) =>
             Photo.findOneById(photoId, {
-                relations: ['likes', 'likes.user', 'comments', 'user']
+                relations: [
+                    'likes',
+                    'likes.user',
+                    'comments',
+                    'comments.user',
+                    'user'
+                ]
+            }),
+        isLiked: async (_, { photoId }, { user }) => {
+            const photo = await Photo.findOneById(photoId, {
+                relations: ['likes', 'likes.user']
             })
+            if (photo) {
+                const res = photo.likes.find(like => like.userId === user)
+                if (res) {
+                    return true
+                }
+            }
+            return false
+        }
     },
     Mutation: {
         addPhoto: async (_, { url, text }, { user }) => {
@@ -82,15 +100,27 @@ const UserResolver: ResolverMap = {
                 return false
             }
         },
-        likePhoto: async (_, { photoId, userId }) => {
+        likePhoto: async (_, { photoId }, { user }) => {
             try {
-                const like = Like.create({
-                    photoId,
-                    userId
+                const photo = await Photo.findOneById(photoId, {
+                    relations: ['likes', 'likes.user']
                 })
-                await like.save()
 
-                return true
+                if (photo) {
+                    const isLiked = photo.likes.find(l => l.userId === user)
+
+                    if (!isLiked) {
+                        const like = Like.create({
+                            photoId,
+                            userId: user
+                        })
+                        await like.save()
+
+                        return true
+                    }
+                }
+
+                return false
             } catch (err) {
                 return false
             }

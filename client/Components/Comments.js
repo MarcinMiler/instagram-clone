@@ -8,10 +8,10 @@ import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
-const Comments = ({ changeState }) => {
-    const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => {
+const Comments = ({ comments, changeState }) => {
+    const list = comments.map(comment => {
         return (
-            <Comment key={i}>
+            <Comment key={comment.id}>
                 <User>
                     <UserPhoto
                         width={40}
@@ -20,8 +20,8 @@ const Comments = ({ changeState }) => {
                     <Content>
                         <Wrap>
                             <CommentText>
-                                <Username>Angelaaa</Username> You are beautiful
-                                ❤
+                                <Username>{comment.user.username}</Username>{' '}
+                                {comment.text}
                             </CommentText>
                         </Wrap>
                         <CommentData>

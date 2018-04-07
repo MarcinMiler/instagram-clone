@@ -17,7 +17,7 @@ export class Like extends BaseEntity {
     @Column({ nullable: true })
     photoId: number
 
-    @Column({ nullable: true, unique: true })
+    @Column({ nullable: true })
     userId: number
 
     @ManyToOne(() => Photo, photo => photo.likes)

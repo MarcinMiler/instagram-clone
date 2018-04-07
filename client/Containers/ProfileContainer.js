@@ -14,8 +14,8 @@ class ProfileContainer extends Component {
     handleChangeState = (key, value) => this.setState({ [key]: value })
 
     render() {
-        console.log('rerender')
         if (this.props.me.loading) return <Spinner />
+
         return (
             <Profile
                 me={this.props.me.me}

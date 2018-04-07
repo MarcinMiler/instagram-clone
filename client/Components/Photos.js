@@ -16,7 +16,7 @@ const Photos = ({ photos, navigation }) => {
                         width: width / 3 - 2,
                         height: width / 3
                     }}
-                    source={require('../resources/andzia.jpg')}
+                    source={{ uri: photo.url }}
                 />
             </TouchableWithoutFeedback>
         </Post>

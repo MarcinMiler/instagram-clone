@@ -11,7 +11,11 @@ class CommentsContainer extends Component {
 
     render() {
         return (
-            <Comments state={this.state} changeState={this.handleChangeState} />
+            <Comments
+                comments={this.props.navigation.state.params.comments}
+                state={this.state}
+                changeState={this.handleChangeState}
+            />
         )
     }
 }

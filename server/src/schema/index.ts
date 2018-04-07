@@ -31,9 +31,10 @@ export const typeDefs = `
     }
 
     type Comment {
+        id: ID!
         text: String!
         date: String!
-        user: User
+        user: User!
     }
 
     type LoginResponse {
@@ -55,11 +56,12 @@ export const typeDefs = `
         searchUser(pattern: String): [User]
         photos: [Photo]
         photo(photoId: ID!): Photo
+        isLiked(photoId: ID!): Boolean!
     }
 
     type Mutation {
         addPhoto(url: String!, text: String!): Boolean!
-        likePhoto(photoId: ID!, userId: ID!): Boolean!
+        likePhoto(photoId: ID!): Boolean!
         createComment(photoId: ID!, userId: ID!, text: String!): Boolean!
         follow(followerId: ID!): Boolean!
         unfollow(followerId: ID!): Boolean!
