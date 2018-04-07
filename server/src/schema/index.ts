@@ -35,6 +35,8 @@ export const typeDefs = `
         text: String!
         date: String!
         user: User!
+        likes: [Like]
+        likesCount: Int!
     }
 
     type LoginResponse {
@@ -63,6 +65,7 @@ export const typeDefs = `
         addPhoto(url: String!, text: String!): Boolean!
         likePhoto(photoId: ID!): Boolean!
         addComment(photoId: ID!, text: String!): Boolean!
+        likeComment(commentId: ID!): Boolean!
         follow(followerId: ID!): Boolean!
         unfollow(followerId: ID!): Boolean!
         login(email: String!, password: String!): LoginResponse!

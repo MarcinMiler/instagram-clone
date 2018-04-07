@@ -47,6 +47,16 @@ const ExploreNavigation = StackNavigator(
         },
         UserProfile: {
             screen: UserProfileContainer
+        },
+        Photo: {
+            screen: PhotoContainer
+        },
+        Comments: {
+            screen: CommentsContainer,
+            navigationOptions: {
+                tabBarVisible: false,
+                swipeEnabled: false
+            }
         }
     },
     {

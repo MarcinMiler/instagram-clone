@@ -57,7 +57,15 @@ const UserResolver: ResolverMap = {
         },
         photos: () =>
             Photo.find({
-                relations: ['likes', 'likes.user', 'comments', 'user']
+                relations: [
+                    'likes',
+                    'likes.user',
+                    'comments',
+                    'comments.user',
+                    'comments.likes',
+                    'comments.likes.user',
+                    'user'
+                ]
             }),
         photo: (_, { photoId }) =>
             Photo.findOneById(photoId, {
@@ -66,6 +74,8 @@ const UserResolver: ResolverMap = {
                     'likes.user',
                     'comments',
                     'comments.user',
+                    'comments.likes',
+                    'comments.likes.user',
                     'user'
                 ]
             }),
@@ -135,6 +145,30 @@ const UserResolver: ResolverMap = {
                 await comment.save()
 
                 return true
+            } catch (err) {
+                return false
+            }
+        },
+        likeComment: async (_, { commentId }, { user }) => {
+            try {
+                const comment = await Comment.findOneById(1, {
+                    relations: ['likes', 'likes.user']
+                })
+
+                if (comment) {
+                    const isLiked = comment.likes.find(l => l.userId === user)
+                    if (!isLiked) {
+                        const like = Like.create({
+                            commentId,
+                            userId: user
+                        })
+                        await like.save()
+
+                        return true
+                    }
+                }
+
+                return false
             } catch (err) {
                 return false
             }

@@ -9,6 +9,7 @@ import {
 } from 'typeorm'
 import { Photo } from './Photo'
 import { User } from './User'
+import { Comment } from './Comment'
 
 @Entity()
 export class Like extends BaseEntity {
@@ -19,6 +20,12 @@ export class Like extends BaseEntity {
 
     @Column({ nullable: true })
     userId: number
+
+    @Column({ nullable: true })
+    commentId: number
+
+    @ManyToOne(() => Photo, comment => comment.likes)
+    comment: Comment
 
     @ManyToOne(() => Photo, photo => photo.likes)
     photo: Photo
