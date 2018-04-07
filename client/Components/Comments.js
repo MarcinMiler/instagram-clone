@@ -8,7 +8,13 @@ import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
-const Comments = ({ comments, addComment, changeState, state }) => {
+const Comments = ({
+    comments,
+    addComment,
+    likeComment,
+    changeState,
+    state
+}) => {
     const list = comments.map(comment => {
         return (
             <Comment key={comment.id}>
@@ -27,14 +33,19 @@ const Comments = ({ comments, addComment, changeState, state }) => {
                         <CommentData>
                             <Text>5 minutes</Text>
 
-                            <Text>1 like</Text>
+                            <Text>{comment.likesCount} like</Text>
 
                             <Text>Replay</Text>
                         </CommentData>
                     </Content>
                 </User>
                 <Like>
-                    <Icon name="heart" size={18} color="lightgray" />
+                    <Icon
+                        onPress={() => likeComment(comment.id)}
+                        name="heart"
+                        size={18}
+                        color="lightgray"
+                    />
                 </Like>
             </Comment>
         )

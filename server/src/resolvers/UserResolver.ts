@@ -151,7 +151,7 @@ const UserResolver: ResolverMap = {
         },
         likeComment: async (_, { commentId }, { user }) => {
             try {
-                const comment = await Comment.findOneById(1, {
+                const comment = await Comment.findOneById(commentId, {
                     relations: ['likes', 'likes.user']
                 })
 
@@ -167,7 +167,6 @@ const UserResolver: ResolverMap = {
                         return true
                     }
                 }
-
                 return false
             } catch (err) {
                 return false

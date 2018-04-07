@@ -64,6 +64,12 @@ const photoQuery = gql`
                     id
                     username
                 }
+                likes {
+                    user {
+                        username
+                    }
+                }
+                likesCount
             }
             commentsCount
         }
