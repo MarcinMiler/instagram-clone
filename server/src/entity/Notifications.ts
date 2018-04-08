@@ -15,6 +15,9 @@ export class Notification extends BaseEntity {
     @Column({ nullable: true })
     userId: number
 
+    @Column({ nullable: true })
+    photoId: number
+
     @Column() sendTo: number
 
     @Column() message: string

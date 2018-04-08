@@ -1,17 +1,28 @@
 import React, { Component } from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, TouchableNativeFeedback } from 'react-native'
 import { Container, P } from '../Styled'
 import styled from 'styled-components'
 
-const Notifications = () => {
-    const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(i => (
-        <Item key={i}>
-            <UserPhoto source={require('../resources/andzia.jpg')} />
-            <P left size={14} marginLeft={15} style={{ flex: 1 }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit.Curabitur vel nisi convallis velit aliquet facilisis.
-            </P>
-        </Item>
+const Notifications = ({ notifications, navigation }) => {
+    const list = notifications.map(notification => (
+        <TouchableNativeFeedback
+            onPress={() =>
+                notification.photoId
+                    ? navigation.navigate('Photo', { id: notification.photoId })
+                    : navigation.navigate('UserProfile', {
+                          id: notification.userId
+                      })
+            }
+            key={notification.id}
+        >
+            <Item>
+                <UserPhoto source={require('../resources/andzia.jpg')} />
+                <CommentText>
+                    <Username>{notification.user.username}</Username>{' '}
+                    {notification.message}
+                </CommentText>
+            </Item>
+        </TouchableNativeFeedback>
     ))
 
     return (
@@ -46,11 +57,21 @@ const NavItem = styled.View`
 const Item = styled.View`
     width: 100%;
     flex-direction: row;
-    padding: 15px;
+    padding: 10px;
     align-items: center;
 `
 const UserPhoto = styled.Image`
     width: 50;
     height: 50;
     border-radius: 30;
+`
+const Username = styled.Text`
+    font-family: montserratMedium;
+    font-size: 14;
+`
+const CommentText = styled.Text`
+    flex: 1;
+    margin-left: 10;
+    font-family: montserratRegular;
+    font-size: 14;
 `

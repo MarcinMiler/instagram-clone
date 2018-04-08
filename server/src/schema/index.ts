@@ -42,8 +42,10 @@ export const typeDefs = `
     type Notification {
         id: ID!
         userId: ID!
+        photoId: ID
         sendTo: ID!
         message: String!
+        user: User!
     }
 
     type LoginResponse {

@@ -93,7 +93,7 @@ const UserResolver: ResolverMap = {
             return false
         },
         notifications: async (_, args, { user }) =>
-            Notification.find({ where: { sendTo: user } })
+            Notification.find({ where: { sendTo: user }, relations: ['user'] })
     },
     Mutation: {
         addPhoto: async (_, { url, text }, { user }) => {
@@ -129,12 +129,15 @@ const UserResolver: ResolverMap = {
                         })
                         await like.save()
 
-                        const notification = Notification.create({
-                            userId: user,
-                            message: 'is liked your photo.',
-                            sendTo: photo.userId
-                        })
-                        await notification.save()
+                        if (photo.userId !== user) {
+                            const notification = Notification.create({
+                                userId: user,
+                                photoId,
+                                message: 'is liked your photo.',
+                                sendTo: photo.userId
+                            })
+                            await notification.save()
+                        }
 
                         return true
                     }
@@ -156,9 +159,10 @@ const UserResolver: ResolverMap = {
 
                 const photo = await Photo.findOneById(photoId)
 
-                if (photo) {
+                if (photo && photo.userId !== user) {
                     const notification = Notification.create({
                         userId: user,
+                        photoId,
                         message: 'comment your photo.',
                         sendTo: photo.userId
                     })
@@ -185,12 +189,15 @@ const UserResolver: ResolverMap = {
                         })
                         await like.save()
 
-                        const notification = Notification.create({
-                            userId: user,
-                            message: 'is liked your comment.',
-                            sendTo: comment.userId
-                        })
-                        await notification.save()
+                        if (comment.userId !== user) {
+                            const notification = Notification.create({
+                                userId: user,
+                                photoId: comment.photoId,
+                                message: 'is liked your comment.',
+                                sendTo: comment.userId
+                            })
+                            await notification.save()
+                        }
 
                         return true
                     }
