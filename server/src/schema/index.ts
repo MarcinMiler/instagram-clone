@@ -39,6 +39,13 @@ export const typeDefs = `
         likesCount: Int!
     }
 
+    type Notification {
+        id: ID!
+        userId: ID!
+        sendTo: ID!
+        message: String!
+    }
+
     type LoginResponse {
         ok: Boolean!
         token: String
@@ -59,6 +66,7 @@ export const typeDefs = `
         photos: [Photo]
         photo(photoId: ID!): Photo
         isLiked(photoId: ID!): Boolean!
+        notifications: [Notification]
     }
 
     type Mutation {

@@ -4,6 +4,7 @@ import { Photo } from '../entity/Photo'
 import { Like } from '../entity/Like'
 import { Comment } from '../entity/Comment'
 import { Account } from '../entity/Account'
+import { Notification } from '../entity/Notifications'
 import { getRepository } from 'typeorm'
 
 const UserResolver: ResolverMap = {
@@ -90,7 +91,9 @@ const UserResolver: ResolverMap = {
                 }
             }
             return false
-        }
+        },
+        notifications: async (_, args, { user }) =>
+            Notification.find({ where: { sendTo: user } })
     },
     Mutation: {
         addPhoto: async (_, { url, text }, { user }) => {
@@ -126,6 +129,13 @@ const UserResolver: ResolverMap = {
                         })
                         await like.save()
 
+                        const notification = Notification.create({
+                            userId: user,
+                            message: 'is liked your photo.',
+                            sendTo: photo.userId
+                        })
+                        await notification.save()
+
                         return true
                     }
                 }
@@ -143,6 +153,17 @@ const UserResolver: ResolverMap = {
                     text
                 })
                 await comment.save()
+
+                const photo = await Photo.findOneById(photoId)
+
+                if (photo) {
+                    const notification = Notification.create({
+                        userId: user,
+                        message: 'comment your photo.',
+                        sendTo: photo.userId
+                    })
+                    await notification.save()
+                }
 
                 return true
             } catch (err) {
@@ -163,6 +184,13 @@ const UserResolver: ResolverMap = {
                             userId: user
                         })
                         await like.save()
+
+                        const notification = Notification.create({
+                            userId: user,
+                            message: 'is liked your comment.',
+                            sendTo: comment.userId
+                        })
+                        await notification.save()
 
                         return true
                     }
@@ -187,6 +215,13 @@ const UserResolver: ResolverMap = {
                     user2.followers.push(user1)
                     await user1.save()
                     await user2.save()
+
+                    const notification = Notification.create({
+                        userId: user,
+                        message: 'is following you.',
+                        sendTo: followerId
+                    })
+                    await notification.save()
                 }
                 return true
             } catch (err) {
