@@ -4,10 +4,17 @@ import { Container } from '../Styled'
 
 import Post from '../Components/Post'
 
-const Feed = ({ navigation }) => (
+const Feed = ({ feed, likePhoto, navigation }) => (
     <Container>
         <ScrollView>
-            <Post navigation={navigation} />
+            {feed.map(photo => (
+                <Post
+                    key={photo.id}
+                    photo={photo}
+                    likePhoto={likePhoto}
+                    navigation={navigation}
+                />
+            ))}
         </ScrollView>
     </Container>
 )

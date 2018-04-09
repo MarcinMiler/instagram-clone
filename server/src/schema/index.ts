@@ -69,6 +69,7 @@ export const typeDefs = `
         photo(photoId: ID!): Photo
         isLiked(photoId: ID!): Boolean!
         notifications: [Notification]
+        feed: [Photo]
     }
 
     type Mutation {

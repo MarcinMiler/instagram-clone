@@ -93,7 +93,27 @@ const UserResolver: ResolverMap = {
             return false
         },
         notifications: async (_, args, { user }) =>
-            Notification.find({ where: { sendTo: user }, relations: ['user'] })
+            Notification.find({ where: { sendTo: user }, relations: ['user'] }),
+        feed: async (_, args, { user }) => {
+            const u = await User.findOneById(user, {
+                relations: [
+                    'following',
+                    'following.photos',
+                    'following.photos.user',
+                    'following.photos.likes',
+                    'following.photos.likes.user',
+                    'following.photos.comments',
+                    'following.photos.comments.user',
+                    'following.photos.comments.likes',
+                    'following.photos.comments.likes.user'
+                ]
+            })
+            if (u) {
+                const photos = u.following.map(us => us.photos)
+                return [].concat.apply([], photos)
+            }
+            return
+        }
     },
     Mutation: {
         addPhoto: async (_, { url, text }, { user }) => {
