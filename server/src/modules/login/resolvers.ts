@@ -2,11 +2,10 @@ import * as bcrypt from 'bcryptjs'
 import * as jwt from 'jsonwebtoken'
 import { ResolverMap } from '../../types/resolverType'
 import { Account } from '../../entity/Account'
-
-const SECRET = 'asf87t897ahdjfnasdfgas'
+import SECRET from '../../utils/SECRET'
 
 const createToken = (id: number): string =>
-    jwt.sign({ id }, SECRET, { expiresIn: '1y' })
+    jwt.sign({ id }, 'sdf8as76dgfbabd96asdf', { expiresIn: '1y' })
 
 export const resolvers: ResolverMap = {
     Mutation: {

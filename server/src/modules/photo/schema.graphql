@@ -1,0 +1,43 @@
+type Photo {
+    id: ID!
+    userId: ID!
+    user: User!
+    url: String!
+    date: String!
+    likes: [Like]
+    likesCount: Int!
+    comments: [Comment]
+    commentsCount: Int!
+}
+
+type User {
+    id: ID!
+    email: String!
+    fullname: String!
+    username: String!
+    bio: String
+    date: String!
+    photos: [Photo]
+    # following: [User]
+    # followers: [User]
+    photosCount: Int!
+    followingCount: Int!
+    followersCount: Int!
+}
+
+type Like {
+    user: User
+}
+
+type Comment {
+    id: ID!
+    text: String!
+    date: String!
+    user: User!
+    likes: [Like]
+    likesCount: Int!
+}
+
+type Query {
+    photo(photoId: ID!): Photo
+}
