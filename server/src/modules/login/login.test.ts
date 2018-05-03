@@ -13,23 +13,37 @@ beforeAll(async () => {
     getHost = () => `http://127.0.0.1:${port}`
 })
 
-test('Mutation login', async () => {
-    await request(
-        getHost(),
-        registerMutation('m@m.com', 'mm', 'Marcin Miler', 'Marcinek')
-    )
+describe('Mutation login', async () => {
+    it('should login with email and password', async () => {
+        await request(
+            getHost(),
+            registerMutation('a@a.com', 'aa', 'Angelika Miler', 'Angela')
+        )
 
-    const response1 = await request(getHost(), loginMutation('m@m.com', 'mm'))
-    expect(response1).toEqual({ login: { ok: true, error: null } })
+        const response = await request(
+            getHost(),
+            loginMutation('a@a.com', 'aa')
+        )
+        expect(response).toEqual({ login: { ok: true, error: null } })
+    })
 
-    const response2 = await request(getHost(), loginMutation('mm@mm.com', 'mm'))
-    expect(response2).toEqual({ login: { ok: false, error: 'Wrong email' } })
+    it('should not login with bad email', async () => {
+        const response = await request(
+            getHost(),
+            loginMutation('aa@aa.com', 'aa')
+        )
+        expect(response).toEqual({
+            login: { ok: false, error: 'Wrong email' }
+        })
+    })
 
-    const response3 = await request(
-        getHost(),
-        loginMutation('m@m.com', 'mmmmmmm')
-    )
-    expect(response3).toEqual({
-        login: { ok: false, error: 'Wrong password' }
+    it('should not login with bad password', async () => {
+        const response = await request(
+            getHost(),
+            loginMutation('a@a.com', 'aaaaaa')
+        )
+        expect(response).toEqual({
+            login: { ok: false, error: 'Wrong password' }
+        })
     })
 })

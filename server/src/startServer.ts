@@ -9,10 +9,6 @@ import { GraphQLSchema } from 'graphql'
 import SECRET from './utils/SECRET'
 import { createTypeormConn } from './utils/createTypeormConn'
 
-const options = {
-    port: process.env.NODE_ENV === 'test' ? 0 : 4000
-}
-
 const addUser = (req: any, res: any, next: any) => {
     const token = req.headers.token
     if (token) {
@@ -48,7 +44,9 @@ export const startServer = async () => {
 
     await createTypeormConn()
 
-    const app = await server.start(options)
+    const app = await server.start({
+        port: process.env.NODE_ENV === 'test' ? 0 : 4000
+    })
 
     return app
 }
