@@ -2,6 +2,7 @@ import { request } from 'graphql-request'
 import { startServer } from '../../startServer'
 import { Account } from '../../entity/Account'
 import { User } from '../../entity/User'
+import { registerMutation } from '../../utils/mutations'
 
 let getHost = () => ''
 
@@ -11,23 +12,17 @@ beforeAll(async () => {
     getHost = () => `http://127.0.0.1:${port}`
 })
 
-const email = 'a@a.com'
-const password = 'aa'
-const fullname = 'Angelika Miler'
-const username = 'Angela'
-
-const mutation = `
-    mutation {
-        register(email: "${email}", password: "${password}", fullname: "${fullname}", username: "${username}") {
-            ok,
-            error
-        }
-    }
-`
+const email = 'm@m.com'
+const password = 'mm'
+const fullname = 'Marcin Miler'
+const username = 'Marcinek'
 
 describe('Mutation register', async () => {
     it('should register', async () => {
-        const response = await request(getHost(), mutation)
+        const response = await request(
+            getHost(),
+            registerMutation(email, password, fullname, username)
+        )
         expect(response).toEqual({ register: { ok: true, error: null } })
 
         const accounts = await Account.find({ where: { email } })
@@ -47,7 +42,6 @@ describe('Mutation register', async () => {
             username
         }
         expect(user).toMatchObject(matchUser)
-
         expect(user.id).toEqual(account.id)
     })
 })

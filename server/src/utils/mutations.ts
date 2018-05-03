@@ -28,3 +28,15 @@ export const loginMutationWithToken = (email: string, password: string) => `
         }
     }
 `
+
+export const addPhoto = (url: string, text: string) => `
+    mutation {
+        addPhoto(url: "${url}", text: "${text}")
+    }
+`
+
+export const likePhoto = (photoId: string) => `
+    mutation {
+        likePhoto(photoId: "${photoId}")
+    }
+`

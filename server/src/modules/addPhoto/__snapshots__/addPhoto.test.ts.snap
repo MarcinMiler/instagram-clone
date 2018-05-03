@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mutation addPhoto should add new photo 1`] = `
+Array [
+  Photo {
+    "commentsCount": 1,
+    "id": 1,
+    "likesCount": 0,
+    "url": "url.jpg",
+    "userId": 1,
+  },
+]
+`;
