@@ -5,11 +5,11 @@ export const resolvers: ResolverMap = {
     Mutation: {
         unfollow: async (_, { followerId }, { user }) => {
             try {
-                const user1 = await User.findOne(user, {
+                const user1 = await User.findOneById(user, {
                     relations: ['followers', 'following']
                 })
 
-                const user2 = await User.findOne(followerId, {
+                const user2 = await User.findOneById(followerId, {
                     relations: ['followers', 'following']
                 })
 

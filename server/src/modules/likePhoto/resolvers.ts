@@ -1,13 +1,13 @@
 import { ResolverMap } from '../../types/resolverType'
 import { Photo } from '../../entity/Photo'
-import { Notification } from '../../entity/Notifications'
+import { Notification } from '../../entity/Notification'
 import { Like } from '../../entity/Like'
 
 export const resolvers: ResolverMap = {
     Mutation: {
         likePhoto: async (_, { photoId }, { user }) => {
             try {
-                const photo = await Photo.findOne(photoId, {
+                const photo = await Photo.findOneById(photoId, {
                     relations: ['likes', 'likes.user']
                 })
 

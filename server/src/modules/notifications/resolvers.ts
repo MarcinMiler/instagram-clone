@@ -1,5 +1,5 @@
 import { ResolverMap } from '../../types/resolverType'
-import { Notification } from '../../entity/Notifications'
+import { Notification } from '../../entity/Notification'
 
 export const resolvers: ResolverMap = {
     Query: {

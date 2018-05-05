@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mutation addComment should add new comment 1`] = `
+Photo {
+  "comments": Array [
+    Comment {
+      "id": 1,
+      "likesCount": 0,
+      "photoId": 1,
+      "text": "New photo :)",
+      "userId": 1,
+    },
+    Comment {
+      "id": 2,
+      "likesCount": 0,
+      "photoId": 1,
+      "text": "Wow",
+      "userId": 1,
+    },
+  ],
+  "commentsCount": 2,
+  "id": 1,
+  "likesCount": 0,
+  "url": "url.jpg",
+  "userId": 1,
+}
+`;

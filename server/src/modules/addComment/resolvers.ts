@@ -1,7 +1,7 @@
 import { ResolverMap } from '../../types/resolverType'
 import { Photo } from '../../entity/Photo'
 import { Comment } from '../../entity/Comment'
-import { Notification } from '../../entity/Notifications'
+import { Notification } from '../../entity/Notification'
 
 export const resolvers: ResolverMap = {
     Mutation: {
@@ -12,9 +12,10 @@ export const resolvers: ResolverMap = {
                     userId: user,
                     text
                 })
+
                 await comment.save()
 
-                const photo = await Photo.findOne(photoId)
+                const photo = await Photo.findOneById(photoId)
 
                 if (photo && photo.userId !== user) {
                     const notification = Notification.create({

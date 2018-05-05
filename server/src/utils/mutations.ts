@@ -40,3 +40,9 @@ export const likePhoto = (photoId: string) => `
         likePhoto(photoId: "${photoId}")
     }
 `
+
+export const addComment = (photoId: string, text: string) => `
+    mutation {
+        addComment(photoId: "${photoId}", text: "${text}")
+    }
+`

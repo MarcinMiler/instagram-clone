@@ -4,7 +4,7 @@ import { User } from '../../entity/User'
 export const resolvers: ResolverMap = {
     Query: {
         feed: async (_, args, { user }) => {
-            const u = await User.findOne(user, {
+            const u = await User.findOneById(user, {
                 relations: [
                     'following',
                     'following.photos',

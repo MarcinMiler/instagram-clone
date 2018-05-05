@@ -8,12 +8,13 @@ import {
 } from '../../utils/mutations'
 import SECRET from '../../utils/SECRET'
 import { User } from '../../entity/User'
+
 let getHost = () => ''
 
 beforeAll(async () => {
     const app = await startServer()
     const { port } = app.address()
-    getHost = () => `http://127.0.0.1:${port}`
+    getHost = () => `http://127.0.0.1:${port}/graphql`
 })
 
 describe('Mutation login', async () => {

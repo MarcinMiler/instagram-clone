@@ -4,8 +4,9 @@ import {
     loginMutationWithToken,
     registerMutation,
     addPhoto,
-    likePhoto
+    addComment
 } from '../../utils/mutations'
+import { Photo } from '../../entity/Photo'
 
 let getHost = () => ''
 
@@ -22,8 +23,8 @@ const username = 'Marcinek'
 const url = 'url.jpg'
 const text = 'New photo :)'
 
-describe('Mutation add photo', async () => {
-    it('should add new photo', async () => {
+describe('Mutation addComment', async () => {
+    it('should add new comment', async () => {
         await request(
             getHost(),
             registerMutation(email, password, fullname, username)
@@ -42,7 +43,12 @@ describe('Mutation add photo', async () => {
 
         await client.request(addPhoto(url, text))
 
-        const response = await client.request(likePhoto('1'))
-        expect(response).toEqual({ likePhoto: true })
+        const response = await client.request(addComment('1', 'Wow'))
+
+        expect(response).toEqual({ addComment: true })
+
+        const photo = await Photo.findOneById(1, { relations: ['comments'] })
+
+        expect(photo).toMatchSnapshot()
     })
 })

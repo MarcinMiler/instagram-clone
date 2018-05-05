@@ -5,7 +5,7 @@ import { Account } from '../../entity/Account'
 import SECRET from '../../utils/SECRET'
 
 const createToken = (id: number): string =>
-    jwt.sign({ id }, 'sdf8as76dgfbabd96asdf', { expiresIn: '1y' })
+    jwt.sign({ id }, SECRET, { expiresIn: '1y' })
 
 export const resolvers: ResolverMap = {
     Mutation: {

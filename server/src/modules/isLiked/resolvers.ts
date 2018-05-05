@@ -4,7 +4,7 @@ import { Photo } from '../../entity/Photo'
 export const resolvers: ResolverMap = {
     Query: {
         isLiked: async (_, { photoId }, { user }) => {
-            const photo = await Photo.findOne(photoId, {
+            const photo = await Photo.findOneById(photoId, {
                 relations: ['likes', 'likes.user']
             })
             if (photo) {

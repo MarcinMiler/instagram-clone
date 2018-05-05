@@ -13,7 +13,7 @@ export const resolvers: ResolverMap = {
 
             try {
                 if (fullname) {
-                    await User.update(user, { fullname })
+                    await User.updateById(user, { fullname })
                 }
 
                 if (username) {
@@ -21,14 +21,14 @@ export const resolvers: ResolverMap = {
                         where: { username }
                     })
                     if (!usernameExist) {
-                        await User.update(user, { username })
+                        await User.updateById(user, { username })
                     } else {
                         error += 'Username is taken '
                     }
                 }
 
                 if (bio) {
-                    await User.update(user, { bio })
+                    await User.updateById(user, { bio })
                 }
 
                 if (email) {
@@ -36,8 +36,8 @@ export const resolvers: ResolverMap = {
                         where: { email }
                     })
                     if (!usernameExist) {
-                        await User.update(user, { email })
-                        await Account.update(user, { email })
+                        await User.updateById(user, { email })
+                        await Account.updateById(user, { email })
                     } else {
                         error += 'Email is taken '
                     }

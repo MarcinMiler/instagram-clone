@@ -1,10 +1,9 @@
 import {
     Entity,
-    PrimaryColumn,
     Column,
-    OneToMany,
+    PrimaryColumn,
     BaseEntity,
-    CreateDateColumn,
+    OneToMany,
     ManyToMany,
     JoinTable,
     RelationCount
@@ -14,8 +13,6 @@ import { Photo } from './Photo'
 @Entity()
 export class User extends BaseEntity {
     @PrimaryColumn() id: number
-
-    @CreateDateColumn() date: Date
 
     @Column() email: string
 

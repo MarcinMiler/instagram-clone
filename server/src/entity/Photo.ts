@@ -1,30 +1,24 @@
 import {
     Entity,
-    PrimaryGeneratedColumn,
     Column,
-    ManyToOne,
+    PrimaryGeneratedColumn,
     BaseEntity,
+    ManyToOne,
     OneToMany,
-    CreateDateColumn,
     RelationCount
 } from 'typeorm'
 import { User } from './User'
-import { Like } from './Like'
 import { Comment } from './Comment'
+import { Like } from './Like'
 
 @Entity()
 export class Photo extends BaseEntity {
     @PrimaryGeneratedColumn() id: number
 
-    @CreateDateColumn() date: Date
-
     @Column() url: string
 
     @Column({ nullable: true })
     userId: number
-
-    @ManyToOne(() => User, user => user.photos)
-    user: User
 
     @OneToMany(() => Like, like => like.photo)
     likes: Like[]
@@ -37,4 +31,7 @@ export class Photo extends BaseEntity {
 
     @RelationCount((photo: Photo) => photo.comments)
     commentsCount: number
+
+    @ManyToOne(() => User, user => user.photos)
+    user: User
 }

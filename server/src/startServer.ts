@@ -6,13 +6,21 @@ import * as fs from 'fs'
 import * as jwt from 'jsonwebtoken'
 import { mergeSchemas, makeExecutableSchema } from 'graphql-tools'
 import { GraphQLSchema } from 'graphql'
-import SECRET from './utils/SECRET'
 import { createTypeormConn } from './utils/createTypeormConn'
+import SECRET from './utils/SECRET'
+
+const options = {
+    port: process.env.NODE_ENV === 'test' ? 0 : 4000,
+    endpoint: '/graphql',
+    cors: {
+        origin: '*'
+    }
+}
 
 const addUser = (req: any, res: any, next: any) => {
     const token = req.headers.token
     if (token) {
-        const user = jwt.verify(token, 'sdf8as76dgfbabd96asdf')
+        const user = jwt.verify(token, SECRET)
         req.user = user
     }
     next()
@@ -20,9 +28,7 @@ const addUser = (req: any, res: any, next: any) => {
 
 export const startServer = async () => {
     const schemas: GraphQLSchema[] = []
-
     const folders = fs.readdirSync(path.join(__dirname, './modules'))
-
     folders.forEach(folder => {
         const { resolvers } = require(`./modules/${folder}/resolvers`)
         const typeDefs = importSchema(
@@ -44,9 +50,7 @@ export const startServer = async () => {
 
     await createTypeormConn()
 
-    const app = await server.start({
-        port: process.env.NODE_ENV === 'test' ? 0 : 4000
-    })
+    const app = await server.start(options)
 
     return app
 }

@@ -4,7 +4,7 @@ import { Photo } from '../../entity/Photo'
 export const resolvers: ResolverMap = {
     Query: {
         photo: (_, { photoId }) =>
-            Photo.findOne(photoId, {
+            Photo.findOneById(photoId, {
                 relations: [
                     'likes',
                     'likes.user',

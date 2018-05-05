@@ -1,11 +1,10 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm'
 
 @Entity()
 export class Account extends BaseEntity {
     @PrimaryGeneratedColumn() id: number
 
-    @Column({ unique: true })
-    email: string
+    @Column() email: string
 
     @Column() password: string
 }

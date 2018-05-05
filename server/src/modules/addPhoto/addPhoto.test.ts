@@ -12,7 +12,7 @@ let getHost = () => ''
 beforeAll(async () => {
     const app = await startServer()
     const { port } = app.address()
-    getHost = () => `http://127.0.0.1:${port}`
+    getHost = () => `http://127.0.0.1:${port}/graphql`
 })
 
 const email = 'm@m.com'
@@ -48,6 +48,26 @@ describe('Mutation addPhoto', async () => {
             select: ['id', 'url', 'userId']
         })
 
+        console.log(photo)
+
         expect(photo).toMatchSnapshot()
+    })
+
+    it('should add second photo', async () => {
+        const login: any = await request(
+            getHost(),
+            loginMutationWithToken(email, password)
+        )
+        const { token } = login.login
+
+        const client = new GraphQLClient(getHost(), {
+            headers: {
+                token
+            }
+        })
+
+        const response = await client.request(addPhoto(url, text))
+
+        expect(response).toEqual({ addPhoto: true })
     })
 })

@@ -9,7 +9,7 @@ let getHost = () => ''
 beforeAll(async () => {
     const app = await startServer()
     const { port } = app.address()
-    getHost = () => `http://127.0.0.1:${port}`
+    getHost = () => `http://127.0.0.1:${port}/graphql`
 })
 
 const email = 'm@m.com'
