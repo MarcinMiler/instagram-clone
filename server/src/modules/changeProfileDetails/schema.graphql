@@ -1,5 +1,4 @@
 type Response {
-    ok: Boolean!
     error: String
 }
 
@@ -13,5 +12,5 @@ type Mutation {
         username: String
         bio: String
         email: String
-    ): Response!
+    ): String
 }

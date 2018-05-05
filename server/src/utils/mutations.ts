@@ -35,14 +35,49 @@ export const addPhoto = (url: string, text: string) => `
     }
 `
 
-export const likePhoto = (photoId: string) => `
+export const likePhoto = (photoId: number) => `
     mutation {
         likePhoto(photoId: "${photoId}")
     }
 `
 
-export const addComment = (photoId: string, text: string) => `
+export const addComment = (photoId: number, text: string) => `
     mutation {
         addComment(photoId: "${photoId}", text: "${text}")
+    }
+`
+
+export const changeProfileDetails = (
+    fullname: string,
+    username: string,
+    bio: string,
+    email: string
+) => `
+    mutation {
+        changeProfileDetails(fullname: "${fullname}", username: "${username}", bio: "${bio}", email: "${email}")
+    }
+`
+
+export const follow = (followerId: number) => `
+    mutation {
+        follow(followerId: "${followerId}")
+    }
+`
+
+export const isFollowing = (userId: number) => `
+    {
+        isFollowing(userId: ${userId})
+    }
+`
+
+export const isLiked = (photoId: number) => `
+    {
+        isLiked(photoId: ${photoId})
+    }
+`
+
+export const likeComment = (commentId: number) => `
+    mutation {
+        likeComment(commentId: "${commentId}")
     }
 `

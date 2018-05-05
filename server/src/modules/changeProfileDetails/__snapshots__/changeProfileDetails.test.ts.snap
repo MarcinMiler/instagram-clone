@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mutation changeProfileDetails should change profile details 1`] = `
+User {
+  "bio": "New bio",
+  "email": "mm@mm.com",
+  "followersCount": 0,
+  "followingCount": 0,
+  "fullname": "Mirek Miler",
+  "id": 1,
+  "photosCount": 0,
+  "username": "Milerek",
+}
+`;

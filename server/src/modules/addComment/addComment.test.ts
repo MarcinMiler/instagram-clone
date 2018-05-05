@@ -7,14 +7,10 @@ import {
     addComment
 } from '../../utils/mutations'
 import { Photo } from '../../entity/Photo'
+import { Comment } from '../../entity/Comment'
 
 let getHost = () => ''
-
-beforeAll(async () => {
-    const app = await startServer()
-    const { port } = app.address()
-    getHost = () => `http://127.0.0.1:${port}/graphql`
-})
+let token = ''
 
 const email = 'm@m.com'
 const password = 'mm'
@@ -23,18 +19,25 @@ const username = 'Marcinek'
 const url = 'url.jpg'
 const text = 'New photo :)'
 
+beforeAll(async () => {
+    const app = await startServer()
+    const { port } = app.address()
+    getHost = () => `http://127.0.0.1:${port}/graphql`
+
+    await request(
+        getHost(),
+        registerMutation(email, password, fullname, username)
+    )
+
+    const login: any = await request(
+        getHost(),
+        loginMutationWithToken(email, password)
+    )
+    token = login.login.token
+})
+
 describe('Mutation addComment', async () => {
     it('should add new comment', async () => {
-        await request(
-            getHost(),
-            registerMutation(email, password, fullname, username)
-        )
-        const login: any = await request(
-            getHost(),
-            loginMutationWithToken(email, password)
-        )
-        const { token } = login.login
-
         const client = new GraphQLClient(getHost(), {
             headers: {
                 token
@@ -43,12 +46,21 @@ describe('Mutation addComment', async () => {
 
         await client.request(addPhoto(url, text))
 
-        const response = await client.request(addComment('1', 'Wow'))
+        const response = await client.request(addComment(1, 'Wow'))
 
         expect(response).toEqual({ addComment: true })
 
         const photo = await Photo.findOneById(1, { relations: ['comments'] })
+        const comment = await Comment.find()
 
         expect(photo).toMatchSnapshot()
+        expect(comment).toHaveLength(2)
+        expect(comment[1]).toEqual({
+            id: 2,
+            userId: 1,
+            photoId: 1,
+            text: 'Wow',
+            likesCount: 0
+        })
     })
 })

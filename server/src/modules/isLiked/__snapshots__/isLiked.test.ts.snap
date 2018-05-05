@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query isLiked should check if photo is liked 1`] = `
+Array [
+  Like {
+    "commentId": null,
+    "id": 1,
+    "photoId": 1,
+    "userId": 1,
+  },
+]
+`;

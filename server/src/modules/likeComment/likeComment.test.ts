@@ -3,9 +3,14 @@ import { startServer } from '../../startServer'
 import {
     loginMutationWithToken,
     registerMutation,
+    isLiked,
+    likeComment,
     addPhoto
 } from '../../utils/mutations'
 import { Photo } from '../../entity/Photo'
+import { Comment } from '../../entity/Comment'
+import { exec } from 'child_process'
+import { Like } from '../../entity/Like'
 
 let getHost = () => ''
 let token = ''
@@ -14,8 +19,6 @@ const email = 'm@m.com'
 const password = 'mm'
 const fullname = 'Marcin Miler'
 const username = 'Marcinek'
-const url = 'url.jpg'
-const text = 'New photo :)'
 
 beforeAll(async () => {
     const app = await startServer()
@@ -27,6 +30,11 @@ beforeAll(async () => {
         registerMutation(email, password, fullname, username)
     )
 
+    await request(
+        getHost(),
+        registerMutation('a@a.com', 'aa', 'Angelika Miler', 'Angelaaa')
+    )
+
     const login: any = await request(
         getHost(),
         loginMutationWithToken(email, password)
@@ -34,34 +42,23 @@ beforeAll(async () => {
     token = login.login.token
 })
 
-describe('Mutation addPhoto', async () => {
-    it('should add new photo', async () => {
+describe('Mutation likeComment', async () => {
+    it('should like comment', async () => {
         const client = new GraphQLClient(getHost(), {
             headers: {
                 token
             }
         })
 
-        const response = await client.request(addPhoto(url, text))
+        await client.request(addPhoto('lol.jpg', 'Wow'))
 
-        expect(response).toEqual({ addPhoto: true })
+        const response = await client.request(likeComment(1))
 
-        const photo = await Photo.find({
-            select: ['id', 'url', 'userId']
-        })
+        expect(response).toEqual({ likeComment: true })
 
-        expect(photo).toMatchSnapshot()
-    })
+        const like = await Like.find()
 
-    it('should add second photo', async () => {
-        const client = new GraphQLClient(getHost(), {
-            headers: {
-                token
-            }
-        })
-
-        const response = await client.request(addPhoto(url, text))
-
-        expect(response).toEqual({ addPhoto: true })
+        expect(like).toHaveLength(1)
+        expect(like).toMatchSnapshot()
     })
 })

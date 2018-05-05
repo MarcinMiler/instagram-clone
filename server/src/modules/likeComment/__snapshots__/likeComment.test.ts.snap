@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mutation likeComment should like comment 1`] = `
+Array [
+  Like {
+    "commentId": 1,
+    "id": 1,
+    "photoId": null,
+    "userId": 1,
+  },
+]
+`;

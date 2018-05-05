@@ -3,9 +3,10 @@ import { startServer } from '../../startServer'
 import {
     loginMutationWithToken,
     registerMutation,
-    addPhoto
+    follow,
+    isFollowing
 } from '../../utils/mutations'
-import { Photo } from '../../entity/Photo'
+import { User } from '../../entity/User'
 
 let getHost = () => ''
 let token = ''
@@ -14,8 +15,6 @@ const email = 'm@m.com'
 const password = 'mm'
 const fullname = 'Marcin Miler'
 const username = 'Marcinek'
-const url = 'url.jpg'
-const text = 'New photo :)'
 
 beforeAll(async () => {
     const app = await startServer()
@@ -27,6 +26,11 @@ beforeAll(async () => {
         registerMutation(email, password, fullname, username)
     )
 
+    await request(
+        getHost(),
+        registerMutation('a@a.com', 'aa', 'Angelika Miler', 'Angelaaa')
+    )
+
     const login: any = await request(
         getHost(),
         loginMutationWithToken(email, password)
@@ -34,34 +38,25 @@ beforeAll(async () => {
     token = login.login.token
 })
 
-describe('Mutation addPhoto', async () => {
-    it('should add new photo', async () => {
+describe('Query isFollowing', async () => {
+    it('should check is user is following another user', async () => {
         const client = new GraphQLClient(getHost(), {
             headers: {
                 token
             }
         })
 
-        const response = await client.request(addPhoto(url, text))
+        await client.request(follow(2))
 
-        expect(response).toEqual({ addPhoto: true })
+        const response = await client.request(isFollowing(2))
 
-        const photo = await Photo.find({
-            select: ['id', 'url', 'userId']
+        expect(response).toEqual({ isFollowing: true })
+
+        const user: any = await User.findOneById(1, {
+            relations: ['following']
         })
 
-        expect(photo).toMatchSnapshot()
-    })
-
-    it('should add second photo', async () => {
-        const client = new GraphQLClient(getHost(), {
-            headers: {
-                token
-            }
-        })
-
-        const response = await client.request(addPhoto(url, text))
-
-        expect(response).toEqual({ addPhoto: true })
+        expect(user).toMatchSnapshot()
+        expect(user.following[0].id).toBe(2)
     })
 })
