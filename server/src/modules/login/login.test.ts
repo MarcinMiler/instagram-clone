@@ -15,15 +15,15 @@ beforeAll(async () => {
     const app = await startServer()
     const { port } = app.address()
     getHost = () => `http://127.0.0.1:${port}/graphql`
+
+    await request(
+        getHost(),
+        registerMutation('m@m.com', 'mm', 'Marcin Miler', 'Marcinek')
+    )
 })
 
 describe('Mutation login', async () => {
     it('should login with email and password', async () => {
-        await request(
-            getHost(),
-            registerMutation('m@m.com', 'mm', 'Marcin Miler', 'Marcinek')
-        )
-
         const response = await request(
             getHost(),
             loginMutation('m@m.com', 'mm')
@@ -61,10 +61,8 @@ describe('Mutation login', async () => {
 
         const isValid: any = jwt.verify(token, SECRET)
 
-        const user = await User.findOne({ where: { email: 'm@m.com' } })
+        const user: any = await User.findOne({ where: { email: 'm@m.com' } })
 
-        if (user) {
-            expect(isValid.id).toEqual(user.id)
-        }
+        expect(isValid.id).toEqual(user.id)
     })
 })

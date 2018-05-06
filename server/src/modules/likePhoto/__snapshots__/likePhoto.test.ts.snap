@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mutation like Photo should like photo 1`] = `
+Photo {
+  "commentsCount": 0,
+  "id": 1,
+  "likes": Array [
+    Like {
+      "commentId": null,
+      "id": 1,
+      "photoId": 1,
+      "userId": 1,
+    },
+  ],
+  "likesCount": 1,
+  "url": "url.jpg",
+  "userId": 1,
+}
+`;
+
+exports[`Mutation like Photo should like photo 2`] = `
+Array [
+  Like {
+    "commentId": null,
+    "id": 1,
+    "photoId": 1,
+    "userId": 1,
+  },
+]
+`;
+
+exports[`Mutation like Photo should not like twice 1`] = `
+Photo {
+  "commentsCount": 0,
+  "id": 1,
+  "likes": Array [
+    Like {
+      "commentId": null,
+      "id": 1,
+      "photoId": 1,
+      "userId": 1,
+    },
+  ],
+  "likesCount": 1,
+  "url": "url.jpg",
+  "userId": 1,
+}
+`;
+
+exports[`Mutation like Photo should not like twice 2`] = `
+Array [
+  Like {
+    "commentId": null,
+    "id": 1,
+    "photoId": 1,
+    "userId": 1,
+  },
+]
+`;

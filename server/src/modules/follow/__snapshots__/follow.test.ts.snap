@@ -25,3 +25,29 @@ User {
   "username": "Marcinek",
 }
 `;
+
+exports[`Mutation follow should follow user 2`] = `
+User {
+  "bio": null,
+  "email": "a@a.com",
+  "followers": Array [
+    User {
+      "bio": null,
+      "email": "m@m.com",
+      "followersCount": 0,
+      "followingCount": 1,
+      "fullname": "Marcin Miler",
+      "id": 1,
+      "photosCount": 0,
+      "username": "Marcinek",
+    },
+  ],
+  "followersCount": 1,
+  "following": Array [],
+  "followingCount": 0,
+  "fullname": "Angelika Miler",
+  "id": 2,
+  "photosCount": 0,
+  "username": "Angelaaa",
+}
+`;

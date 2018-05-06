@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query notifications should return a notification 1`] = `
+Object {
+  "notifications": Array [
+    Object {
+      "id": "2",
+      "message": "is liked your comment.",
+      "photoId": "1",
+      "sendTo": "1",
+      "userId": "2",
+    },
+    Object {
+      "id": "1",
+      "message": "is liked your photo.",
+      "photoId": "1",
+      "sendTo": "1",
+      "userId": "2",
+    },
+  ],
+}
+`;
+
+exports[`Query notifications should return a notification 2`] = `
+Array [
+  Notification {
+    "id": 1,
+    "message": "is liked your photo.",
+    "photoId": 1,
+    "sendTo": 1,
+    "userId": 2,
+  },
+  Notification {
+    "id": 2,
+    "message": "is liked your comment.",
+    "photoId": 1,
+    "sendTo": 1,
+    "userId": 2,
+  },
+]
+`;

@@ -3,12 +3,16 @@ import { startServer } from '../../startServer'
 import {
     loginMutationWithToken,
     registerMutation,
-    follow
+    addPhoto,
+    likePhoto,
+    likeComment,
+    notifications
 } from '../../utils/mutations'
-import { User } from '../../entity/User'
+import { Notification } from '../../entity/Notification'
 
 let getHost = () => ''
 let token = ''
+let token2 = ''
 
 const email = 'm@m.com'
 const password = 'mm'
@@ -35,29 +39,41 @@ beforeAll(async () => {
         loginMutationWithToken(email, password)
     )
     token = login.login.token
+
+    const login2: any = await request(
+        getHost(),
+        loginMutationWithToken('a@a.com', 'aa')
+    )
+    token2 = login2.login.token
 })
 
-describe('Mutation follow', async () => {
-    it('should follow user', async () => {
+describe('Query notifications', async () => {
+    it('should return a notification', async () => {
         const client = new GraphQLClient(getHost(), {
             headers: {
                 token
             }
         })
 
-        const response = await client.request(follow(2))
-
-        expect(response).toEqual({ follow: true })
-
-        const user = await User.findOneById(1, {
-            relations: ['followers', 'following']
+        const client2 = new GraphQLClient(getHost(), {
+            headers: {
+                token: token2
+            }
         })
 
-        const user2 = await User.findOneById(2, {
-            relations: ['followers', 'following']
-        })
+        await client.request(addPhoto('lol.jpg', 'Wow'))
 
-        expect(user).toMatchSnapshot()
-        expect(user2).toMatchSnapshot()
+        await client2.request(likePhoto(1))
+        await client2.request(likeComment(1))
+
+        const response: any = await client.request(notifications)
+
+        expect(response.notifications).toHaveLength(2)
+        expect(response).toMatchSnapshot()
+
+        const notification = await Notification.find()
+
+        expect(notification).toHaveLength(2)
+        expect(notification).toMatchSnapshot()
     })
 })

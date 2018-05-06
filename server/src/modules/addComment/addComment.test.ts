@@ -44,7 +44,10 @@ describe('Mutation addComment', async () => {
             }
         })
 
-        await client.request(addPhoto(url, text))
+        await Photo.create({
+            userId: 1,
+            url
+        }).save()
 
         const response = await client.request(addComment(1, 'Wow'))
 
@@ -54,9 +57,9 @@ describe('Mutation addComment', async () => {
         const comment = await Comment.find()
 
         expect(photo).toMatchSnapshot()
-        expect(comment).toHaveLength(2)
-        expect(comment[1]).toEqual({
-            id: 2,
+        expect(comment).toHaveLength(1)
+        expect(comment[0]).toEqual({
+            id: 1,
             userId: 1,
             photoId: 1,
             text: 'Wow',

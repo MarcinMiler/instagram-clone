@@ -81,3 +81,55 @@ export const likeComment = (commentId: number) => `
         likeComment(commentId: "${commentId}")
     }
 `
+
+export const me = `
+    {
+        me {
+            id,
+            fullname,
+            username
+        }
+    }
+`
+
+export const notifications = `
+    {
+        notifications {
+            id,
+            userId,
+            photoId,
+            sendTo,
+            message
+        }
+    }
+`
+
+export const photoQuery = (photoId: number) => `
+{
+    photo(photoId: "${photoId}") {
+        id
+        url
+        userId,
+        user {
+            username
+            fullname
+        }
+        likes {
+            user {
+                username
+            }
+        }
+        comments {
+            id
+            text
+            likes {
+                user {
+                    username
+                }
+            }
+        }
+        likesCount
+        commentsCount
+    }
+}
+`

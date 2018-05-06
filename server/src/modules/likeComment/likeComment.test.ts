@@ -56,8 +56,33 @@ describe('Mutation likeComment', async () => {
 
         expect(response).toEqual({ likeComment: true })
 
+        const photo = await Photo.findOneById(1, {
+            relations: ['comments', 'comments.likes']
+        })
         const like = await Like.find()
 
+        expect(photo).toMatchSnapshot()
+        expect(like).toHaveLength(1)
+        expect(like).toMatchSnapshot()
+    })
+
+    it('should not like twice', async () => {
+        const client = new GraphQLClient(getHost(), {
+            headers: {
+                token
+            }
+        })
+
+        const response = await client.request(likeComment(1))
+
+        expect(response).toEqual({ likeComment: false })
+
+        const photo = await Photo.findOneById(1, {
+            relations: ['comments', 'comments.likes']
+        })
+        const like = await Like.find()
+
+        expect(photo).toMatchSnapshot()
         expect(like).toHaveLength(1)
         expect(like).toMatchSnapshot()
     })

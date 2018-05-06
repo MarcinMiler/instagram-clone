@@ -1,6 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Mutation likeComment should like comment 1`] = `
+Photo {
+  "comments": Array [
+    Comment {
+      "id": 1,
+      "likes": Array [
+        Like {
+          "commentId": 1,
+          "id": 1,
+          "photoId": null,
+          "userId": 1,
+        },
+      ],
+      "likesCount": 1,
+      "photoId": 1,
+      "text": "Wow",
+      "userId": 1,
+    },
+  ],
+  "commentsCount": 1,
+  "id": 1,
+  "likesCount": 0,
+  "url": "lol.jpg",
+  "userId": 1,
+}
+`;
+
+exports[`Mutation likeComment should like comment 2`] = `
+Array [
+  Like {
+    "commentId": 1,
+    "id": 1,
+    "photoId": null,
+    "userId": 1,
+  },
+]
+`;
+
+exports[`Mutation likeComment should not like twice 1`] = `
+Photo {
+  "comments": Array [
+    Comment {
+      "id": 1,
+      "likes": Array [
+        Like {
+          "commentId": 1,
+          "id": 1,
+          "photoId": null,
+          "userId": 1,
+        },
+      ],
+      "likesCount": 1,
+      "photoId": 1,
+      "text": "Wow",
+      "userId": 1,
+    },
+  ],
+  "commentsCount": 1,
+  "id": 1,
+  "likesCount": 0,
+  "url": "lol.jpg",
+  "userId": 1,
+}
+`;
+
+exports[`Mutation likeComment should not like twice 2`] = `
 Array [
   Like {
     "commentId": 1,

@@ -3,9 +3,11 @@ import { startServer } from '../../startServer'
 import {
     loginMutationWithToken,
     registerMutation,
-    follow
+    photoQuery
 } from '../../utils/mutations'
-import { User } from '../../entity/User'
+import { Photo } from '../../entity/Photo'
+import { Comment } from '../../entity/Comment'
+import { Like } from '../../entity/Like'
 
 let getHost = () => ''
 let token = ''
@@ -37,27 +39,43 @@ beforeAll(async () => {
     token = login.login.token
 })
 
-describe('Mutation follow', async () => {
-    it('should follow user', async () => {
+describe('Query photo', async () => {
+    it('should return a photo', async () => {
         const client = new GraphQLClient(getHost(), {
             headers: {
                 token
             }
         })
 
-        const response = await client.request(follow(2))
+        await Photo.create({
+            userId: 1,
+            url: 'lol.jpg'
+        }).save()
 
-        expect(response).toEqual({ follow: true })
+        await Comment.create({
+            userId: 1,
+            photoId: 1,
+            text: 'Wow'
+        }).save()
 
-        const user = await User.findOneById(1, {
-            relations: ['followers', 'following']
-        })
+        await Comment.create({
+            userId: 2,
+            photoId: 1,
+            text: 'Nice'
+        }).save()
 
-        const user2 = await User.findOneById(2, {
-            relations: ['followers', 'following']
-        })
+        await Like.create({
+            userId: 2,
+            photoId: 1
+        }).save()
 
-        expect(user).toMatchSnapshot()
-        expect(user2).toMatchSnapshot()
+        await Like.create({
+            userId: 2,
+            commentId: 1
+        }).save()
+
+        const response = await client.request(photoQuery(1))
+
+        expect(response).toMatchSnapshot()
     })
 })

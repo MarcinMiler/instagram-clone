@@ -63,5 +63,9 @@ describe('Mutation addPhoto', async () => {
         const response = await client.request(addPhoto(url, text))
 
         expect(response).toEqual({ addPhoto: true })
+
+        const photos = await Photo.find()
+
+        expect(photos).toHaveLength(2)
     })
 })

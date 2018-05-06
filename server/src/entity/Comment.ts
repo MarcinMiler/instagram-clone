@@ -28,7 +28,7 @@ export class Comment extends BaseEntity {
     @ManyToOne(() => Photo, photo => photo.comments)
     photo: Photo
 
-    @OneToMany(() => Like, like => like.photo)
+    @OneToMany(() => Like, like => like.comment)
     likes: Like[]
 
     @RelationCount((comment: Comment) => comment.likes)

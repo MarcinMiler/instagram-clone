@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query photo should return a photo 1`] = `
+Object {
+  "photo": Object {
+    "comments": Array [
+      Object {
+        "id": "1",
+        "likes": Array [
+          Object {
+            "user": Object {
+              "username": "Angelaaa",
+            },
+          },
+        ],
+        "text": "Wow",
+      },
+      Object {
+        "id": "2",
+        "likes": Array [],
+        "text": "Nice",
+      },
+    ],
+    "commentsCount": 2,
+    "id": "1",
+    "likes": Array [
+      Object {
+        "user": Object {
+          "username": "Angelaaa",
+        },
+      },
+    ],
+    "likesCount": 1,
+    "url": "lol.jpg",
+    "user": Object {
+      "fullname": "Marcin Miler",
+      "username": "Marcinek",
+    },
+    "userId": "1",
+  },
+}
+`;
