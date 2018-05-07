@@ -133,3 +133,66 @@ export const photoQuery = (photoId: number) => `
     }
 }
 `
+export const photosQuery = `
+{
+    photos {
+        id
+        url
+        userId,
+        user {
+            username
+            fullname
+        }
+        likes {
+            user {
+                username
+            }
+        }
+        comments {
+            id
+            text
+            likes {
+                user {
+                    username
+                }
+            }
+        }
+        likesCount
+        commentsCount
+    }
+} 
+`
+export const searchUsersQuery = (pattern?: string) => `
+{
+    searchUsers(pattern: "${pattern}") {
+        id,
+        email,
+        username,
+        fullname,
+        photos {
+            id,
+            url,
+        }
+    }
+}
+`
+
+export const unfollowMutation = (followerId: number) => `
+    mutation {
+        unfollow(followerId: "${followerId}")
+    }
+`
+export const userQuery = (id: number) => `
+{
+    user(id: "${id}") {
+        id,
+        email,
+        username,
+        fullname,
+        photos {
+            id,
+            url
+        }
+    }
+}
+`

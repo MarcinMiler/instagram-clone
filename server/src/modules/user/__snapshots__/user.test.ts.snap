@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query user should return user 1`] = `
+Object {
+  "user": Object {
+    "email": "m@m.com",
+    "fullname": "Marcin Miler",
+    "id": "1",
+    "photos": Array [
+      Object {
+        "id": "1",
+        "url": "lul.jpg",
+      },
+    ],
+    "username": "Marcinek",
+  },
+}
+`;

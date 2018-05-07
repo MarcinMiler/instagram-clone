@@ -6,8 +6,8 @@ type User {
     bio: String
     date: String!
     photos: [Photo]
-    # following: [User]
-    # followers: [User]
+    following: [User]
+    followers: [User]
     photosCount: Int!
     followingCount: Int!
     followersCount: Int!

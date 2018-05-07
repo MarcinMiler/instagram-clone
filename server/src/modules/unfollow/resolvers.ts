@@ -22,8 +22,8 @@ export const resolvers: ResolverMap = {
                     user1.following = lol
                     user2.followers = lol2
 
-                    user1.save()
-                    user2.save()
+                    await user1.save()
+                    await user2.save()
                 }
                 return true
             } catch (err) {

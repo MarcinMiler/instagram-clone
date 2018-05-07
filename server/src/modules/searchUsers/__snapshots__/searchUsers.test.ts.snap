@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query search Users should all users 1`] = `
+Object {
+  "searchUsers": Array [
+    Object {
+      "email": "m@m.com",
+      "fullname": "Marcin Miler",
+      "id": "1",
+      "photos": null,
+      "username": "Marcinek",
+    },
+    Object {
+      "email": "a@a.com",
+      "fullname": "Angelika Miler",
+      "id": "2",
+      "photos": null,
+      "username": "Angelaaa",
+    },
+  ],
+}
+`;
+
+exports[`Query search Users should return user by username pattern 1`] = `
+Object {
+  "searchUsers": Array [
+    Object {
+      "email": "m@m.com",
+      "fullname": "Marcin Miler",
+      "id": "1",
+      "photos": null,
+      "username": "Marcinek",
+    },
+  ],
+}
+`;
