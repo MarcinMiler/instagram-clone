@@ -1,12 +1,17 @@
 import React from 'react'
-import { Dimensions, Image, TouchableNativeFeedback } from 'react-native'
+import {
+    Dimensions,
+    Image,
+    TouchableNativeFeedback,
+    ScrollView
+} from 'react-native'
 import styled from 'styled-components'
 import Icon from 'react-native-vector-icons/Feather'
 
 const { width, height } = Dimensions.get('window')
 
 const Post = ({ photo, likePhoto, navigation }) => (
-    <React.Fragment>
+    <ScrollView>
         <Header>
             <UserPhoto source={require('../resources/andzia.jpg')} />
             <Username>{photo.user.username}</Username>
@@ -22,8 +27,8 @@ const Post = ({ photo, likePhoto, navigation }) => (
         </TouchableNativeFeedback>
         <Footer>
             <Icons>
-                <Icon name="heart" size={30} color="black" />
-                <Icon name="message-circle" size={30} color="black" />
+                <Icon name="heart" size={24} color="black" />
+                <Icon name="message-circle" size={24} color="black" />
             </Icons>
 
             <LikeCount>
@@ -48,7 +53,7 @@ const Post = ({ photo, likePhoto, navigation }) => (
                 </ViewComments>
             </Comment>
         </Footer>
-    </React.Fragment>
+    </ScrollView>
 )
 
 export default Post

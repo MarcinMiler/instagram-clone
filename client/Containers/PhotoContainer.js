@@ -46,7 +46,6 @@ const photoQuery = gql`
     query photo($photoId: ID!) {
         photo(photoId: $photoId) {
             id
-            date
             url
             user {
                 username

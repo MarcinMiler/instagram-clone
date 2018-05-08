@@ -6,6 +6,7 @@ import { Container, Flex } from '../Styled'
 import Icon from 'react-native-vector-icons/Feather'
 import Photos from './Photos'
 import Navbar from './Navbar'
+import BottomBar from './BottomBar'
 
 const Profile = ({ me, navigation }) => {
     const rightAction = () => navigation.navigate('ProfileOptions')
@@ -62,6 +63,7 @@ const Profile = ({ me, navigation }) => {
 
                 <Photos photos={me.photos} />
             </ScrollView>
+            <BottomBar />
         </Container>
     )
 }

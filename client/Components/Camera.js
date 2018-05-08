@@ -4,6 +4,7 @@ import { Camera, Permissions, FileSystem } from 'expo'
 import styled from 'styled-components'
 
 import Icon from 'react-native-vector-icons/Feather'
+import BottomBar from './BottomBar'
 
 const { width, height } = Dimensions.get('window')
 
@@ -90,6 +91,7 @@ class Cameraa extends Component {
                         onPress={() => this.takePicture()}
                     />
                 </Wrap>
+                <BottomBar />
             </Container>
         )
     }

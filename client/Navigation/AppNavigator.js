@@ -32,7 +32,7 @@ const FeedNavigation = StackNavigator(
     },
     {
         navigationOptions: {
-            title: 'Instagram'
+            header: null
         }
     }
 )
@@ -61,7 +61,6 @@ const ExploreNavigation = StackNavigator(
     },
     {
         navigationOptions: {
-            title: 'Search',
             header: null
         }
     }
@@ -77,7 +76,7 @@ const CameraNavigation = StackNavigator({
     AddPhoto: {
         screen: AddPhotoContainer,
         navigationOptions: {
-            title: 'Add photo'
+            header: null
         }
     }
 })
@@ -124,78 +123,25 @@ const NotificationsNavigation = StackNavigator(
     }
 )
 
-export default TabNavigator(
+export default StackNavigator(
     {
         Feed: {
-            screen: FeedNavigation,
-            navigationOptions: {
-                tabBarIcon: ({ focused }) =>
-                    focused ? (
-                        <Icon name="home" size={20} color="black" />
-                    ) : (
-                        <Icon name="home" size={20} color="#C6C6C6" />
-                    )
-            }
+            screen: FeedNavigation
         },
         Explore: {
-            screen: ExploreNavigation,
-            navigationOptions: {
-                tabBarIcon: ({ focused }) =>
-                    focused ? (
-                        <Icon name="search" size={20} color="black" />
-                    ) : (
-                        <Icon name="search" size={20} color="#C6C6C6" />
-                    )
-            }
+            screen: ExploreNavigation
         },
         Camera: {
-            screen: CameraNavigation,
-            navigationOptions: {
-                tabBarIcon: ({ focused }) =>
-                    focused ? (
-                        <Icon name="plus-circle" size={20} color="black" />
-                    ) : (
-                        <Icon name="plus-circle" size={20} color="#C6C6C6" />
-                    )
-            }
+            screen: CameraNavigation
         },
         Notifications: {
-            screen: NotificationsNavigation,
-            navigationOptions: {
-                tabBarIcon: ({ focused }) =>
-                    focused ? (
-                        <Icon name="heart" size={20} color="black" />
-                    ) : (
-                        <Icon name="heart" size={20} color="#C6C6C6" />
-                    )
-            }
+            screen: NotificationsNavigation
         },
         Profile: {
-            screen: ProfileNavigation,
-            navigationOptions: {
-                tabBarIcon: ({ focused }) =>
-                    focused ? (
-                        <Icon name="user" size={20} color="black" />
-                    ) : (
-                        <Icon name="user" size={20} color="#C6C6C6" />
-                    )
-            }
+            screen: ProfileNavigation
         }
     },
     {
-        tabBarPosition: 'bottom',
-        initialRouteName: 'Profile',
-        lazy: true,
-        tabBarOptions: {
-            showIcon: true,
-            showLabel: false,
-            activeTintColor: '#000000',
-            indicatorStyle: {
-                display: 'none'
-            },
-            style: {
-                backgroundColor: 'white'
-            }
-        }
+        headerMode: null
     }
 )

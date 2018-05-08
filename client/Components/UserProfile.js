@@ -6,6 +6,7 @@ import { Container, P, Flex } from '../Styled'
 import Icon from 'react-native-vector-icons/Feather'
 import Navbar from '../Components/Navbar'
 import Photos from './Photos'
+import BottomBar from './BottomBar'
 
 const UserProfile = ({ user, isFollowing, follow, unfollow }) => (
     <Container>
@@ -61,6 +62,7 @@ const UserProfile = ({ user, isFollowing, follow, unfollow }) => (
 
             <Photos photos={user.photos} />
         </ScrollView>
+        <BottomBar />
     </Container>
 )
 

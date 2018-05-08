@@ -43,7 +43,6 @@ const userQuery = gql`
             fullname
             username
             bio
-            date
             photos {
                 id
                 url

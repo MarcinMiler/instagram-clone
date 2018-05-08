@@ -3,9 +3,12 @@ import { ScrollView } from 'react-native'
 import { Container } from '../Styled'
 
 import Post from '../Components/Post'
+import BottomBar from './BottomBar'
+import Navbar from './Navbar'
 
 const Feed = ({ feed, likePhoto, navigation }) => (
     <Container>
+        <Navbar title="Instagram" />
         <ScrollView>
             {feed.map(photo => (
                 <Post
@@ -16,6 +19,7 @@ const Feed = ({ feed, likePhoto, navigation }) => (
                 />
             ))}
         </ScrollView>
+        <BottomBar />
     </Container>
 )
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, TouchableNativeFeedback } from 'react-native'
 import { Container, P } from '../Styled'
 import styled from 'styled-components'
+import BottomBar from './BottomBar'
 
 const Notifications = ({ notifications, navigation }) => {
     const list = notifications.map(notification => (
@@ -38,6 +39,7 @@ const Notifications = ({ notifications, navigation }) => {
             <ScrollView>
                 <Container>{list}</Container>
             </ScrollView>
+            <BottomBar />
         </Container>
     )
 }

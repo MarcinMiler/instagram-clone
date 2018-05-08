@@ -14,13 +14,13 @@ const Login = ({ navigation, login, changeState }) => (
             <Input
                 onChangeText={text => changeState('email', text)}
                 placeholder="Email"
-                placeholderTextColor="lightgray"
+                placeholderTextColor="white"
                 underlineColorAndroid="transparent"
             />
             <Input
                 onChangeText={text => changeState('password', text)}
                 placeholder="Password"
-                placeholderTextColor="lightgray"
+                placeholderTextColor="white"
                 underlineColorAndroid="transparent"
             />
 

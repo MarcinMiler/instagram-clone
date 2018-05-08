@@ -42,7 +42,6 @@ const feedQuery = gql`
     query feed {
         feed {
             id
-            date
             url
             user {
                 username

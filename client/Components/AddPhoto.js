@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Image, Dimensions, Button } from 'react-native'
 import { Container } from '../Styled'
 import styled from 'styled-components'
+import Navbar from './Navbar'
 
 const { width, height } = Dimensions.get('window')
 
 const AddPhoto = ({ addPhoto, url, changeState }) => {
     return (
         <Container>
+            <Navbar back leftIcon="arrow-left" title="Add photo" />
             <Image
                 source={{ uri: url }}
                 style={{ width: width, height: width }}

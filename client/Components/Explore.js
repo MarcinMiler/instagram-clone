@@ -5,6 +5,7 @@ import { Container } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Feather'
 import Photos from './Photos'
+import BottomBar from './BottomBar'
 
 const Explore = ({ photos, changeState, searchUser }) => (
     <Container>
@@ -25,6 +26,7 @@ const Explore = ({ photos, changeState, searchUser }) => (
         <ScrollView>
             <Photos photos={photos} />
         </ScrollView>
+        <BottomBar />
     </Container>
 )
 

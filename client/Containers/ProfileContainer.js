@@ -15,7 +15,7 @@ class ProfileContainer extends Component {
 
     render() {
         if (this.props.me.loading) return <Spinner />
-
+        console.log('im rerendered ;>')
         return (
             <Profile
                 me={this.props.me.me}
@@ -35,7 +35,6 @@ const meQuery = gql`
             fullname
             username
             bio
-            date
             photos {
                 url
                 id

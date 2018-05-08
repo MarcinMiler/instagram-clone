@@ -7,11 +7,11 @@ import UsersList from '../Components/UsersList'
 
 class UsersListConainer extends Component {
     render() {
-        if (this.props.searchUser.loading) return <Spinner />
+        if (this.props.searchUsers.loading) return <Spinner />
 
         return (
             <UsersList
-                users={this.props.searchUser.searchUser}
+                users={this.props.searchUsers.searchUsers}
                 navigation={this.props.navigation}
             />
         )
@@ -19,8 +19,8 @@ class UsersListConainer extends Component {
 }
 
 const userSearchQuery = gql`
-    query searchUser($pattern: String) {
-        searchUser(pattern: $pattern) {
+    query searchUsers($pattern: String) {
+        searchUsers(pattern: $pattern) {
             id
             username
             fullname
@@ -29,7 +29,7 @@ const userSearchQuery = gql`
 `
 
 export default graphql(userSearchQuery, {
-    name: 'searchUser',
+    name: 'searchUsers',
     options: props => ({
         variables: {
             pattern: props.navigation.state.params.search
