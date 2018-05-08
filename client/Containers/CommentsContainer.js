@@ -29,11 +29,13 @@ class CommentsContainer extends Component {
 
     render() {
         if (this.props.photo.loading) return <Spinner />
+
         return (
             <Comments
                 comments={this.props.photo.photo.comments}
                 addComment={this.addComment}
                 likeComment={this.likeComment}
+                myId={this.props.me.me.id}
                 state={this.state}
                 changeState={this.handleChangeState}
             />
@@ -64,6 +66,7 @@ const photoQuery = gql`
                 }
                 likes {
                     user {
+                        id
                         username
                     }
                 }
@@ -73,7 +76,13 @@ const photoQuery = gql`
         }
     }
 `
-
+const meQuery = gql`
+    query me {
+        me {
+            id
+        }
+    }
+`
 const addCommentMutation = gql`
     mutation addComment($photoId: ID!, $text: String!) {
         addComment(photoId: $photoId, text: $text)
@@ -92,6 +101,7 @@ export default compose(
             variables: { photoId: props.navigation.state.params.id }
         })
     }),
+    graphql(meQuery, { name: 'me', options: { fetchPolicy: 'cache-only' } }),
     graphql(addCommentMutation, {
         name: 'addComment',
         options: {

@@ -6,26 +6,24 @@ import Navbar from './Navbar'
 
 const { width, height } = Dimensions.get('window')
 
-const AddPhoto = ({ addPhoto, url, changeState }) => {
-    return (
-        <Container>
-            <Navbar back leftIcon="arrow-left" title="Add photo" />
-            <Image
-                source={{ uri: url }}
-                style={{ width: width, height: width }}
-            />
+const AddPhoto = ({ addPhoto, url, changeState }) => (
+    <Container>
+        <Navbar back leftIcon="arrow-left" title="Add photo" />
+        <Image
+            source={{ uri: url }}
+            style={{ width: width, height: width * (4 / 3) }}
+        />
 
-            <Input
-                onChangeText={text => changeState('text', text)}
-                placeholder="Description"
-                placeholderTextColor="gray"
-                underlineColorAndroid="transparent"
-            />
+        <Input
+            onChangeText={text => changeState('text', text)}
+            placeholder="Description"
+            placeholderTextColor="gray"
+            underlineColorAndroid="transparent"
+        />
 
-            <Button title="Add photo" onPress={() => addPhoto()} />
-        </Container>
-    )
-}
+        <Button title="Add photo" onPress={() => addPhoto()} />
+    </Container>
+)
 
 export default AddPhoto
 

@@ -6,11 +6,12 @@ import {
     ScrollView
 } from 'react-native'
 import styled from 'styled-components'
-import Icon from 'react-native-vector-icons/Feather'
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import Foundation from 'react-native-vector-icons/Foundation'
 
 const { width, height } = Dimensions.get('window')
 
-const Post = ({ photo, likePhoto, navigation }) => (
+const Post = ({ photo, isLiked, likePhoto, navigation }) => (
     <ScrollView>
         <Header>
             <UserPhoto source={require('../resources/andzia.jpg')} />
@@ -20,19 +21,32 @@ const Post = ({ photo, likePhoto, navigation }) => (
             <Image
                 style={{
                     width,
-                    height: width
+                    height: width * (4 / 3)
                 }}
                 source={{ uri: photo.url }}
             />
         </TouchableNativeFeedback>
         <Footer>
             <Icons>
-                <Icon name="heart" size={24} color="black" />
-                <Icon name="message-circle" size={24} color="black" />
+                {isLiked ? (
+                    <Foundation name="heart" size={32} color="red" />
+                ) : (
+                    <EvilIcons name="heart" size={40} color="black" />
+                )}
+
+                <EvilIcons
+                    onPress={() =>
+                        navigation.navigate('Comments', {
+                            id: photo.id
+                        })
+                    }
+                    name="comment"
+                    size={40}
+                    color="black"
+                />
             </Icons>
 
             <LikeCount>
-                <Icon name="heart" size={14} color="black" />
                 <LikeCountText>{photo.likesCount} likes</LikeCountText>
             </LikeCount>
 
@@ -75,6 +89,7 @@ const Username = styled.Text`
 `
 const Footer = styled.View`
     padding: 10px;
+    padding-left: 15px;
 `
 const LikeCount = styled.View`
     flex-direction: row;
@@ -84,10 +99,10 @@ const LikeCount = styled.View`
 const LikeCountText = styled.Text`
     font-family: montserratMedium;
     font-size: 16;
-    margin-left: 7;
 `
 const Icons = styled.View`
     flex-direction: row;
+    margin-left: -6px;
 `
 const Comment = styled.View`
     flex-direction: row;

@@ -14,14 +14,14 @@ class PhotoContainer extends Component {
                     let data = cache.readQuery({
                         query: photoQuery,
                         variables: {
-                            photoId: this.props.navigation.state.params.id
+                            photoId
                         }
                     })
                     data.photo.likesCount++
                     cache.writeQuery({
                         query: photoQuery,
                         variables: {
-                            photoId: this.props.navigation.state.params.id
+                            photoId
                         },
                         data
                     })
@@ -35,6 +35,7 @@ class PhotoContainer extends Component {
         return (
             <Photo
                 photo={this.props.photo.photo}
+                isLiked={this.props.isLiked.isLiked}
                 likePhoto={this.likePhoto}
                 navigation={this.props.navigation}
             />
@@ -74,6 +75,11 @@ const photoQuery = gql`
         }
     }
 `
+const isLikedQuery = gql`
+    query isLiked($photoId: ID!) {
+        isLiked(photoId: $photoId)
+    }
+`
 const likePhotoMutation = gql`
     mutation likePhoto($photoId: ID!) {
         likePhoto(photoId: $photoId)
@@ -87,5 +93,16 @@ export default compose(
             variables: { photoId: props.navigation.state.params.id }
         })
     }),
-    graphql(likePhotoMutation, { name: 'likePhoto' })
+    graphql(isLikedQuery, {
+        name: 'isLiked',
+        options: props => ({
+            variables: { photoId: props.navigation.state.params.id }
+        })
+    }),
+    graphql(likePhotoMutation, {
+        name: 'likePhoto',
+        options: {
+            refetchQueries: ['isLiked']
+        }
+    })
 )(PhotoContainer)

@@ -6,7 +6,6 @@ import { Container, P } from '../Styled'
 import Navbar from '../Components/Navbar'
 
 const UsersList = ({ users, navigation }) => {
-    console.log(users)
     const listOfUsers = users.map(user => (
         <TouchableWithoutFeedback
             key={user.id}

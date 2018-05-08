@@ -4,52 +4,59 @@ import { Container } from '../Styled'
 import styled from 'styled-components'
 
 import Navbar from '../Components/Navbar'
-import Icon from 'react-native-vector-icons/Feather'
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import Foundation from 'react-native-vector-icons/Foundation'
 
-const { width, height } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
 
 const Comments = ({
     comments,
     addComment,
     likeComment,
+    myId,
     changeState,
     state
 }) => {
-    const list = comments.map(comment => {
-        return (
-            <Comment key={comment.id}>
-                <User>
-                    <UserPhoto
-                        width={40}
-                        source={require('../resources/andzia.jpg')}
-                    />
-                    <Content>
-                        <Wrap>
-                            <CommentText>
-                                <Username>{comment.user.username}</Username>{' '}
-                                {comment.text}
-                            </CommentText>
-                        </Wrap>
-                        <CommentData>
-                            <Text>5 minutes</Text>
+    const checkIfLiked = likes => likes.find(like => like.user.id === myId)
 
-                            <Text>{comment.likesCount} like</Text>
+    const list = comments.map(comment => (
+        <Comment key={comment.id}>
+            <User>
+                <UserPhoto
+                    width={40}
+                    source={require('../resources/andzia.jpg')}
+                />
+                <Content>
+                    <Wrap>
+                        <CommentText>
+                            <Username>{comment.user.username}</Username>
+                            {'  '}
+                            {comment.text}
+                        </CommentText>
+                    </Wrap>
+                    <CommentData>
+                        <Text>5 minutes</Text>
 
-                            <Text>Replay</Text>
-                        </CommentData>
-                    </Content>
-                </User>
-                <Like>
-                    <Icon
+                        <Text>{comment.likesCount} like</Text>
+
+                        <Text>Replay</Text>
+                    </CommentData>
+                </Content>
+            </User>
+            <Like>
+                {checkIfLiked(comment.likes) ? (
+                    <Foundation name="heart" size={24} color="red" />
+                ) : (
+                    <EvilIcons
                         onPress={() => likeComment(comment.id)}
                         name="heart"
-                        size={18}
+                        size={28}
                         color="lightgray"
                     />
-                </Like>
-            </Comment>
-        )
-    })
+                )}
+            </Like>
+        </Comment>
+    ))
     return (
         <Container>
             <Navbar back leftIcon="arrow-left" title="Comments" />
