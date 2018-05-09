@@ -12,7 +12,7 @@ class FeedContainer extends Component {
         })
 
     render() {
-        if (this.props.feed.loading) return <Spinner />
+        if (this.props.feed.loading || this.props.me.loading) return <Spinner />
 
         return (
             <Feed
@@ -72,8 +72,11 @@ const likePhotoMutation = gql`
 `
 
 export default compose(
-    graphql(feedQuery, { name: 'feed' }),
-    graphql(meQuery, { name: 'me', options: { fetchPolicy: 'cache-first' } }),
+    graphql(feedQuery, {
+        name: 'feed',
+        options: { fetchPolicy: 'network-only' }
+    }),
+    graphql(meQuery, { name: 'me' }),
     graphql(likePhotoMutation, {
         name: 'likePhoto',
         options: {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { ApolloConsumer } from 'react-apollo'
 import { ScrollView } from 'react-native'
 import styled from 'styled-components'
 
@@ -29,8 +30,18 @@ const ProfileOptions = ({ navigation, logout }) => (
                 <Text>Lorem Ipsum</Text>
                 <Text>Lorem Ipsum</Text>
             </Group>
-
-            <ColorText onPress={() => logout()}>Logout</ColorText>
+            <ApolloConsumer>
+                {client => (
+                    <ColorText
+                        onPress={() => {
+                            client.resetStore()
+                            logout()
+                        }}
+                    >
+                        Logout
+                    </ColorText>
+                )}
+            </ApolloConsumer>
         </ScrollView>
     </Container>
 )

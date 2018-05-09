@@ -6,6 +6,36 @@ Object {
     Object {
       "comments": Array [
         Object {
+          "id": "4",
+          "likes": Array [],
+          "text": "Nice",
+        },
+        Object {
+          "id": "3",
+          "likes": Array [],
+          "text": "Wow",
+        },
+      ],
+      "commentsCount": 2,
+      "id": "2",
+      "likes": Array [
+        Object {
+          "user": Object {
+            "username": "Marcinek",
+          },
+        },
+      ],
+      "likesCount": 1,
+      "url": "lul.jpg",
+      "user": Object {
+        "fullname": "Angelika Miler",
+        "username": "Angelaaa",
+      },
+      "userId": "2",
+    },
+    Object {
+      "comments": Array [
+        Object {
           "id": "1",
           "likes": Array [
             Object {
@@ -44,36 +74,6 @@ Object {
         "username": "Marcinek",
       },
       "userId": "1",
-    },
-    Object {
-      "comments": Array [
-        Object {
-          "id": "4",
-          "likes": Array [],
-          "text": "Nice",
-        },
-        Object {
-          "id": "3",
-          "likes": Array [],
-          "text": "Wow",
-        },
-      ],
-      "commentsCount": 2,
-      "id": "2",
-      "likes": Array [
-        Object {
-          "user": Object {
-            "username": "Marcinek",
-          },
-        },
-      ],
-      "likesCount": 1,
-      "url": "lul.jpg",
-      "user": Object {
-        "fullname": "Angelika Miler",
-        "username": "Angelaaa",
-      },
-      "userId": "2",
     },
   ],
 }

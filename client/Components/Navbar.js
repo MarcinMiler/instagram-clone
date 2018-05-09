@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavigationActions, withNavigation } from 'react-navigation'
 import styled from 'styled-components'
-import { P } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Feather'
 
@@ -31,9 +30,7 @@ const Navbar = ({
             </Left>
         )}
         <Middle>
-            <P left medium>
-                {title}
-            </P>
+            <Text>{title}</Text>
         </Middle>
 
         {rightIcon && (
@@ -72,4 +69,8 @@ const Right = styled(Left)`
 `
 const Middle = styled.View`
     flex-grow: 1;
+`
+const Text = styled.Text`
+    font-family: montserratMedium;
+    font-size: 16px;
 `

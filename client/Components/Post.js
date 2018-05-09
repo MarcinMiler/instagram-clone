@@ -33,7 +33,12 @@ const Post = ({ photo, likePhoto, myId, navigation }) => (
                 {checkIfLiked(photo.likes, myId) ? (
                     <Foundation name="heart" size={32} color="red" />
                 ) : (
-                    <EvilIcons name="heart" size={40} color="black" />
+                    <EvilIcons
+                        onPress={() => likePhoto(photo.id)}
+                        name="heart"
+                        size={40}
+                        color="black"
+                    />
                 )}
 
                 <EvilIcons
