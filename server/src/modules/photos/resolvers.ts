@@ -13,7 +13,10 @@ export const resolvers: ResolverMap = {
                     'comments.likes',
                     'comments.likes.user',
                     'user'
-                ]
+                ],
+                order: {
+                    id: 'DESC'
+                }
             })
     }
 }

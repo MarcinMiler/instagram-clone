@@ -35,7 +35,7 @@ const EditProfile = ({ changeProfileDetails, changeState, state, me }) => (
             />
             <Input
                 onChangeText={text => changeState('bio', text)}
-                placeholder={me.bio}
+                placeholder={me.bio ? me.bio : 'Bio'}
                 multiline
                 placeholderTextColor="gray"
                 underlineColorAndroid="transparent"

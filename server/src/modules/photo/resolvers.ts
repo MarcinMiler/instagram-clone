@@ -3,8 +3,8 @@ import { Photo } from '../../entity/Photo'
 
 export const resolvers: ResolverMap = {
     Query: {
-        photo: (_, { photoId }) =>
-            Photo.findOneById(photoId, {
+        photo: async (_, { photoId }) => {
+            const p = await Photo.findOneById(photoId, {
                 relations: [
                     'likes',
                     'likes.user',
@@ -15,5 +15,12 @@ export const resolvers: ResolverMap = {
                     'user'
                 ]
             })
+
+            if (p) {
+                p.comments.sort((a: any, b: any) => a.id - b.id)
+            }
+
+            return p
+        }
     }
 }

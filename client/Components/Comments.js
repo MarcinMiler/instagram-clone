@@ -1,5 +1,10 @@
 import React from 'react'
-import { Dimensions, View, ScrollView } from 'react-native'
+import {
+    Dimensions,
+    View,
+    ScrollView,
+    KeyboardAvoidingView
+} from 'react-native'
 import { Container } from '../Styled'
 import styled from 'styled-components'
 
@@ -58,27 +63,29 @@ const Comments = ({
         </Comment>
     ))
     return (
-        <Container>
-            <Navbar back leftIcon="arrow-left" title="Comments" />
-            <ScrollView style={{ height: height - 175 }}>{list}</ScrollView>
-            <Input>
-                <UserPhoto
-                    width={40}
-                    source={require('../resources/andzia.jpg')}
-                />
+        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+            <Container>
+                <Navbar back leftIcon="arrow-left" title="Comments" />
+                <ScrollView style={{ height: height - 175 }}>{list}</ScrollView>
+                <Input>
+                    <UserPhoto
+                        width={40}
+                        source={require('../resources/andzia.jpg')}
+                    />
 
-                <TextInput
-                    value={state.text}
-                    onChangeText={text => changeState('text', text)}
-                    placeholder="Add comment..."
-                    placeholderTextColor="lightgray"
-                    underlineColorAndroid="transparent"
-                    multiline
-                />
+                    <TextInput
+                        value={state.text}
+                        onChangeText={text => changeState('text', text)}
+                        placeholder="Add comment..."
+                        placeholderTextColor="lightgray"
+                        underlineColorAndroid="transparent"
+                        multiline
+                    />
 
-                <Send onPress={() => addComment()}>Send</Send>
-            </Input>
-        </Container>
+                    <Send onPress={() => addComment()}>Send</Send>
+                </Input>
+            </Container>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -138,16 +145,13 @@ const Input = styled.View`
     width: 100%;
     padding: 10px;
     height: 80;
-    position: relative;
-    bottom: 0;
-    left: 0;
     border-top-width: 1;
     border-color: lightgray;
 `
 const TextInput = styled.TextInput`
     flex-grow: 1;
     max-width: 80%;
-    height: 60;
+    height: 80;
     padding: 10px;
 `
 const Send = styled.Text`

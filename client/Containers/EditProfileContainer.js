@@ -44,6 +44,7 @@ class EditProfileContainer extends Component {
 
     render() {
         if (this.props.me.loading) return <Spinner />
+
         return (
             <EditProfile
                 changeProfileDetails={this.changeProfileDetails}
@@ -77,10 +78,7 @@ const changeProfileDetails = gql`
             username: $username
             bio: $bio
             email: $email
-        ) {
-            ok
-            error
-        }
+        )
     }
 `
 

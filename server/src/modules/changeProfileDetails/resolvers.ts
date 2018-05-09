@@ -45,9 +45,7 @@ export const resolvers: ResolverMap = {
 
                 return error
             } catch (err) {
-                return {
-                    error: 'Something goes wrong'
-                }
+                return 'Something goes wrong'
             }
         }
     }

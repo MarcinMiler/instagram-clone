@@ -3,8 +3,8 @@ import { User } from '../../entity/User'
 
 export const resolvers: ResolverMap = {
     Query: {
-        me: (_, args, { user }) =>
-            User.findOneById(user, {
+        me: async (_, args, { user }) => {
+            const u = await User.findOneById(user, {
                 relations: [
                     'photos',
                     'photos.likes',
@@ -15,5 +15,10 @@ export const resolvers: ResolverMap = {
                     'following'
                 ]
             })
+            if (u) {
+                u.photos.sort((a: any, b: any) => b.id - a.id)
+            }
+            return u
+        }
     }
 }

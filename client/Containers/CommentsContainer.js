@@ -101,7 +101,7 @@ export default compose(
             variables: { photoId: props.navigation.state.params.id }
         })
     }),
-    graphql(meQuery, { name: 'me', options: { fetchPolicy: 'cache-only' } }),
+    graphql(meQuery, { name: 'me', options: { fetchPolicy: 'cache-first' } }),
     graphql(addCommentMutation, {
         name: 'addComment',
         options: {

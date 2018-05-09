@@ -19,7 +19,12 @@ export const resolvers: ResolverMap = {
             })
             if (u) {
                 const photos = u.following.map(us => us.photos)
-                return [].concat.apply([], photos)
+
+                const flattenPhotos = [].concat
+                    .apply([], photos)
+                    .sort((a: any, b: any) => b.id - a.id)
+
+                return flattenPhotos
             }
             return
         }
