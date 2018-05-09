@@ -1,7 +1,6 @@
 import React from 'react'
 import { Picker } from 'react-native'
 import styled from 'styled-components'
-import { Container, P } from '../Styled'
 import Navbar from './Navbar'
 
 const EditProfile = ({ changeProfileDetails, changeState, state, me }) => (
@@ -55,6 +54,10 @@ const EditProfile = ({ changeProfileDetails, changeState, state, me }) => (
 
 export default EditProfile
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const UserPhoto = styled.Image.attrs({
     width: props => props.width || 0
 })`

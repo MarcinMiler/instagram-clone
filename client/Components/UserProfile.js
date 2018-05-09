@@ -1,7 +1,6 @@
 import React from 'react'
 import { ScrollView, Image, View } from 'react-native'
 import styled from 'styled-components'
-import { Container, P, Flex } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Feather'
 import Navbar from '../Components/Navbar'
@@ -68,6 +67,10 @@ const UserProfile = ({ user, isFollowing, follow, unfollow }) => (
 
 export default UserProfile
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const Header = styled.View`
     flex-direction: row;
     height: 120;
@@ -87,6 +90,11 @@ const Stats = styled.View`
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+`
+const Flex = styled.View`
+    width: 100%;
+    align-items: center;
+    flex-direction: ${props => (props.row ? 'row' : 'column')};
 `
 const Wrap = styled.View`
     flex-direction: column;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView } from 'react-native'
 import styled from 'styled-components'
-import { Container } from '../Styled'
 
 import Icon from 'react-native-vector-icons/Feather'
 import Photos from './Photos'
@@ -32,6 +31,10 @@ const Explore = ({ photos, changeState, searchUser }) => (
 
 export default Explore
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const Navbar = styled.View`
     width: 100%;
     height: 50;

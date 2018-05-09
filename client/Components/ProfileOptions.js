@@ -1,6 +1,5 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
-import { Container, P } from '../Styled'
 import styled from 'styled-components'
 
 import Navbar from './Navbar'
@@ -38,6 +37,10 @@ const ProfileOptions = ({ navigation, logout }) => (
 
 export default ProfileOptions
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const Group = styled.View`
     width: 100%;
     padding: 15px;

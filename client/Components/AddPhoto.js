@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Image, Dimensions, Button } from 'react-native'
-import { Container } from '../Styled'
 import styled from 'styled-components'
 import Navbar from './Navbar'
 
@@ -27,6 +26,10 @@ const AddPhoto = ({ addPhoto, url, changeState }) => (
 
 export default AddPhoto
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const Input = styled.TextInput`
     padding: 4px;
     padding-left: 10px;

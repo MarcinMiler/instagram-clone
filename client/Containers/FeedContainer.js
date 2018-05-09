@@ -8,21 +8,7 @@ import Feed from '../Components/Feed'
 class FeedContainer extends Component {
     likePhoto = photoId =>
         this.props.likePhoto({
-            variables: { photoId },
-            update: (cache, { data: { likePhoto } }) => {
-                if (likePhoto) {
-                    let data = cache.readQuery({
-                        query: feedQuery
-                    })
-                    data.feed.forEach(f => {
-                        if (f.id === photoId) f.likesCount++
-                    })
-                    cache.writeQuery({
-                        query: feedQuery,
-                        data
-                    })
-                }
-            }
+            variables: { photoId }
         })
 
     render() {
@@ -32,6 +18,7 @@ class FeedContainer extends Component {
             <Feed
                 feed={this.props.feed.feed}
                 likePhoto={this.likePhoto}
+                myId={this.props.me.me.id}
                 navigation={this.props.navigation}
             />
         )
@@ -48,6 +35,7 @@ const feedQuery = gql`
             }
             likes {
                 user {
+                    id
                     username
                 }
             }
@@ -70,6 +58,13 @@ const feedQuery = gql`
         }
     }
 `
+const meQuery = gql`
+    query me {
+        me {
+            id
+        }
+    }
+`
 const likePhotoMutation = gql`
     mutation likePhoto($photoId: ID!) {
         likePhoto(photoId: $photoId)
@@ -78,5 +73,11 @@ const likePhotoMutation = gql`
 
 export default compose(
     graphql(feedQuery, { name: 'feed' }),
-    graphql(likePhotoMutation, { name: 'likePhoto' })
+    graphql(meQuery, { name: 'me', options: { fetchPolicy: 'cache-first' } }),
+    graphql(likePhotoMutation, {
+        name: 'likePhoto',
+        options: {
+            refetchQueries: ['feed']
+        }
+    })
 )(FeedContainer)

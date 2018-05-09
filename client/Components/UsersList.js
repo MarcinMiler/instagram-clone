@@ -1,7 +1,6 @@
 import React from 'react'
 import { ScrollView, TouchableWithoutFeedback } from 'react-native'
 import styled from 'styled-components'
-import { Container, P } from '../Styled'
 
 import Navbar from '../Components/Navbar'
 
@@ -33,6 +32,10 @@ const UsersList = ({ users, navigation }) => {
 
 export default UsersList
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const User = styled.View`
     padding: 10px;
     flex-direction: row;

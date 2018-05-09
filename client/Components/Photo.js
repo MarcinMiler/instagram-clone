@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image } from 'react-native'
-import { Container } from '../Styled'
+import styled from 'styled-components'
 
 import Navbar from '../Components/Navbar'
 import BottomBar from '../Components/BottomBar'
@@ -20,3 +20,8 @@ const Photo = ({ photo, isLiked, likePhoto, navigation }) => (
 )
 
 export default Photo
+
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`

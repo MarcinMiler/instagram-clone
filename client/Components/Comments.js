@@ -5,7 +5,6 @@ import {
     ScrollView,
     KeyboardAvoidingView
 } from 'react-native'
-import { Container } from '../Styled'
 import styled from 'styled-components'
 
 import Navbar from '../Components/Navbar'
@@ -91,6 +90,10 @@ const Comments = ({
 
 export default Comments
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const Comment = styled.View`
     flex-direction: row;
     align-items: center;

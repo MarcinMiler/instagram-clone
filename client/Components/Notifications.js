@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, TouchableNativeFeedback } from 'react-native'
-import { Container, P } from '../Styled'
+import { ScrollView, TouchableNativeFeedback, Text } from 'react-native'
 import styled from 'styled-components'
+
+import Navbar from './Navbar'
 import BottomBar from './BottomBar'
 
 const Notifications = ({ notifications, navigation }) => {
@@ -28,14 +29,7 @@ const Notifications = ({ notifications, navigation }) => {
 
     return (
         <Container>
-            <Nav>
-                <NavItem>
-                    <P>Followers</P>
-                </NavItem>
-                <NavItem>
-                    <P medium>You</P>
-                </NavItem>
-            </Nav>
+            <Navbar title="Notifications" />
             <ScrollView>
                 <Container>{list}</Container>
             </ScrollView>
@@ -46,6 +40,10 @@ const Notifications = ({ notifications, navigation }) => {
 
 export default Notifications
 
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`
 const Nav = styled.View`
     flex-direction: row;
     margin-top: 23;

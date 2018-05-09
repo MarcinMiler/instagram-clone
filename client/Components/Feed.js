@@ -1,12 +1,12 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
-import { Container } from '../Styled'
+import styled from 'styled-components'
 
 import Post from '../Components/Post'
 import BottomBar from './BottomBar'
 import Navbar from './Navbar'
 
-const Feed = ({ feed, likePhoto, navigation }) => (
+const Feed = ({ feed, likePhoto, myId, navigation }) => (
     <Container>
         <Navbar title="Instagram" />
         <ScrollView>
@@ -15,6 +15,7 @@ const Feed = ({ feed, likePhoto, navigation }) => (
                     key={photo.id}
                     photo={photo}
                     likePhoto={likePhoto}
+                    myId={myId}
                     navigation={navigation}
                 />
             ))}
@@ -24,3 +25,8 @@ const Feed = ({ feed, likePhoto, navigation }) => (
 )
 
 export default Feed
+
+const Container = styled.View`
+    flex: 1;
+    background-color: white;
+`

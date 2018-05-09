@@ -11,7 +11,9 @@ import Foundation from 'react-native-vector-icons/Foundation'
 
 const { width, height } = Dimensions.get('window')
 
-const Post = ({ photo, isLiked, likePhoto, navigation }) => (
+const checkIfLiked = (likes, myId) => likes.find(like => like.user.id === myId)
+
+const Post = ({ photo, likePhoto, myId, navigation }) => (
     <ScrollView>
         <Header>
             <UserPhoto source={require('../resources/andzia.jpg')} />
@@ -28,7 +30,7 @@ const Post = ({ photo, isLiked, likePhoto, navigation }) => (
         </TouchableNativeFeedback>
         <Footer>
             <Icons>
-                {isLiked ? (
+                {checkIfLiked(photo.likes, myId) ? (
                     <Foundation name="heart" size={32} color="red" />
                 ) : (
                     <EvilIcons name="heart" size={40} color="black" />
