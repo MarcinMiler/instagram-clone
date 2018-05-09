@@ -1,4 +1,4 @@
-#Instagram-clone
+# Instagram-clone
 
 Fullstack instagram clone made with:
 
@@ -12,7 +12,7 @@ Fullstack instagram clone made with:
 
 ## How to run local
 
-###Client
+### Client
 
 1 `git clone https://github.com/MarcinMiler/instagram-clone.git`
 
@@ -20,20 +20,20 @@ Fullstack instagram clone made with:
 
 3 `yarn start`
 
-###Server
+### Server
 You need to have installed postgreSQL, and configure ormconfig.json file (database connection) to run server localy.
 
 1 `cd instagram-clone/server && yarn`
 
 2 `yarn start`
 
-##Tests
+## Tests
 
 1 `cd instagram-clone/server`
 
 2 `yarn test`
 
-##Todo
+## Todo
 
 *   Images hosting
 *   Improve UI and UX
