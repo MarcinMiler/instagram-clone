@@ -1,33 +1,27 @@
-import React, { Component } from 'react'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import { View, Text, TextInput } from 'react-native'
 
-import FeedContainer from '../Containers/FeedContainer'
+import Feed from '../Components/Feed'
 import Camera from '../Components/Camera'
-import ProfileContainer from '../Containers/ProfileContainer'
-import ExploreContainer from '../Containers/ExploreContainer'
-import NotificationsContainer from '../Containers/NotificationsContainer'
-import CommentsContainer from '../Containers/CommentsContainer'
-import ProfileOptionsContainer from '../Containers/ProfileOptionsContainer'
-import EditProfileContainer from '../Containers/EditProfileContainer'
-import AddPhotoContainer from '../Containers/AddPhotoContainer'
-import UsersListContainer from '../Containers/UsersListContainer'
-import UserProfileContainer from '../Containers/UserProfileContainer'
-import PhotoContainer from '../Containers/PhotoContainer'
+import Profile from '../Components/Profile'
+import Explore from '../Components/Explore'
+import Notifications from '../Components/Notifications'
+import Comments from '../Components/Comments'
+import ProfileOptions from '../Components/ProfileOptions'
+import EditProfile from '../Components/EditProfile'
+import AddPhoto from '../Components/AddPhoto'
+import UsersList from '../Components/UsersList'
+import UserProfile from '../Components/UserProfile'
+import Photo from '../Components/Photo'
 
 import Icon from 'react-native-vector-icons/Feather'
 
 const FeedNavigation = StackNavigator(
     {
         Main: {
-            screen: FeedContainer
+            screen: Feed
         },
         Comments: {
-            screen: CommentsContainer,
-            navigationOptions: {
-                tabBarVisible: false,
-                swipeEnabled: false
-            }
+            screen: Comments
         }
     },
     {
@@ -40,23 +34,19 @@ const FeedNavigation = StackNavigator(
 const ExploreNavigation = StackNavigator(
     {
         Main: {
-            screen: ExploreContainer
+            screen: Explore
         },
         UsersList: {
-            screen: UsersListContainer
+            screen: UsersList
         },
         UserProfile: {
-            screen: UserProfileContainer
+            screen: UserProfile
         },
         Photo: {
-            screen: PhotoContainer
+            screen: Photo
         },
         Comments: {
-            screen: CommentsContainer,
-            navigationOptions: {
-                tabBarVisible: false,
-                swipeEnabled: false
-            }
+            screen: Comments
         }
     },
     {
@@ -74,33 +64,26 @@ const CameraNavigation = StackNavigator({
         }
     },
     AddPhoto: {
-        screen: AddPhotoContainer,
-        navigationOptions: {
-            header: null
-        }
+        screen: AddPhoto
     }
 })
 
 const ProfileNavigation = StackNavigator(
     {
         Main: {
-            screen: ProfileContainer
+            screen: Profile
         },
         ProfileOptions: {
-            screen: ProfileOptionsContainer
+            screen: ProfileOptions
         },
         EditProfile: {
-            screen: EditProfileContainer
+            screen: EditProfile
         },
         Photo: {
-            screen: PhotoContainer
+            screen: Photo
         },
         Comments: {
-            screen: CommentsContainer,
-            navigationOptions: {
-                tabBarVisible: false,
-                swipeEnabled: false
-            }
+            screen: Comments
         }
     },
     {
@@ -113,7 +96,7 @@ const ProfileNavigation = StackNavigator(
 const NotificationsNavigation = StackNavigator(
     {
         Main: {
-            screen: NotificationsContainer
+            screen: Notifications
         }
     },
     {
