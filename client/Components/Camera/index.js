@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Vibration, View, CameraRoll, Dimensions } from 'react-native'
-import { Camera, Permissions, FileSystem } from 'expo'
+import { Dimensions, Text } from 'react-native'
+import { Camera, Permissions } from 'expo'
 import styled from 'styled-components'
 
 import Icon from 'react-native-vector-icons/Feather'
 import BottomBar from '../BottomBar'
 
-const { width, height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 class Cameraa extends Component {
     state = {
@@ -50,7 +50,7 @@ class Cameraa extends Component {
         if (cameraPermissions === false) {
             return (
                 <Container>
-                    <P>No camera permissions</P>
+                    <Text>No camera permissions</Text>
                 </Container>
             )
         }
@@ -61,9 +61,7 @@ class Cameraa extends Component {
                         width,
                         height: width * (4 / 3)
                     }}
-                    ref={ref => {
-                        this.camera = ref
-                    }}
+                    ref={ref => (this.camera = ref)}
                     type={this.state.type}
                     flashMode={this.state.flash}
                 >
@@ -113,11 +111,4 @@ const Wrap = styled.View`
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-`
-const Circle = styled.View`
-    width: 80;
-    height: 80;
-    border-radius: 50;
-    border-width: 4;
-    border-color: lightgray;
 `

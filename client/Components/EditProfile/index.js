@@ -39,7 +39,12 @@ class EditProfileContainer extends Component {
         } else {
             Alert.alert('Error', 'No fields to change', [{ text: 'OK' }])
         }
-        this.setState({ fullname: '', username: '', bio: '', email: '' })
+        this.setState({
+            fullname: '',
+            username: '',
+            bio: '',
+            email: ''
+        })
     }
 
     render() {

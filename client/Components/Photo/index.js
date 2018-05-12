@@ -11,13 +11,13 @@ class PhotoContainer extends Component {
             variables: { photoId },
             update: (cache, { data: { likePhoto } }) => {
                 if (likePhoto) {
-                    let data = cache.readQuery({
+                    const data = cache.readQuery({
                         query: photoQuery,
                         variables: {
                             photoId
                         }
                     })
-                    data.photo.likesCount++
+                    data.photo.likesCount += 1
                     cache.writeQuery({
                         query: photoQuery,
                         variables: {

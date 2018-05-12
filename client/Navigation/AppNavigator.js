@@ -1,4 +1,4 @@
-import { TabNavigator, StackNavigator } from 'react-navigation'
+import { StackNavigator } from 'react-navigation'
 
 import Feed from '../Components/Feed'
 import Camera from '../Components/Camera'
@@ -12,8 +12,6 @@ import AddPhoto from '../Components/AddPhoto'
 import UsersList from '../Components/UsersList'
 import UserProfile from '../Components/UserProfile'
 import Photo from '../Components/Photo'
-
-import Icon from 'react-native-vector-icons/Feather'
 
 const FeedNavigation = StackNavigator(
     {

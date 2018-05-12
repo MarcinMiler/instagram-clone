@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { ActivityIndicator } from 'react-native'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -7,10 +6,6 @@ import Spinner from '../Spinner'
 import Profile from './Profile'
 
 class ProfileContainer extends Component {
-    state = {
-        switch: 'MyPhotos'
-    }
-
     handleChangeState = (key, value) => this.setState({ [key]: value })
 
     render() {

@@ -50,12 +50,12 @@ class RegisterContainer extends Component {
     validateRegister = (email, username, fullname, password, password2) => {
         let messages = ''
 
-        if (!email || !username || !fullname || !password || !password2)
+        if (!email || !username || !fullname || !password || !password2) {
             messages += 'All fields must be filled, '
-
+        }
         if (email) {
-            let re = /\S+@\S+\.\S+/
-            let emailTest = re.test(email)
+            const re = /\S+@\S+\.\S+/
+            const emailTest = re.test(email)
             if (!emailTest) messages += 'Email is incorrect, '
         }
 
@@ -64,7 +64,8 @@ class RegisterContainer extends Component {
         if (messages) {
             Alert.alert('Login failed', messages, [{ text: 'OK' }])
             return { ok: false }
-        } else return { ok: true }
+        }
+        return { ok: true }
     }
 
     render() {

@@ -45,8 +45,8 @@ class LoginContainer extends Component {
 
         if (!email) messages += 'Email is empty, '
         else {
-            let re = /\S+@\S+\.\S+/
-            let emailTest = re.test(email)
+            const re = /\S+@\S+\.\S+/
+            const emailTest = re.test(email)
 
             if (!emailTest) messages += 'Email is incorrect, '
         }
@@ -56,7 +56,9 @@ class LoginContainer extends Component {
         if (messages) {
             Alert.alert('Login failed', messages, [{ text: 'OK' }])
             return { ok: false }
-        } else return { ok: true }
+        }
+
+        return { ok: true }
     }
 
     render() {

@@ -1,9 +1,8 @@
 import React from 'react'
-import { Picker } from 'react-native'
 import styled from 'styled-components'
 import Navbar from '../Navbar'
 
-const EditProfile = ({ changeProfileDetails, changeState, state, me }) => (
+const EditProfile = ({ changeProfileDetails, changeState, me }) => (
     <Container>
         <Navbar
             back

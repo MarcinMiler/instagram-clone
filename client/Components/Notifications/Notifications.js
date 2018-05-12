@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { ScrollView, TouchableNativeFeedback, Text } from 'react-native'
+import React from 'react'
+import { ScrollView, TouchableNativeFeedback } from 'react-native'
 import styled from 'styled-components'
 
 import Navbar from '../Navbar'
@@ -43,16 +43,6 @@ export default Notifications
 const Container = styled.View`
     flex: 1;
     background-color: white;
-`
-const Nav = styled.View`
-    flex-direction: row;
-    margin-top: 23;
-    border-bottom-width: 1;
-    border-color: lightgray;
-`
-const NavItem = styled.View`
-    width: 50%;
-    padding: 15px;
 `
 const Item = styled.View`
     width: 100%;

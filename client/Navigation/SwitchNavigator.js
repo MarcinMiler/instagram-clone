@@ -6,7 +6,7 @@ import Loading from '../Components/Loading'
 
 export default SwitchNavigator(
     {
-        Loading: Loading,
+        Loading,
         Login: LoginNavigator,
         App: AppNavigator
     },

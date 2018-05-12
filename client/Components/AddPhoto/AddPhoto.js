@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Image, Dimensions, Button } from 'react-native'
 import styled from 'styled-components'
 import Navbar from '../Navbar'
 
-const { width, height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 const AddPhoto = ({ addPhoto, url, changeState }) => (
     <Container>
         <Navbar back leftIcon="arrow-left" title="Add photo" />
         <Image
             source={{ uri: url }}
-            style={{ width: width, height: width * (4 / 3) }}
+            style={{ width, height: width * (4 / 3) }}
         />
 
         <Input

@@ -39,7 +39,7 @@ const Navbar = ({
                     onPress={() => rightAction()}
                     name={rightIcon}
                     size={24}
-                    color={rightIconColor ? rightIconColor : '#000'}
+                    color={rightIconColor && '#000'}
                 />
             </Right>
         )}

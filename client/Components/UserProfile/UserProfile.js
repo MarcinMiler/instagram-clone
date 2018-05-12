@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Image, View } from 'react-native'
+import { ScrollView } from 'react-native'
 import styled from 'styled-components'
 
 import Icon from 'react-native-vector-icons/Feather'

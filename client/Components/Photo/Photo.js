@@ -1,5 +1,4 @@
 import React from 'react'
-import { Image } from 'react-native'
 import styled from 'styled-components'
 
 import Navbar from '../Navbar'

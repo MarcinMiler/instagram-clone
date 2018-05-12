@@ -1,21 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import Spinner from '../Spinner'
 import Notifications from './Notifications'
 
-class NotificationsContainer extends Component {
-    render() {
-        if (this.props.notifications.loading) return <Spinner />
+const NotificationsContainer = ({ notifications, navigation }) => {
+    if (notifications.loading) return <Spinner />
 
-        return (
-            <Notifications
-                notifications={this.props.notifications.notifications}
-                navigation={this.props.navigation}
-            />
-        )
-    }
+    return (
+        <Notifications
+            notifications={notifications.notifications}
+            navigation={navigation}
+        />
+    )
 }
 
 const notificationsQuery = gql`

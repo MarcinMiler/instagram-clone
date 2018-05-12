@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Foundation from 'react-native-vector-icons/Foundation'
 
-const { width, height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 const checkIfLiked = (likes, myId) => likes.find(like => like.user.id === myId)
 

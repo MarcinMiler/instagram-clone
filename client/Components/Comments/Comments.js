@@ -1,15 +1,10 @@
 import React from 'react'
-import {
-    Dimensions,
-    View,
-    ScrollView,
-    KeyboardAvoidingView
-} from 'react-native'
+import { Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native'
 import styled from 'styled-components'
-
-import Navbar from '../Navbar'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Foundation from 'react-native-vector-icons/Foundation'
+
+import Navbar from '../Navbar'
 
 const { height } = Dimensions.get('window')
 
