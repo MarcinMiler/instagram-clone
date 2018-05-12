@@ -196,3 +196,37 @@ export const userQuery = (id: number) => `
     }
 }
 `
+
+export const feedQuery = `
+{
+    feed {
+        id
+        url
+        user {
+            username
+        }
+        likes {
+            user {
+                id
+                username
+            }
+        }
+        likesCount
+        comments {
+            id
+            text
+            user {
+                id
+                username
+            }
+            likes {
+                user {
+                    username
+                }
+            }
+            likesCount
+        }
+        commentsCount
+    }
+}
+`

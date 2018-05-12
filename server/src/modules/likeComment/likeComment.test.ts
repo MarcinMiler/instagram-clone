@@ -3,13 +3,10 @@ import { startServer } from '../../startServer'
 import {
     loginMutationWithToken,
     registerMutation,
-    isLiked,
     likeComment,
     addPhoto
 } from '../../utils/mutations'
 import { Photo } from '../../entity/Photo'
-import { Comment } from '../../entity/Comment'
-import { exec } from 'child_process'
 import { Like } from '../../entity/Like'
 
 let getHost = () => ''

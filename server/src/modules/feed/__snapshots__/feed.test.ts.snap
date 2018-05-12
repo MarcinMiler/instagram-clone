@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query feed should return followers new photos 1`] = `
+Object {
+  "feed": Array [
+    Object {
+      "comments": Array [],
+      "commentsCount": 0,
+      "id": "2",
+      "likes": Array [],
+      "likesCount": 0,
+      "url": "lul.jpg",
+      "user": Object {
+        "username": "Kingaaa",
+      },
+    },
+    Object {
+      "comments": Array [],
+      "commentsCount": 0,
+      "id": "1",
+      "likes": Array [],
+      "likesCount": 0,
+      "url": "lol.jpg",
+      "user": Object {
+        "username": "Angelaaa",
+      },
+    },
+  ],
+}
+`;

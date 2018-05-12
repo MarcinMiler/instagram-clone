@@ -3,7 +3,7 @@ import { User } from '../../entity/User'
 
 export const resolvers: ResolverMap = {
     Query: {
-        me: async (_, args, { user }) => {
+        me: async (_, __, { user }) => {
             const u = await User.findOneById(user, {
                 relations: [
                     'photos',

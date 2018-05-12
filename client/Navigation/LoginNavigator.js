@@ -1,7 +1,7 @@
 import { StackNavigator } from 'react-navigation'
 
-import LoginContainer from '../Containers/LoginContainer'
-import RegisterContainer from '../Containers/RegisterContainer'
+import LoginContainer from '../Components/Login'
+import RegisterContainer from '../Components/Register'
 
 export default StackNavigator(
     {

@@ -17,7 +17,7 @@ const options = {
     }
 }
 
-const addUser = (req: any, res: any, next: any) => {
+const addUser = (req: any, _: any, next: any) => {
     const token = req.headers.token
     if (token) {
         const user = jwt.verify(token, SECRET)

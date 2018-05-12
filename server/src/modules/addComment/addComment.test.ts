@@ -3,7 +3,6 @@ import { startServer } from '../../startServer'
 import {
     loginMutationWithToken,
     registerMutation,
-    addPhoto,
     addComment
 } from '../../utils/mutations'
 import { Photo } from '../../entity/Photo'

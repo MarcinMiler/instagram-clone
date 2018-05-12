@@ -3,22 +3,23 @@ import { startServer } from '../../startServer'
 import {
     loginMutationWithToken,
     registerMutation,
-    userQuery
+    follow,
+    feedQuery
 } from '../../utils/mutations'
 import { Photo } from '../../entity/Photo'
 
 let getHost = () => ''
 let token = ''
 
-const email = 'm@m.com'
-const password = 'mm'
-const fullname = 'Marcin Miler'
-const username = 'Marcinek'
-
 beforeAll(async () => {
     const app = await startServer()
     const { port } = app.address()
     getHost = () => `http://127.0.0.1:${port}/graphql`
+
+    const email = 'm@m.com'
+    const password = 'mm'
+    const fullname = 'Marcin Miler'
+    const username = 'Marcinek'
 
     await request(
         getHost(),
@@ -30,6 +31,11 @@ beforeAll(async () => {
         registerMutation('a@a.com', 'aa', 'Angelika Miler', 'Angelaaa')
     )
 
+    await request(
+        getHost(),
+        registerMutation('k@k.com', 'kk', 'Kinga Miler', 'Kingaaa')
+    )
+
     const login: any = await request(
         getHost(),
         loginMutationWithToken(email, password)
@@ -37,21 +43,30 @@ beforeAll(async () => {
     token = login.login.token
 })
 
-describe('Query user', async () => {
-    it('should return user', async () => {
+describe('Query feed', async () => {
+    it('should return followers new photos', async () => {
         const client = new GraphQLClient(getHost(), {
             headers: {
                 token
             }
         })
 
+        await client.request(follow(2))
+        await client.request(follow(3))
+
         await Photo.create({
-            url: 'lul.jpg',
-            userId: 1
+            userId: 2,
+            url: 'lol.jpg'
         }).save()
 
-        const response = await client.request(userQuery(1))
+        await Photo.create({
+            userId: 3,
+            url: 'lul.jpg'
+        }).save()
 
+        const response: any = await client.request(feedQuery)
+
+        expect(response.feed).toHaveLength(2)
         expect(response).toMatchSnapshot()
     })
 })

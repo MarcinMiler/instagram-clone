@@ -11,14 +11,13 @@ class AddPhotoContainer extends Component {
 
     handleChangeState = (key, value) => this.setState({ [key]: value })
 
-    addPhoto = () => {
+    addPhoto = () =>
         this.props.addPhoto({
             variables: {
                 url: this.props.navigation.state.params.url,
                 text: this.state.text
             }
         })
-    }
 
     render() {
         return (
@@ -38,6 +37,5 @@ const addPhotoMutation = gql`
 `
 
 export default graphql(addPhotoMutation, {
-    name: 'addPhoto',
-    options: { refetchQueries: ['me'] }
+    name: 'addPhoto'
 })(AddPhotoContainer)

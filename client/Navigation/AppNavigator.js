@@ -56,17 +56,21 @@ const ExploreNavigation = StackNavigator(
     }
 )
 
-const CameraNavigation = StackNavigator({
-    Main: {
-        screen: Camera,
+const CameraNavigation = StackNavigator(
+    {
+        Main: {
+            screen: Camera
+        },
+        AddPhoto: {
+            screen: AddPhoto
+        }
+    },
+    {
         navigationOptions: {
             header: null
         }
-    },
-    AddPhoto: {
-        screen: AddPhoto
     }
-})
+)
 
 const ProfileNavigation = StackNavigator(
     {
