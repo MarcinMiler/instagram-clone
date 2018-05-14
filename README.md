@@ -28,6 +28,8 @@ Fullstack instagram clone made with:
 
 3 `yarn start`
 
+4 In apollo.js you need to change IP address to your server.
+
 ### Server
 
 You need to have installed postgreSQL, and configure ormconfig.json file (database connection) to run server localy.
@@ -47,4 +49,3 @@ You need to have installed postgreSQL, and configure ormconfig.json file (databa
 *   Images hosting
 *   Improve UI and UX
 *   Add subscriptions
-*   More complex and faster tests
