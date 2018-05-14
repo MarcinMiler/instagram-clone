@@ -10,6 +10,14 @@ Fullstack instagram clone made with:
 *   [GraphQL](https://graphql.org/)
 *   [Typeorm / postgreSQL](http://typeorm.io/#/)
 
+![login](./client/resources/login.png)
+![feed](./client/resources/feed.png)
+![explore](./client/resources/explore.png)
+![camera](./client/resources/camera.png)
+![notifications](./client/resources/notifications.png)
+![profile](./client/resources/profile.png)
+![comments](./client/resources/comments.png)
+
 ## How to run local
 
 ### Client
@@ -21,6 +29,7 @@ Fullstack instagram clone made with:
 3 `yarn start`
 
 ### Server
+
 You need to have installed postgreSQL, and configure ormconfig.json file (database connection) to run server localy.
 
 1 `cd instagram-clone/server && yarn`
