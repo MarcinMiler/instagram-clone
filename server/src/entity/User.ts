@@ -23,6 +23,9 @@ export class User extends BaseEntity {
     @Column({ nullable: true })
     bio: string
 
+    @Column({ nullable: true })
+    notificationToken: string
+
     @OneToMany(() => Photo, photo => photo.user)
     photos: Photo[]
 

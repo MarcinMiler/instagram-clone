@@ -230,3 +230,8 @@ export const feedQuery = `
     }
 }
 `
+export const saveNotificationToken = (token: string) => `
+    mutation {
+        saveNotificationToken(token: "${token}")
+    }
+`

@@ -14,6 +14,7 @@ User {
       "followingCount": 0,
       "fullname": "Angelika Miler",
       "id": 2,
+      "notificationToken": null,
       "photosCount": 0,
       "username": "Angelaaa",
     },
@@ -21,6 +22,7 @@ User {
   "followingCount": 1,
   "fullname": "Marcin Miler",
   "id": 1,
+  "notificationToken": null,
   "photosCount": 0,
   "username": "Marcinek",
 }
@@ -38,6 +40,7 @@ User {
       "followingCount": 1,
       "fullname": "Marcin Miler",
       "id": 1,
+      "notificationToken": null,
       "photosCount": 0,
       "username": "Marcinek",
     },
@@ -47,6 +50,7 @@ User {
   "followingCount": 0,
   "fullname": "Angelika Miler",
   "id": 2,
+  "notificationToken": null,
   "photosCount": 0,
   "username": "Angelaaa",
 }

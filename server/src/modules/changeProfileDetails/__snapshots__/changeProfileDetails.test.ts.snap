@@ -8,6 +8,7 @@ User {
   "followingCount": 0,
   "fullname": "Mirek Miler",
   "id": 1,
+  "notificationToken": null,
   "photosCount": 0,
   "username": "Milerek",
 }

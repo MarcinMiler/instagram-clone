@@ -10,9 +10,12 @@ class FeedContainer extends Component {
     async componentDidMount() {
         const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
 
-        const token = await Notifications.getExpoPushTokenAsync()
-
-        console.log(token)
+        if (status === 'granted') {
+            const token = await Notifications.getExpoPushTokenAsync()
+            this.props.saveNotificationToken({
+                variables: { token }
+            })
+        }
     }
 
     likePhoto = photoId =>
@@ -79,6 +82,11 @@ const likePhotoMutation = gql`
         likePhoto(photoId: $photoId)
     }
 `
+const saveNotificationTokenMutation = gql`
+    mutation saveNotificationToken($token: String!) {
+        saveNotificationToken(token: $token)
+    }
+`
 
 export default compose(
     graphql(feedQuery, {
@@ -91,5 +99,6 @@ export default compose(
         options: {
             refetchQueries: ['feed']
         }
-    })
+    }),
+    graphql(saveNotificationTokenMutation, { name: 'saveNotificationToken' })
 )(FeedContainer)
