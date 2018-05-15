@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "expo-server-sdk": "^2.3.3",
         "graphql": "^0.13.2",
         "graphql-import": "^0.5.2",
         "graphql-request": "^1.5.2",
@@ -43,6 +44,13 @@
             "^.+\\.tsx?$": "ts-jest"
         },
         "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-        "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ]
     }
 }

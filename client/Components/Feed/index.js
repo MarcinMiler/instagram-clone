@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Permissions, Notifications } from 'expo'
 
 import Spinner from '../Spinner'
 import Feed from './Feed'
 
 class FeedContainer extends Component {
+    async componentDidMount() {
+        const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+
+        const token = await Notifications.getExpoPushTokenAsync()
+
+        console.log(token)
+    }
+
     likePhoto = photoId =>
         this.props.likePhoto({
             variables: { photoId }

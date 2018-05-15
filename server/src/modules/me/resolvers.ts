@@ -1,5 +1,6 @@
 import { ResolverMap } from '../../types/resolverType'
 import { User } from '../../entity/User'
+const Expo = require('expo-server-sdk')
 
 export const resolvers: ResolverMap = {
     Query: {
@@ -18,6 +19,25 @@ export const resolvers: ResolverMap = {
             if (u) {
                 u.photos.sort((a: any, b: any) => b.id - a.id)
             }
+
+            const expo = new Expo()
+
+            const message = {
+                to: 'some token',
+                sound: 'default',
+                body: 'Notification test',
+                data: { withSome: 'data' }
+            }
+
+            try {
+                const receipts = await expo.sendPushNotificationsAsync([
+                    message
+                ])
+                console.log(receipts)
+            } catch (err) {
+                console.log(err)
+            }
+
             return u
         }
     }
