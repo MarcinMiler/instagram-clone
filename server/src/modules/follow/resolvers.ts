@@ -1,10 +1,10 @@
 import { ResolverMap } from '../../types/resolverType'
-import { Notification } from '../../entity/Notification'
 import { User } from '../../entity/User'
+import { sendNotification } from '../../utils/sendNotification'
 
 export const resolvers: ResolverMap = {
     Mutation: {
-        follow: async (_, { followerId }, { user }) => {
+        follow: async (_, { followerId }, { user, expo }) => {
             try {
                 const user1 = await User.findOneById(user, {
                     relations: ['followers', 'following']
@@ -20,12 +20,7 @@ export const resolvers: ResolverMap = {
                     await user1.save()
                     await user2.save()
 
-                    const notification = Notification.create({
-                        userId: user,
-                        message: 'is following you.',
-                        sendTo: followerId
-                    })
-                    await notification.save()
+                    sendNotification(user, followerId, 'follow', expo)
                 }
                 return true
             } catch (err) {

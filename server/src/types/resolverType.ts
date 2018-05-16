@@ -3,7 +3,7 @@ export interface ResolverMap {
         [key: string]: (
             parent: any,
             args: any,
-            context: { user: number },
+            context: { user: number; expo: any },
             info: any
         ) => any
     }

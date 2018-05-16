@@ -1,11 +1,11 @@
 import { ResolverMap } from '../../types/resolverType'
 import { Photo } from '../../entity/Photo'
-import { Notification } from '../../entity/Notification'
 import { Like } from '../../entity/Like'
+import { sendNotification } from '../../utils/sendNotification'
 
 export const resolvers: ResolverMap = {
     Mutation: {
-        likePhoto: async (_, { photoId }, { user }) => {
+        likePhoto: async (_, { photoId }, { user, expo }) => {
             try {
                 const photo = await Photo.findOneById(photoId, {
                     relations: ['likes', 'likes.user']
@@ -22,13 +22,13 @@ export const resolvers: ResolverMap = {
                         await like.save()
 
                         if (photo.userId !== user) {
-                            const notification = Notification.create({
-                                userId: user,
-                                photoId,
-                                message: 'is liked your photo.',
-                                sendTo: photo.userId
-                            })
-                            await notification.save()
+                            sendNotification(
+                                user,
+                                photo.userId,
+                                'like',
+                                expo,
+                                photo.id
+                            )
                         }
 
                         return true

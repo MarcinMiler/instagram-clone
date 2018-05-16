@@ -9,6 +9,8 @@ import { GraphQLSchema } from 'graphql'
 import { createTypeormConn } from './utils/createTypeormConn'
 import SECRET from './utils/SECRET'
 
+const Expo = require('expo-server-sdk')
+
 const options = {
     port: process.env.NODE_ENV === 'test' ? 0 : 4000,
     endpoint: '/graphql',
@@ -37,11 +39,16 @@ export const startServer = async () => {
         schemas.push(makeExecutableSchema({ resolvers, typeDefs }))
     })
 
+    const expo = new Expo()
+
     const server = new GraphQLServer({
         schema: mergeSchemas({ schemas }),
         context: (req: any) => {
             if (req.request.user) {
-                return { user: req.request.user.id }
+                return {
+                    user: req.request.user.id,
+                    expo
+                }
             }
             return
         }

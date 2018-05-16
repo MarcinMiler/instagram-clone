@@ -1,11 +1,11 @@
 import { ResolverMap } from '../../types/resolverType'
 import { Photo } from '../../entity/Photo'
 import { Comment } from '../../entity/Comment'
-import { Notification } from '../../entity/Notification'
+import { sendNotification } from '../../utils/sendNotification'
 
 export const resolvers: ResolverMap = {
     Mutation: {
-        addComment: async (_, { photoId, text }, { user }) => {
+        addComment: async (_, { photoId, text }, { user, expo }) => {
             try {
                 const comment = Comment.create({
                     photoId,
@@ -18,13 +18,13 @@ export const resolvers: ResolverMap = {
                 const photo = await Photo.findOneById(photoId)
 
                 if (photo && photo.userId !== user) {
-                    const notification = Notification.create({
-                        userId: user,
-                        photoId,
-                        message: 'comment your photo.',
-                        sendTo: photo.userId
-                    })
-                    await notification.save()
+                    sendNotification(
+                        user,
+                        photo.userId,
+                        'comment',
+                        expo,
+                        photo.id
+                    )
                 }
 
                 return true
